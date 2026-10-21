@@ -1,18 +1,32 @@
-# 🪔 Royal Indian Traditional Wedding Invitation
+# 🪔 Sumanth & Amrutha - Royal Wedding Invitation (ಶುಭ ವಿವಾಹ)
 
 An interactive, responsive Indian traditional wedding invitation card web page with animations, sound effects, royal envelope reveal, and live countdown.
 
 ---
 
-## ✨ Features
+## 💍 Wedding Details
 
-- 💌 **Interactive Royal Envelope Opening**: Guests tap the Shubh Vivah wax seal to open the card with petal bursts.
+- **Groom**: Sumanth S M (ವರ: ಸುಮಂತ್ ಎಸ್ ಎಂ)
+- **Bride**: Amrutha S (ವಧು: ಅಮೃತ ಎಸ್)
+- **Dates**: 21st & 22nd November 2026
+- **Venue**: Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131, Karnataka
+
+### 🗓️ Event Timeline
+1. **Engagement & Arathakshathe (ನಿಶ್ಚಿತಾರ್ಥ ಮತ್ತು ಆರತಕ್ಷತೆ)**: Saturday, 21st November 2026, 07:30 PM Onwards
+2. **Lagna Muhurtham (ಮಾಂಗಲ್ಯ ಧಾರಣೆ)**: Sunday, 22nd November 2026, 09:30 AM to 10:15 AM
+3. **Reception & Wedding Feast (ಆರತಕ್ಷತೆ ಮತ್ತು ಮದುವೆ ಭೋಜನ)**: Sunday, 22nd November 2026, 12:00 PM Onwards
+
+---
+
+## ✨ Interactive Features
+
+- 💌 **Interactive Royal Envelope Opening**: Guests tap the glowing Kannada *"ಶುಭ ವಿವಾಹ"* wax seal to unfold the invitation with petal bursts.
 - 🌸 **Live Rose & Marigold Petal Shower**: Canvas-powered physics simulation with interactive *"Shower Blessings"* button.
 - 🎵 **Traditional Background Music / Shehnai**: Floating audio player with play/pause toggle.
-- ⏳ **Auspicious Muhurtham Countdown**: Real-time days, hours, minutes, and seconds counter.
-- 🗓️ **Events Timeline**: Interactive cards for Haldi, Mehendi, Sangeet, Muhurtham & Reception with **1-click Add to Google Calendar**.
-- 📍 **Interactive Venue & Directions**: Direct link to open Google Maps navigation.
-- ✍️ **Guest Blessings & Ashirwad Wall**: Real-time guestbook form allowing friends and family to leave personal wishes.
+- ⏳ **Auspicious Muhurtham Countdown**: Real-time days, hours, minutes, and seconds counter targetting Sunday, 22nd November 2026 at 9:30 AM.
+- 🗓️ **Events Itinerary**: Interactive cards with **1-click Add to Google Calendar** for each ceremony.
+- 📍 **Interactive Venue & Embedded Map**: Direct Google Maps embedded view with a 1-tap navigation button.
+- ✍️ **Guest Blessings & Ashirwad Wall**: Real-time guestbook form allowing friends and family to write and post wishes.
 - 📱 **Mobile Optimized**: Designed specifically for wedding guests viewing on mobile devices and WhatsApp sharing.
 
 ---
@@ -29,27 +43,3 @@ open index.html
 python3 -m http.server 8000
 ```
 Then visit `http://localhost:8000`.
-
----
-
-## 🎨 Easy Customization
-
-All wedding details can be configured directly in [`js/script.js`](js/script.js) inside the `WEDDING_CONFIG` object:
-
-```javascript
-const WEDDING_CONFIG = {
-  groom: {
-    name: "Arjun",
-    parents: "S/o Smt. Sunita & Shri Rajesh Sharma",
-    ...
-  },
-  bride: {
-    name: "Pooja",
-    parents: "D/o Smt. Rekha & Shri Mahendra Verma",
-    ...
-  },
-  weddingDate: "2026-12-10T10:30:00+05:30",
-  venue: { ... },
-  events: [ ... ]
-};
-```

@@ -5,62 +5,55 @@
 // Central Configuration Object - Easily updated with client details
 const WEDDING_CONFIG = {
   groom: {
-    name: "Arjun",
-    title: "Groom",
-    parents: "S/o Smt. Sunita & Shri Rajesh Sharma",
-    grandparents: "Grandson of Late Smt. Kamala & Shri Ram Sharma",
+    name: "Sumanth S M",
+    title: "Groom (ವರ)",
+    parents: "Together with Family & Relatives",
     avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80"
   },
   bride: {
-    name: "Pooja",
-    title: "Bride",
-    parents: "D/o Smt. Rekha & Shri Mahendra Verma",
-    grandparents: "Granddaughter of Smt. Shanti & Late Shri Krishan Verma",
+    name: "Amrutha S",
+    title: "Bride (ವಧು)",
+    parents: "Together with Family & Relatives",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80"
   },
-  weddingDate: "2026-12-10T10:30:00+05:30", // Format: YYYY-MM-DDTHH:mm:ss
-  auspiciousMuhurthamText: "Thursday, 10th December 2026 at 10:30 AM",
+  weddingDate: "2026-11-22T09:30:00+05:30", // Auspicious Muhurtham: 22 Nov 2026 9:30 AM
+  auspiciousMuhurthamText: "Sunday, 22nd November 2026 | 9:30 AM – 10:15 AM",
   venue: {
-    name: "The Royal Palace Banquet & Gardens",
-    address: "Palace Road, Near Heritage Lake, Bengaluru, Karnataka - 560001",
-    googleMapsUrl: "https://maps.google.com/?q=The+Royal+Palace+Banquet+Gardens"
+    name: "Sri Taralabalu Samudaya Bhavana",
+    kannadaName: "ಶ್ರೀ ತರಳಬಾಳು ಸಮುದಾಯ ಭವನ",
+    address: "Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131",
+    googleMapsUrl: "https://maps.google.com/?q=Taralabalu+Conventional+Hall+Harapanahalli"
   },
   events: [
     {
-      title: "Haldi Ceremony",
-      icon: "🌼",
-      date: "Wednesday, 9th December 2026",
-      time: "10:00 AM onwards",
-      venue: "Courtyard of Sunshine",
-      dressCode: "Traditional Yellow & Sunshine Attire",
-      description: "An auspicious morning filled with haldi, laughter, and fragrant marigolds."
+      title: "Engagement & Arathakshathe",
+      kannadaTitle: "ನಿಶ್ಚಿತಾರ್ಥ ಮತ್ತು ಆರತಕ್ಷತೆ",
+      icon: "💍",
+      date: "Saturday, 21st November 2026",
+      time: "07:30 PM Onwards",
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
+      dressCode: "Traditional Festive Attire",
+      description: "An auspicious evening of joyous celebrations, welcoming the newly united families with Arathakshathe rituals."
     },
     {
-      title: "Mehendi & Sangeet",
-      icon: "🪕",
-      date: "Wednesday, 9th December 2026",
-      time: "06:30 PM onwards",
-      venue: "Grand Ballroom",
-      dressCode: "Vibrant Indo-Western / Ethnic Glam",
-      description: "An evening of intricate henna melodies, soulful sangeet, and energetic dance performances."
-    },
-    {
-      title: "Muhurtham (Wedding Ceremony)",
+      title: "Lagna Muhurtham",
+      kannadaTitle: "ಮಾಂಗಲ್ಯ ಧಾರಣೆ ಮತ್ತು ಸಪ್ತಪದಿ",
       icon: "🔥",
-      date: "Thursday, 10th December 2026",
-      time: "10:30 AM Auspicious Lagna",
-      venue: "Main Kalyana Mandapam",
-      dressCode: "Traditional Kanjeevarams & Kurta Pajama / Dhotis",
-      description: "The sacred saat phere around the holy agni solemnizing eternal vows."
+      date: "Sunday, 22nd November 2026",
+      time: "09:30 AM to 10:15 AM",
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
+      dressCode: "Traditional Silk Attire / Dhotis & Sarees",
+      description: "The divine Mangalya Dharana solemnizing the eternal sacred union of Sumanth & Amrutha."
     },
     {
-      title: "Royal Reception",
-      icon: "✨",
-      date: "Thursday, 10th December 2026",
-      time: "07:00 PM onwards",
-      venue: "Palace Emerald Lawns",
-      dressCode: "Formal Royal Evening Wear",
-      description: "Celebrate the union of Arjun & Pooja with dining, music, and royal feast."
+      title: "Reception & Wedding Feast",
+      kannadaTitle: "ಆರತಕ್ಷತೆ ಮತ್ತು ಮದುವೆ ಭೋಜನ",
+      icon: "🍽️",
+      date: "Sunday, 22nd November 2026",
+      time: "12:00 PM Onwards",
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
+      dressCode: "Festive Glam / Ethnic Wear",
+      description: "Celebrate with the newlyweds followed by grand celebratory wedding feast (ಮದುವೆ ಊಟ)."
     }
   ]
 };
@@ -282,15 +275,15 @@ function playAudioIfAllowed() {
 const DEFAULT_BLESSINGS = [
   {
     name: "Uncle Ramesh & Family",
-    text: "Wishing Arjun & Pooja a lifetime of eternal love, happiness, and prosperity! Sadar Pranam."
+    text: "Hearty congratulations to Sumanth & Amrutha! Wishing you both a lifetime of happiness, peace, and eternal love."
   },
   {
-    name: "Neha & Vikram",
-    text: "Congratulations to the most beautiful couple! May your journey together be as colorful and blessed as the saptapadi."
+    name: "Friends & Well-wishers",
+    text: "So happy for Sumanth and Amrutha! May this sacred union bring endless joy and prosperity."
   },
   {
-    name: "Sharma Parivaar",
-    text: "May Lord Ganesha remove all obstacles and shower his divine blessings upon the newlyweds."
+    name: "Relatives Parivaar",
+    text: "ಶ್ರೀ ತರಳಬಾಳು ಜಗದ್ಗುರುಗಳ ಆಶೀರ್ವಾದದೊಂದಿಗೆ ಸುಮಂತ್ ಮತ್ತು ಅಮೃತ ಅವರಿಗೆ ಸುಖ-ಶಾಂತಿ, ನೆಮ್ಮದಿ ಸದಾ ಇರಲಿ ಎಂದು ಹಾರೈಸುತ್ತೇವೆ."
   }
 ];
 
