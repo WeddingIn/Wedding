@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sumanth &amp; Amrutha | Royal Wedding Invitation (ಶುಭ ವಿವಾಹ)</title>
+  <title>Sumanth &amp; Amrutha | Royal Wedding Invitation</title>
   
-  <!-- Favicon / Traditional Kalash Symbol -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
   
   <!-- Fonts & Icons -->
   <link rel="stylesheet" href="css/style.css">
@@ -14,11 +14,11 @@
 </head>
 <body>
 
-  <!-- Falling Rose & Marigold Petals Canvas -->
+  <!-- Falling Rose & Golden Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
   <div class="bg-mandala-overlay"></div>
 
-  <!-- Background Music Audio (Traditional Shehnai / Sitar Melody) -->
+  <!-- Background Music Audio (Serene Instrumental Melody) -->
   <audio id="wedding-bg-music" loop preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
   </audio>
@@ -27,15 +27,15 @@
        FLOATING INTERACTIVE CONTROLS
        ======================================================== -->
   <div class="floating-actions">
-    <button class="float-btn" id="music-toggle-btn" title="Toggle Shehnai / Music">
+    <button class="float-btn" id="music-toggle-btn" title="Toggle Music">
       🎵
     </button>
-    <a href="#events" class="float-btn" title="Wedding Schedule">
+    <button class="float-btn" onclick="goToStep(2)" title="View Schedule">
       🗓️
-    </a>
-    <a href="#venue" class="float-btn" title="Venue Map">
+    </button>
+    <button class="float-btn" onclick="goToStep(3)" title="View Venue">
       📍
-    </a>
+    </button>
   </div>
 
   <button class="blessings-shower-btn" onclick="showerPetals(50)">
@@ -43,7 +43,7 @@
   </button>
 
   <!-- ========================================================
-       INTERACTIVE ROYAL ENVELOPE OPENING SCREEN
+       STAGE 0: ROYAL ENVELOPE OPENING SCREEN
        ======================================================== -->
   <div class="envelope-screen" id="envelope-screen">
     <div class="envelope-wrapper" id="envelope-wrapper">
@@ -54,24 +54,18 @@
       <div class="envelope-corner br"></div>
 
       <div class="envelope-header">
-        <svg class="ganesha-symbol" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="45" stroke="#fbeea4" stroke-width="2" stroke-dasharray="4 2"/>
-          <path d="M50 20 C42 20 35 27 35 36 C35 44 42 48 50 48 C58 48 65 44 65 36 C65 27 58 20 50 20 Z" fill="#ffdf73" />
-          <path d="M42 46 C34 50 30 58 30 68 C30 78 40 82 50 82 C60 82 70 78 70 68 C70 58 66 50 58 46" stroke="#fbeea4" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="50" cy="35" r="3" fill="#680d19"/>
-          <path d="M47 38 L53 38" stroke="#680d19" stroke-width="2"/>
-        </svg>
-        <h3 class="kannada-text">|| ಶ್ರೀ ಗಣೇಶಾಯ ನಮಃ ||</h3>
+        <div class="crown-icon">👑</div>
+        <h3>Royal Wedding Invitation</h3>
       </div>
 
       <div class="envelope-center">
-        <p class="sub-label">Royal Wedding Invitation</p>
+        <p class="sub-label">Together Forever</p>
         <h1 class="couple-preview">Sumanth &amp; Amrutha</h1>
-        <p class="auspicious-date">21 &amp; 22 NOVEMBER 2026</p>
+        <p class="auspicious-date">NOVEMBER 21 &amp; 22, 2026</p>
       </div>
 
-      <div class="wax-seal-btn" id="wax-seal-btn" title="Tap to Open">
-        <span class="kannada-text" style="font-size: 13px;">ಶುಭ<br>ವಿವಾಹ</span>
+      <div class="wax-seal-btn" id="wax-seal-btn" title="Tap to Open Invitation">
+        <span>SAVE<br>THE DATE</span>
       </div>
     </div>
 
@@ -81,247 +75,301 @@
   </div>
 
   <!-- ========================================================
-       MAIN INVITATION CARD
+       MAIN INVITATION STEP-BY-STEP REVEAL CONTAINER
        ======================================================== -->
   <div class="invitation-main-container">
+
+    <!-- Step Progress Indicator Bar -->
+    <nav class="step-progress-wrapper" aria-label="Invitation Steps">
+      <button class="step-tab active" data-step="1" onclick="goToStep(1)">
+        <span class="step-num">1</span>
+        <span class="step-text">The Couple</span>
+        <span class="step-text-short">Couple</span>
+      </button>
+      <button class="step-tab" data-step="2" onclick="goToStep(2)">
+        <span class="step-num">2</span>
+        <span class="step-text">Celebrations</span>
+        <span class="step-text-short">Schedule</span>
+      </button>
+      <button class="step-tab" data-step="3" onclick="goToStep(3)">
+        <span class="step-num">3</span>
+        <span class="step-text">Venue &amp; Map</span>
+        <span class="step-text-short">Venue</span>
+      </button>
+      <button class="step-tab" data-step="4" onclick="goToStep(4)">
+        <span class="step-num">4</span>
+        <span class="step-text">Blessings</span>
+        <span class="step-text-short">Wishes</span>
+      </button>
+    </nav>
+
+    <!-- Card Wrapper -->
     <main class="royal-card">
       <div class="royal-border-frame"></div>
 
-      <!-- Top Toran / Auspicious Arch Decoration -->
-      <div class="top-toran">
-        <svg viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 10 Q 100 45, 200 10 Q 300 45, 390 10" stroke="#d4af37" stroke-width="2.5" fill="none"/>
-          <circle cx="100" cy="36" r="6" fill="#aa771c"/>
-          <circle cx="200" cy="18" r="8" fill="#d4af37"/>
-          <circle cx="300" cy="36" r="6" fill="#aa771c"/>
-          <path d="M195 24 L205 24 L200 35 Z" fill="#997819"/>
-          <path d="M95 40 L105 40 L100 49 Z" fill="#997819"/>
-          <path d="M295 40 L305 40 L300 49 Z" fill="#997819"/>
-        </svg>
-      </div>
-
-      <!-- Invocation & Shloka -->
-      <div class="ganesh-invocation">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 15 C38 15 30 25 30 38 C30 52 42 56 50 56 C58 56 70 52 70 38 C70 25 62 15 50 15 Z" fill="#aa771c"/>
-          <path d="M40 54 C30 60 25 70 25 82 C25 88 35 92 50 92 C65 92 75 88 75 82 C75 70 70 60 60 54" stroke="#d4af37" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="50" cy="35" r="4" fill="#fdf9f2"/>
-          <path d="M50 25 L50 45" stroke="#fdf9f2" stroke-width="2"/>
-        </svg>
-        <p class="shloka-sanskrit kannada-text" style="font-size: 15px; margin-bottom: 4px;">
-          || ಶ್ರೀ ಗುರುಭ್ಯೋ ನಮಃ || ಶ್ರೀ ತರಳಬಾಳು ಜಗದ್ಗುರು ಪ್ರಸನ್ನ ||
-        </p>
-        <p class="shloka-sanskrit">
-          || वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ||
-        </p>
-        <p class="shloka-meaning">"May Lord Ganesha and Guru's divine grace bestow auspiciousness, peace, and eternal joy upon this holy union."</p>
-      </div>
-
-      <!-- Announcement -->
-      <div class="announcement-text">
-        <p class="invite-tagline">Together with their families</p>
-        <p class="family-invite-words">
-          cordially invite you and your family to grace the auspicious wedding ceremony and joyous celebrations of their beloved children
-        </p>
-      </div>
-
-      <!-- Couple Showcase -->
-      <div class="couple-showcase">
-        <!-- Groom -->
-        <div class="couple-avatar-card">
-          <div class="couple-portrait-frame">
-            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80" alt="Groom Sumanth S M" id="groom-img">
-          </div>
-          <h2 class="couple-name" id="groom-name">Sumanth S M</h2>
-          <p class="kannada-subtitle">ವರ: ಸುಮಂತ್ ಎಸ್ ಎಂ</p>
-          <p class="couple-parents" id="groom-parents">
-            Together with family, relatives &amp; friends
-          </p>
-        </div>
-
-        <!-- Sacred Knot / Auspicious Union -->
-        <div class="couple-knot">
-          <span class="ampersand">&amp;</span>
-          <svg class="wedding-tie-icon" viewBox="0 0 100 100" fill="#aa771c">
-            <path d="M50 10 C30 35 15 55 50 90 C85 55 70 35 50 10 Z" fill="#d4af37" opacity="0.3"/>
-            <circle cx="50" cy="50" r="16" fill="#680d19"/>
-            <text x="50" y="55" font-size="16" text-anchor="middle" fill="#ffdf73">ॐ</text>
+      <!-- ====================================================
+           STEP 1: THE COUPLE & ANNOUNCEMENT
+           ==================================================== -->
+      <section class="invitation-step active" id="step-1">
+        <!-- Top Ornate Arch -->
+        <div class="top-toran">
+          <svg viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10 Q 100 45, 200 10 Q 300 45, 390 10" stroke="#d4af37" stroke-width="2.5" fill="none"/>
+            <circle cx="100" cy="36" r="6" fill="#aa771c"/>
+            <circle cx="200" cy="18" r="8" fill="#d4af37"/>
+            <circle cx="300" cy="36" r="6" fill="#aa771c"/>
+            <path d="M195 24 L205 24 L200 35 Z" fill="#997819"/>
+            <path d="M95 40 L105 40 L100 49 Z" fill="#997819"/>
+            <path d="M295 40 L305 40 L300 49 Z" fill="#997819"/>
           </svg>
         </div>
 
-        <!-- Bride -->
-        <div class="couple-avatar-card">
-          <div class="couple-portrait-frame">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Bride Amrutha S" id="bride-img">
-          </div>
-          <h2 class="couple-name" id="bride-name">Amrutha S</h2>
-          <p class="kannada-subtitle">ವಧು: ಅಮೃತ ಎಸ್</p>
-          <p class="couple-parents" id="bride-parents">
-            Together with family, relatives &amp; friends
+        <div class="divine-invocation">
+          <i class="fa-solid fa-om invocation-icon" style="font-size: 28px;"></i>
+          <p class="invocation-tagline">With the Divine Blessings of the Almighty</p>
+          <p class="invitation-intro-text">
+            Together with their families, we warmly invite you and your family to celebrate the wedding ceremony and eternal union of our beloved children
           </p>
         </div>
-      </div>
 
-      <!-- Sacred Sanskrit Vow -->
-      <div class="ornate-divider">
-        <span class="line"></span>
-        <span class="symbol">🌸 🪔 🌸</span>
-        <span class="line"></span>
-      </div>
+        <!-- Royal Couple Showcase with Regal Monograms -->
+        <div class="couple-showcase">
+          <!-- Groom Monogram Card -->
+          <div class="couple-avatar-card">
+            <div class="royal-monogram-emblem">
+              <div class="royal-monogram-inner">
+                <span class="royal-letter">S</span>
+                <span class="royal-role-tag">Groom</span>
+              </div>
+            </div>
+            <h2 class="couple-name">Sumanth S M</h2>
+            <p class="couple-subtitle">The Groom</p>
+            <p class="couple-parents">
+              Together with family, relatives &amp; friends
+            </p>
+          </div>
 
-      <div style="text-align: center; margin: 25px 0;">
-        <p style="font-size: 15px; color: #680d19; font-weight: 600; font-style: italic;">
-          "मांगल्यं तन्तुनानेन मम जीवनहेतुना । कंठे बध्नामि सुभगे त्वं जीव शरदः शतम् ॥"
-        </p>
-        <p style="font-size: 12px; color: #6e5850; margin-top: 4px;">
-          "This sacred mangalsutra thread, the very foundation of my life, I tie around your neck. May you live happily for a hundred autumns."
-        </p>
-      </div>
+          <!-- Knot / Union Rings -->
+          <div class="couple-knot">
+            <span class="ampersand">&amp;</span>
+            <div class="union-rings-icon">
+              <i class="fa-solid fa-ring"></i>
+            </div>
+          </div>
 
-      <!-- Live Countdown Section -->
-      <section class="countdown-section">
-        <h3 class="countdown-title">Counting Down to the Muhurtham</h3>
-        <p style="font-size: 13px; color: #8c6b1b; margin-top: -12px; margin-bottom: 18px; font-weight: 600;">
-          Sunday, 22nd November 2026 | 09:30 AM
-        </p>
-        <div class="timer-grid">
-          <div class="timer-box">
-            <span class="timer-number" id="days">00</span>
-            <span class="timer-label">Days</span>
+          <!-- Bride Monogram Card -->
+          <div class="couple-avatar-card">
+            <div class="royal-monogram-emblem">
+              <div class="royal-monogram-inner">
+                <span class="royal-letter">A</span>
+                <span class="royal-role-tag">Bride</span>
+              </div>
+            </div>
+            <h2 class="couple-name">Amrutha S</h2>
+            <p class="couple-subtitle">The Bride</p>
+            <p class="couple-parents">
+              Together with family, relatives &amp; friends
+            </p>
           </div>
-          <div class="timer-box">
-            <span class="timer-number" id="hours">00</span>
-            <span class="timer-label">Hours</span>
-          </div>
-          <div class="timer-box">
-            <span class="timer-number" id="minutes">00</span>
-            <span class="timer-label">Mins</span>
-          </div>
-          <div class="timer-box">
-            <span class="timer-number" id="seconds">00</span>
-            <span class="timer-label">Secs</span>
-          </div>
+        </div>
+
+        <!-- Poetic Blessing Quote -->
+        <div class="poetic-quote-box">
+          <p class="poetic-quote-text">
+            "Two lives, two hearts, joined together in friendship, united forever in love and companionship."
+          </p>
+        </div>
+
+        <!-- Step 1 Navigation Footer -->
+        <div class="step-nav-footer" style="justify-content: flex-end;">
+          <button class="nav-next-btn" onclick="goToStep(2)">
+            View Celebrations <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </section>
 
-      <!-- Events & Itinerary -->
-      <section class="events-section" id="events">
-        <h3 class="section-heading">Program &amp; Celebrations</h3>
+      <!-- ====================================================
+           STEP 2: CELEBRATIONS & ITINERARY
+           ==================================================== -->
+      <section class="invitation-step" id="step-2">
+        <h3 class="section-heading">Celebrations &amp; Schedule</h3>
         <p class="section-subheading">Moments of joy, auspicious rituals, and lifelong memories</p>
 
         <div class="events-timeline">
-          <!-- Event 1: Engagement / Arathakshathe -->
+          <!-- Event 1: Engagement -->
           <div class="event-card">
             <div class="event-icon-circle">💍</div>
-            <h4 class="event-title">Engagement &amp; Arathakshathe</h4>
-            <span class="kannada-subtitle">ನಿಶ್ಚಿತಾರ್ಥ &amp; ಆರತಕ್ಷತೆ</span>
-            <div class="event-date">Saturday, 21st November 2026</div>
+            <h4 class="event-title">Engagement &amp; Welcoming</h4>
+            <div class="event-date">Saturday, November 21, 2026</div>
             <div class="event-time">07:30 PM Onwards</div>
             <p class="event-desc">
-              Welcoming ceremony, joyous engagement rituals, and traditional Arathakshathe with music &amp; blessings.
+              Welcoming ceremony, traditional engagement rituals, festive music, and joyous celebration with family and friends.
             </p>
-            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Engagement & Arathakshathe', '2026-11-21T19:30:00', '2026-11-21T23:00:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Engagement and Arathakshathe Ceremony of Sumanth & Amrutha')">
+            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Engagement Celebration', '2026-11-21T19:30:00', '2026-11-21T23:00:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Engagement and Welcoming Celebration of Sumanth S M & Amrutha S')">
               <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
             </button>
           </div>
 
           <!-- Event 2: Muhurtham (Highlight) -->
           <div class="event-card highlight">
-            <span class="event-badge">Auspicious Lagna</span>
+            <span class="event-badge">Auspicious Ceremony</span>
             <div class="event-icon-circle">🔥</div>
-            <h4 class="event-title">Lagna Muhurtham</h4>
-            <span class="kannada-subtitle">ಮಾಂಗಲ್ಯ ಧಾರಣೆ &amp; ಸಪ್ತಪದಿ</span>
-            <div class="event-date">Sunday, 22nd November 2026</div>
+            <h4 class="event-title">Wedding Muhurtham</h4>
+            <div class="event-date">Sunday, November 22, 2026</div>
             <div class="event-time">09:30 AM to 10:15 AM</div>
             <p class="event-desc">
-              The divine Mangalya Dharana, Saptapadi, and sacred vows uniting Sumanth &amp; Amrutha in holy matrimony.
+              The sacred wedding ceremony, Mangalya Dharana, and sacred vows uniting Sumanth &amp; Amrutha in holy matrimony.
             </p>
-            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Shubh Lagna Muhurtham', '2026-11-22T09:30:00', '2026-11-22T10:15:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Auspicious Muhurtham of Sumanth S M & Amrutha S')">
+            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Auspicious Wedding Muhurtham', '2026-11-22T09:30:00', '2026-11-22T10:15:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Auspicious Muhurtham Ceremony of Sumanth S M & Amrutha S')">
               <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
             </button>
           </div>
 
-          <!-- Event 3: Reception & Lunch -->
+          <!-- Event 3: Reception & Banquet -->
           <div class="event-card">
             <div class="event-icon-circle">🍽️</div>
-            <h4 class="event-title">Reception &amp; Wedding Feast</h4>
-            <span class="kannada-subtitle">ಆರತಕ್ಷತೆ ಮತ್ತು ಮದುವೆ ಭೋಜನ</span>
-            <div class="event-date">Sunday, 22nd November 2026</div>
+            <h4 class="event-title">Reception &amp; Feast</h4>
+            <div class="event-date">Sunday, November 22, 2026</div>
             <div class="event-time">12:00 PM Onwards</div>
             <p class="event-desc">
-              Celebrate the newly wedded couple followed by grand traditional wedding feast (ಮದುವೆ ಊಟ / ಪ್ರಸಾದ).
+              Celebrate the newly wedded couple followed by an exquisite traditional celebratory wedding banquet and feast.
             </p>
-            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Wedding Reception & Feast', '2026-11-22T12:00:00', '2026-11-22T16:00:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Reception and Wedding Feast of Sumanth & Amrutha')">
+            <button class="event-btn" onclick="addToGoogleCalendar('Sumanth & Amrutha - Wedding Reception & Banquet', '2026-11-22T12:00:00', '2026-11-22T16:00:00', 'Sri Taralabalu Samudaya Bhavana, Hospet Rd, Harapanahalli', 'Wedding Reception and Banquet of Sumanth S M & Amrutha S')">
               <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
             </button>
           </div>
         </div>
-      </section>
 
-      <!-- Venue & Location with Embedded Map -->
-      <section class="venue-section" id="venue">
-        <div style="font-size: 32px; margin-bottom: 8px;">🏛️</div>
-        <h3 class="venue-name">Sri Taralabalu Samudaya Bhavana</h3>
-        <p class="venue-name-kannada">ಶ್ರೀ ತರಳಬಾಳು ಸಮುದಾಯ ಭವನ (ತರಳಬಾಳು ಕಲ್ಯಾಣ ಮಂಟಪ)</p>
-        <p class="venue-address">
-          Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131, Karnataka
-        </p>
-
-        <!-- Embedded Interactive Google Map -->
-        <div class="map-embed-wrapper">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987512.6563680095!2d74.77294921875001!3d14.798783094530657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb991f7fb16e9d1%3A0xa4458cd9e7001d0c!2sTaralabalu%20Conventional%20Hall%20%7C%7C%20Harapanahalli!5e0!3m2!1sen!2sin!4v1792607554055!5m2!1sen!2sin" 
-            width="100%" 
-            height="320" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
-        </div>
-
-        <div class="venue-actions">
-          <a href="https://maps.google.com/?q=Taralabalu+Conventional+Hall+Harapanahalli" target="_blank" rel="noopener noreferrer" class="gold-primary-btn">
-            <i class="fa-solid fa-location-arrow"></i> Open in Google Maps Navigation
-          </a>
+        <!-- Step 2 Navigation Footer -->
+        <div class="step-nav-footer">
+          <button class="nav-prev-btn" onclick="goToStep(1)">
+            <i class="fa-solid fa-arrow-left"></i> The Couple
+          </button>
+          <button class="nav-next-btn" onclick="goToStep(3)">
+            View Venue &amp; Map <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </section>
 
-      <!-- Guest Wishes & Blessings Board -->
-      <section class="blessings-section">
-        <div class="blessings-box">
-          <h3 class="section-heading" style="font-size: 22px;">Shower Your Blessings</h3>
-          <p class="section-subheading" style="margin-bottom: 20px;">Send your heartfelt wishes to Sumanth &amp; Amrutha</p>
+      <!-- ====================================================
+           STEP 3: VENUE & DIRECTIONS
+           ==================================================== -->
+      <section class="invitation-step" id="step-3">
+        <h3 class="section-heading">Venue &amp; Location</h3>
+        <p class="section-subheading">We look forward to welcoming you at our celebration</p>
 
-          <form id="blessing-form">
-            <div class="form-group">
-              <label for="guest-name"><i class="fa-regular fa-user"></i> Your Name &amp; Family</label>
-              <input type="text" id="guest-name" placeholder="e.g. Ramesh &amp; Family" required>
-            </div>
-            <div class="form-group">
-              <label for="guest-message"><i class="fa-regular fa-comment-dots"></i> Your Warm Wishes &amp; Blessings</label>
-              <textarea id="guest-message" rows="3" placeholder="Wishing you a blessed and joyful married life..." required></textarea>
-            </div>
-            <button type="submit" class="gold-primary-btn" style="width: 100%; justify-content: center;">
-              🌸 Send Blessings &amp; Ashirwad
-            </button>
-          </form>
+        <div class="venue-section">
+          <div class="venue-icon-header">🏛️</div>
+          <h4 class="venue-name">Sri Taralabalu Samudaya Bhavana</h4>
+          <p class="venue-address">
+            Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131, Karnataka
+          </p>
 
-          <div class="wishes-list" id="wishes-list">
-            <!-- Dynamically populated from script.js -->
+          <!-- Interactive Google Maps Frame -->
+          <div class="map-embed-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987512.6563680095!2d74.77294921875001!3d14.798783094530657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb991f7fb16e9d1%3A0xa4458cd9e7001d0c!2sTaralabalu%20Conventional%20Hall%20%7C%7C%20Harapanahalli!5e0!3m2!1sen!2sin!4v1792607554055!5m2!1sen!2sin" 
+              width="100%" 
+              height="320" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+          </div>
+
+          <div style="text-align: center; margin-top: 15px;">
+            <a href="https://maps.google.com/?q=Taralabalu+Conventional+Hall+Harapanahalli" target="_blank" rel="noopener noreferrer" class="gold-primary-btn">
+              <i class="fa-solid fa-location-arrow"></i> Open Google Maps Navigation
+            </a>
           </div>
         </div>
+
+        <!-- Step 3 Navigation Footer -->
+        <div class="step-nav-footer">
+          <button class="nav-prev-btn" onclick="goToStep(2)">
+            <i class="fa-solid fa-arrow-left"></i> Schedule
+          </button>
+          <button class="nav-next-btn" onclick="goToStep(4)">
+            Blessings &amp; Wishes <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
       </section>
 
-      <!-- Closing Blessings & Compliments -->
-      <footer class="card-footer">
-        <p class="closing-blessing kannada-text" style="font-size: 34px;">ಶುಭ ವಿವಾಹ</p>
-        <p class="compliments-text">
-          <strong>With Best Compliments From:</strong><br>
-          Family Members, Relatives, Friends &amp; Well-wishers<br>
-          <small>We eagerly await your gracious presence and heartfelt blessings</small>
-        </p>
-      </footer>
+      <!-- ====================================================
+           STEP 4: COUNTDOWN & BLESSINGS
+           ==================================================== -->
+      <section class="invitation-step" id="step-4">
+        <!-- Live Countdown -->
+        <div class="countdown-section">
+          <h3 class="countdown-title">Counting Down to the Muhurtham</h3>
+          <p class="countdown-date-sub">Sunday, November 22, 2026 at 09:30 AM</p>
+          <div class="timer-grid">
+            <div class="timer-box">
+              <span class="timer-number" id="days">00</span>
+              <span class="timer-label">Days</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="hours">00</span>
+              <span class="timer-label">Hours</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="minutes">00</span>
+              <span class="timer-label">Mins</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="seconds">00</span>
+              <span class="timer-label">Secs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest Wishes Form -->
+        <div class="blessings-section">
+          <div class="blessings-box">
+            <h3 class="section-heading" style="font-size: 22px;">Shower Your Blessings</h3>
+            <p class="section-subheading" style="margin-bottom: 20px;">Send your heartfelt congratulations to Sumanth &amp; Amrutha</p>
+
+            <form id="blessing-form">
+              <div class="form-group">
+                <label for="guest-name"><i class="fa-regular fa-user"></i> Your Name &amp; Family</label>
+                <input type="text" id="guest-name" placeholder="e.g. Rajesh &amp; Family" required>
+              </div>
+              <div class="form-group">
+                <label for="guest-message"><i class="fa-regular fa-comment-dots"></i> Your Wishes &amp; Blessings</label>
+                <textarea id="guest-message" rows="3" placeholder="Wishing you both a lifetime of happiness, peace, and eternal love..." required></textarea>
+              </div>
+              <button type="submit" class="gold-primary-btn" style="width: 100%; justify-content: center;">
+                🌸 Send Warm Blessings
+              </button>
+            </form>
+
+            <div class="wishes-list" id="wishes-list">
+              <!-- Dynamically populated from script.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Closing Sign-off -->
+        <footer class="card-footer">
+          <p class="closing-blessing">With Warmest Compliments</p>
+          <p class="compliments-text">
+            <strong>Family Members, Relatives &amp; Friends</strong><br>
+            Your gracious presence and blessings will make our special day complete.
+          </p>
+        </footer>
+
+        <!-- Step 4 Navigation Footer -->
+        <div class="step-nav-footer">
+          <button class="nav-prev-btn" onclick="goToStep(3)">
+            <i class="fa-solid fa-arrow-left"></i> Venue &amp; Map
+          </button>
+          <button class="nav-next-btn" onclick="goToStep(1)">
+            Back to Beginning <i class="fa-solid fa-rotate-left"></i>
+          </button>
+        </div>
+      </section>
+
     </main>
   </div>
 

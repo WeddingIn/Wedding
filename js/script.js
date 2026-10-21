@@ -1,59 +1,44 @@
 /**
- * Indian Traditional Wedding Invitation - Interactive Core Engine
+ * Royal Wedding Invitation - Core Interactive Engine
+ * Sumanth S M & Amrutha S | English Edition
  */
 
-// Central Configuration Object - Easily updated with client details
+// Central Configuration Object
 const WEDDING_CONFIG = {
   groom: {
     name: "Sumanth S M",
-    title: "Groom (ವರ)",
-    parents: "Together with Family & Relatives",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80"
+    title: "Groom",
+    parents: "Together with Family & Relatives"
   },
   bride: {
     name: "Amrutha S",
-    title: "Bride (ವಧು)",
-    parents: "Together with Family & Relatives",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80"
+    title: "Bride",
+    parents: "Together with Family & Relatives"
   },
-  weddingDate: "2026-11-22T09:30:00+05:30", // Auspicious Muhurtham: 22 Nov 2026 9:30 AM
-  auspiciousMuhurthamText: "Sunday, 22nd November 2026 | 9:30 AM – 10:15 AM",
+  weddingDate: "2026-11-22T09:30:00+05:30", // Auspicious Muhurtham: Nov 22, 2026 at 9:30 AM
   venue: {
     name: "Sri Taralabalu Samudaya Bhavana",
-    kannadaName: "ಶ್ರೀ ತರಳಬಾಳು ಸಮುದಾಯ ಭವನ",
-    address: "Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131",
+    address: "Hospet Rd, Harapanahalli - T, Vijayanagar - D - 583131, Karnataka",
     googleMapsUrl: "https://maps.google.com/?q=Taralabalu+Conventional+Hall+Harapanahalli"
   },
   events: [
     {
-      title: "Engagement & Arathakshathe",
-      kannadaTitle: "ನಿಶ್ಚಿತಾರ್ಥ ಮತ್ತು ಆರತಕ್ಷತೆ",
-      icon: "💍",
-      date: "Saturday, 21st November 2026",
+      title: "Engagement & Welcoming",
+      date: "Saturday, November 21, 2026",
       time: "07:30 PM Onwards",
-      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
-      dressCode: "Traditional Festive Attire",
-      description: "An auspicious evening of joyous celebrations, welcoming the newly united families with Arathakshathe rituals."
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
     },
     {
-      title: "Lagna Muhurtham",
-      kannadaTitle: "ಮಾಂಗಲ್ಯ ಧಾರಣೆ ಮತ್ತು ಸಪ್ತಪದಿ",
-      icon: "🔥",
-      date: "Sunday, 22nd November 2026",
+      title: "Wedding Muhurtham",
+      date: "Sunday, November 22, 2026",
       time: "09:30 AM to 10:15 AM",
-      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
-      dressCode: "Traditional Silk Attire / Dhotis & Sarees",
-      description: "The divine Mangalya Dharana solemnizing the eternal sacred union of Sumanth & Amrutha."
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
     },
     {
-      title: "Reception & Wedding Feast",
-      kannadaTitle: "ಆರತಕ್ಷತೆ ಮತ್ತು ಮದುವೆ ಭೋಜನ",
-      icon: "🍽️",
-      date: "Sunday, 22nd November 2026",
+      title: "Reception & Feast",
+      date: "Sunday, November 22, 2026",
       time: "12:00 PM Onwards",
-      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli",
-      dressCode: "Festive Glam / Ethnic Wear",
-      description: "Celebrate with the newlyweds followed by grand celebratory wedding feast (ಮದುವೆ ಊಟ)."
+      venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
     }
   ]
 };
@@ -67,7 +52,96 @@ document.addEventListener("DOMContentLoaded", () => {
   initAudio();
   initEnvelope();
   initGuestbook();
+  initSwipeAndKeyNav();
 });
+
+// ========================================================
+// STEP-BY-STEP REVEAL CONTROLLER
+// ========================================================
+let currentStep = 1;
+const totalSteps = 4;
+
+function goToStep(stepNum) {
+  if (stepNum < 1 || stepNum > totalSteps) return;
+  currentStep = stepNum;
+
+  // Update Progress Tabs
+  const tabs = document.querySelectorAll(".step-tab");
+  tabs.forEach(tab => {
+    const s = parseInt(tab.getAttribute("data-step"));
+    if (s === currentStep) {
+      tab.classList.add("active");
+    } else {
+      tab.classList.remove("active");
+    }
+  });
+
+  // Update Step Panels
+  const steps = document.querySelectorAll(".invitation-step");
+  steps.forEach((step, idx) => {
+    if (idx + 1 === currentStep) {
+      step.classList.add("active");
+    } else {
+      step.classList.remove("active");
+    }
+  });
+
+  // Smooth scroll to top of card on step change
+  const card = document.querySelector(".royal-card");
+  if (card && window.scrollY > 200) {
+    const topOffset = card.getBoundingClientRect().top + window.pageYOffset - 90;
+    window.scrollTo({ top: topOffset, behavior: "smooth" });
+  }
+
+  // Petal burst celebration on reaching blessings step
+  if (currentStep === 4) {
+    showerPetals(40);
+  }
+}
+
+// Keyboard arrow and mobile swipe navigation
+function initSwipeAndKeyNav() {
+  document.addEventListener("keydown", (e) => {
+    const envelopeScreen = document.getElementById("envelope-screen");
+    if (!envelopeScreen || !envelopeScreen.classList.contains("opened")) return;
+
+    if (e.key === "ArrowRight") {
+      goToStep(currentStep + 1);
+    } else if (e.key === "ArrowLeft") {
+      goToStep(currentStep - 1);
+    }
+  });
+
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const card = document.querySelector(".royal-card");
+
+  if (card) {
+    card.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    card.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 55;
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff < 0 && currentStep < totalSteps) {
+        // Swiped Left -> Next Step
+        goToStep(currentStep + 1);
+      } else if (diff > 0 && currentStep > 1) {
+        // Swiped Right -> Previous Step
+        goToStep(currentStep - 1);
+      }
+    }
+  }
+}
 
 // ========================================================
 // ENVELOPE OPENING INTERACTION
@@ -109,13 +183,18 @@ function initCountdown() {
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor((distance % (1000 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerText = String(days).padStart(2, '0');
-    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+    const dEl = document.getElementById("days");
+    const hEl = document.getElementById("hours");
+    const mEl = document.getElementById("minutes");
+    const sEl = document.getElementById("seconds");
+
+    if (dEl) dEl.innerText = String(days).padStart(2, '0');
+    if (hEl) hEl.innerText = String(hours).padStart(2, '0');
+    if (mEl) mEl.innerText = String(minutes).padStart(2, '0');
+    if (sEl) sEl.innerText = String(seconds).padStart(2, '0');
   }
 
   update();
@@ -141,7 +220,7 @@ function initPetalCanvas() {
   resize();
   window.addEventListener("resize", resize);
 
-  // Initial ambient petals
+  // Initial ambient floating petals
   for (let i = 0; i < 28; i++) {
     petals.push(createPetal(true));
   }
@@ -156,14 +235,12 @@ function initPetalCanvas() {
       p.angle += p.angularSpeed;
       p.rotation += p.rotationSpeed;
 
-      // Draw petal
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rotation);
       ctx.scale(p.scale, p.scale);
 
       ctx.beginPath();
-      // Draw organic petal shape
       ctx.moveTo(0, 0);
       ctx.bezierCurveTo(p.size / 2, -p.size / 2, p.size, 0, 0, p.size);
       ctx.bezierCurveTo(-p.size, 0, -p.size / 2, -p.size / 2, 0, 0);
@@ -172,7 +249,6 @@ function initPetalCanvas() {
       ctx.fill();
       ctx.restore();
 
-      // Reset when falling beyond canvas
       if (p.y > canvas.height + 20) {
         petals[i] = createPetal(false);
       }
@@ -185,7 +261,6 @@ function initPetalCanvas() {
 }
 
 function createPetal(randomY = false) {
-  // Traditional rose and marigold colors
   const colors = [
     "#e63946", // Royal Red Rose
     "#ff4d6d", // Soft Pink Rose
@@ -199,7 +274,7 @@ function createPetal(randomY = false) {
     x: Math.random() * (canvas ? canvas.width : window.innerWidth),
     y: randomY ? Math.random() * (canvas ? canvas.height : window.innerHeight) : -20,
     size: Math.random() * 9 + 8,
-    speedY: Math.random() * 1.6 + 0.8,
+    speedY: Math.random() * 1.5 + 0.8,
     speedX: Math.random() * 1.2 + 0.4,
     angle: Math.random() * Math.PI * 2,
     angularSpeed: Math.random() * 0.02 + 0.01,
@@ -211,17 +286,15 @@ function createPetal(randomY = false) {
   };
 }
 
-// User trigger for blessing shower
 function showerPetals(count = 50) {
   if (!canvas) return;
   for (let i = 0; i < count; i++) {
     const p = createPetal(false);
-    p.y = Math.random() * (canvas.height * 0.4); // burst near upper half
+    p.y = Math.random() * (canvas.height * 0.4);
     p.speedY = Math.random() * 3.5 + 2;
     petals.push(p);
   }
 
-  // Remove excess petals after 6 seconds to keep performance silky smooth
   setTimeout(() => {
     if (petals.length > 35) {
       petals.splice(35, petals.length - 35);
@@ -251,7 +324,7 @@ function initAudio() {
         musicBtn.innerHTML = "🎵";
         isAudioPlaying = true;
       }).catch(err => {
-        console.log("Audio autoplay prevented:", err);
+        console.log("Audio play prevented:", err);
       });
     }
   });
@@ -264,7 +337,7 @@ function playAudioIfAllowed() {
       isAudioPlaying = true;
       if (musicBtn) musicBtn.innerHTML = "🎵";
     }).catch(() => {
-      // Browsers often require explicit user interaction on media element
+      // Browsers often require explicit user interaction
     });
   }
 }
@@ -275,15 +348,15 @@ function playAudioIfAllowed() {
 const DEFAULT_BLESSINGS = [
   {
     name: "Uncle Ramesh & Family",
-    text: "Hearty congratulations to Sumanth & Amrutha! Wishing you both a lifetime of happiness, peace, and eternal love."
+    text: "Wishing Sumanth & Amrutha a lifetime of everlasting love, happiness, and prosperity! Heartiest congratulations."
   },
   {
     name: "Friends & Well-wishers",
-    text: "So happy for Sumanth and Amrutha! May this sacred union bring endless joy and prosperity."
+    text: "Warmest congratulations to the wonderful couple! May your journey ahead be blessed with joy and beautiful moments."
   },
   {
-    name: "Relatives Parivaar",
-    text: "ಶ್ರೀ ತರಳಬಾಳು ಜಗದ್ಗುರುಗಳ ಆಶೀರ್ವಾದದೊಂದಿಗೆ ಸುಮಂತ್ ಮತ್ತು ಅಮೃತ ಅವರಿಗೆ ಸುಖ-ಶಾಂತಿ, ನೆಮ್ಮದಿ ಸದಾ ಇರಲಿ ಎಂದು ಹಾರೈಸುತ್ತೇವೆ."
+    name: "Family Parivaar",
+    text: "May the divine blessings always guide you and fill your home with laughter, peace, and togetherness."
   }
 ];
 
@@ -293,7 +366,7 @@ function initGuestbook() {
 
   let savedWishes = [];
   try {
-    const stored = localStorage.getItem("wedding_blessings");
+    const stored = localStorage.getItem("wedding_blessings_en");
     savedWishes = stored ? JSON.parse(stored) : DEFAULT_BLESSINGS;
   } catch (e) {
     savedWishes = DEFAULT_BLESSINGS;
@@ -323,11 +396,11 @@ function initGuestbook() {
       if (name && text) {
         savedWishes.unshift({ name, text });
         try {
-          localStorage.setItem("wedding_blessings", JSON.stringify(savedWishes));
+          localStorage.setItem("wedding_blessings_en", JSON.stringify(savedWishes));
         } catch (e) {}
 
         renderWishes();
-        showerPetals(40);
+        showerPetals(45);
         nameInput.value = "";
         textInput.value = "";
 

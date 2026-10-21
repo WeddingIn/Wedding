@@ -1,18 +1,21 @@
-/* Indian Traditional Royal Wedding Invitation Stylesheet */
+/* ========================================================
+   ROYAL WEDDING INVITATION - ENGLISH EDITION
+   Interactive Step-by-Step Reveal Experience
+   ======================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Marcellus&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
   --primary-maroon: #680d19;
-  --deep-maroon: #40050d;
+  --deep-maroon: #3b030b;
   --royal-ruby: #871025;
   --gold-accent: #d4af37;
   --gold-light: #fbeea4;
   --gold-dark: #997819;
   --gold-gradient: linear-gradient(135deg, #d4af37 0%, #fff2b2 50%, #aa771c 100%);
-  --gold-text-gradient: linear-gradient(135deg, #e6ca65, #ffd978, #b8860b);
+  --gold-border: 1px solid rgba(212, 175, 55, 0.5);
   --ivory-cream: #fcf9f2;
-  --card-bg: #fffdf9;
+  --card-bg: #fffdfa;
   --text-primary: #3d0c11;
   --text-muted: #6e5850;
   --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
@@ -31,7 +34,7 @@ html {
 
 body {
   font-family: 'Marcellus', serif;
-  background: radial-gradient(circle at center, #680d19 0%, #40050d 70%, #290207 100%);
+  background: radial-gradient(circle at center, #680d19 0%, #3b030b 70%, #200105 100%);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -57,15 +60,14 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 20%);
-  background-size: 100% 100%;
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 25%);
   pointer-events: none;
   z-index: 1;
 }
 
 /* ========================================================
-   ENVELOPE INTRO / INTERACTIVE OPENING OVERLAY
+   ENVELOPE SCREEN (STEP 0 - INITIAL REVEAL)
    ======================================================== */
 .envelope-screen {
   position: fixed;
@@ -74,7 +76,7 @@ body {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: radial-gradient(circle, #5e0a16 0%, #300207 100%);
+  background: radial-gradient(circle, #5e0a16 0%, #290207 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,12 +94,12 @@ body {
 
 .envelope-wrapper {
   position: relative;
-  width: 340px;
+  width: 360px;
   max-width: 90vw;
-  height: 480px;
+  height: 500px;
   background: #7a0e1e;
-  border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(212, 175, 55, 0.4);
   border: 3px solid #d4af37;
   overflow: hidden;
   cursor: pointer;
@@ -105,14 +107,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 20px;
+  padding: 32px 24px;
   text-align: center;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .envelope-wrapper:hover {
   transform: translateY(-5px);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(212, 175, 55, 0.6);
 }
 
 .envelope-corner {
@@ -128,18 +130,18 @@ body {
 .envelope-corner.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
 .envelope-corner.br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
-.envelope-header .ganesha-symbol {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 10px;
+.envelope-header .crown-icon {
+  font-size: 38px;
+  color: #ffdf73;
+  margin-bottom: 8px;
   filter: drop-shadow(0 2px 8px rgba(255, 223, 115, 0.6));
   animation: gentlePulse 3s infinite ease-in-out;
 }
 
 .envelope-header h3 {
-  font-family: 'Marcellus', serif;
+  font-family: 'Cinzel Decorative', serif;
   color: #fbeea4;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -149,18 +151,18 @@ body {
 }
 
 .envelope-center .sub-label {
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 3px;
   color: #ffdf73;
   text-transform: uppercase;
 }
 
 .envelope-center .couple-preview {
   font-family: 'Great Vibes', cursive;
-  font-size: 42px;
+  font-size: 44px;
   color: #fff9e6;
   text-shadow: 0 2px 15px rgba(212, 175, 55, 0.7);
-  margin: 8px 0;
+  margin: 10px 0;
   line-height: 1.2;
 }
 
@@ -173,8 +175,8 @@ body {
 .wax-seal-btn {
   margin-top: 15px;
   position: relative;
-  width: 86px;
-  height: 86px;
+  width: 88px;
+  height: 88px;
   background: radial-gradient(circle, #e6b800 0%, #997819 70%, #594406 100%);
   border-radius: 50%;
   display: flex;
@@ -192,7 +194,7 @@ body {
   font-size: 11px;
   font-weight: 700;
   color: #3b050d;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.2;
@@ -200,14 +202,15 @@ body {
 
 .tap-to-open-hint {
   color: #fbeea4;
-  font-size: 13px;
+  font-size: 13.5px;
   letter-spacing: 2px;
-  margin-top: 20px;
+  margin-top: 22px;
   animation: fadeInOut 2s infinite;
+  text-align: center;
 }
 
 /* ========================================================
-   FLOATING AUDIO & BLESSING CONTROLS
+   FLOATING INTERACTIVE CONTROLS
    ======================================================== */
 .floating-actions {
   position: fixed;
@@ -220,20 +223,21 @@ body {
 }
 
 .float-btn {
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid #d4af37;
-  background: rgba(64, 5, 13, 0.85);
+  background: rgba(59, 3, 11, 0.9);
   backdrop-filter: blur(8px);
   color: #ffdf73;
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, background 0.3s ease;
+  text-decoration: none;
 }
 
 .float-btn:hover {
@@ -248,12 +252,12 @@ body {
   left: 24px;
   z-index: 100;
   background: linear-gradient(135deg, #d4af37, #997819);
-  color: #3d0c11;
+  color: #3b030b;
   border: 1px solid #fff2b2;
   border-radius: 30px;
   padding: 12px 22px;
   font-family: 'Marcellus', serif;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -269,27 +273,96 @@ body {
 }
 
 /* ========================================================
-   MAIN INVITATION CARD CONTAINER
+   MAIN INVITATION CARD CONTAINER & STEP NAVIGATOR
    ======================================================== */
 .invitation-main-container {
-  max-width: 820px;
+  max-width: 900px;
   margin: 40px auto 100px;
   padding: 0 16px;
   position: relative;
   z-index: 10;
 }
 
+/* Step-by-Step Progress Track Bar */
+.step-progress-wrapper {
+  background: rgba(41, 2, 7, 0.85);
+  border: 1px solid #d4af37;
+  border-radius: 35px;
+  padding: 8px 14px;
+  margin-bottom: 25px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  overflow-x: auto;
+}
+
+.step-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #e8d095;
+  font-family: 'Marcellus', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.step-tab .step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.2);
+  color: #ffdf73;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.step-tab.active {
+  background: linear-gradient(135deg, #d4af37, #997819);
+  color: #290207;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.step-tab.active .step-num {
+  background: #290207;
+  color: #ffdf73;
+}
+
+.step-tab:hover:not(.active) {
+  background: rgba(212, 175, 55, 0.15);
+  color: #fff9e6;
+}
+
+/* Royal Card Box */
 .royal-card {
   background: var(--card-bg);
   border-radius: 24px;
   position: relative;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 35px rgba(212, 175, 55, 0.3);
-  padding: 55px 35px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65), 0 0 35px rgba(212, 175, 55, 0.35);
+  padding: 55px 40px;
   border: 2px solid #d4af37;
   overflow: hidden;
+  min-height: 520px;
 }
 
-/* Ornate Border Inside Card */
+/* Inner Ornate Borders */
 .royal-border-frame {
   position: absolute;
   top: 14px;
@@ -312,10 +385,33 @@ body {
   border-radius: 14px;
 }
 
-/* Mandir / Toran Top Arch Decoration */
+/* Step Container Display Logic */
+.invitation-step {
+  display: none;
+}
+
+.invitation-step.active {
+  display: block;
+  animation: stepFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================
+   STEP 1: THE COUPLE & INVOCATION
+   ======================================================== */
 .top-toran {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .top-toran svg {
@@ -324,104 +420,118 @@ body {
   fill: #aa771c;
 }
 
-/* Invocation Header */
-.ganesh-invocation {
+.divine-invocation {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
-.ganesh-invocation img, 
-.ganesh-invocation svg {
-  width: 90px;
-  height: 90px;
-  filter: drop-shadow(0 3px 6px rgba(184, 134, 11, 0.4));
-  margin: 0 auto 12px;
+.invocation-icon {
+  font-size: 32px;
+  color: #aa771c;
+  margin-bottom: 10px;
   display: block;
 }
 
-.shloka-sanskrit {
-  font-family: 'Marcellus', serif;
-  font-size: 16px;
-  color: var(--royal-ruby);
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.shloka-meaning {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-style: italic;
-  letter-spacing: 0.5px;
-}
-
-/* Auspicious Announcement */
-.announcement-text {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.invite-tagline {
-  font-size: 13px;
+.invocation-tagline {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 14px;
   letter-spacing: 3px;
-  text-transform: uppercase;
   color: #997819;
-  font-weight: 600;
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
-.family-invite-words {
-  font-size: 17px;
-  line-height: 1.8;
+.invitation-intro-text {
+  font-size: 16px;
   color: #4a151b;
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
+  line-height: 1.8;
 }
 
-/* ========================================================
-   COUPLE PRESENTATION
-   ======================================================== */
+/* Royal Monograms (Replacing Human Photos) */
 .couple-showcase {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin: 45px 0;
+  margin: 40px 0;
   gap: 20px;
-  position: relative;
 }
 
 .couple-avatar-card {
   flex: 1;
   text-align: center;
-  padding: 15px;
+  padding: 10px;
 }
 
-.couple-portrait-frame {
+.royal-monogram-emblem {
   width: 140px;
   height: 140px;
   margin: 0 auto 18px;
   border-radius: 50%;
-  border: 4px solid #d4af37;
-  padding: 4px;
-  background: linear-gradient(135deg, #fbeea4, #aa771c);
-  box-shadow: 0 10px 25px rgba(104, 13, 25, 0.2);
+  border: 3px solid #d4af37;
+  padding: 6px;
+  background: radial-gradient(circle, #fefbf0 0%, #fdf5e0 70%, #f7e6b8 100%);
+  box-shadow: 0 10px 25px rgba(104, 13, 25, 0.18), inset 0 0 15px rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.couple-portrait-frame img {
+.royal-monogram-emblem:hover {
+  transform: scale(1.05);
+}
+
+.royal-monogram-inner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 50%;
+  border: 1.5px dashed #aa771c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.royal-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 52px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #aa771c 0%, #d4af37 50%, #73500c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.royal-role-tag {
+  font-family: 'Marcellus', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #997819;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .couple-name {
   font-family: 'Great Vibes', cursive;
-  font-size: 44px;
+  font-size: 46px;
   color: var(--royal-ruby);
   line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.couple-subtitle {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aa771c;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 
@@ -436,103 +546,42 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 12px;
 }
 
 .couple-knot .ampersand {
   font-family: 'Great Vibes', cursive;
-  font-size: 58px;
+  font-size: 54px;
   color: #b8860b;
   line-height: 1;
 }
 
-.couple-knot .wedding-tie-icon {
-  width: 44px;
-  height: 44px;
-  margin-top: -6px;
+.couple-knot .union-rings-icon {
+  font-size: 24px;
+  color: #d4af37;
+  margin-top: -4px;
 }
 
-/* Section Dividers with Lotus Motif */
-.ornate-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: 40px 0;
-}
-
-.ornate-divider .line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.ornate-divider .symbol {
-  color: #aa771c;
-  font-size: 20px;
-}
-
-/* ========================================================
-   COUNTDOWN TIMER
-   ======================================================== */
-.countdown-section {
+.poetic-quote-box {
   text-align: center;
-  margin: 40px 0;
-  background: radial-gradient(circle, #fdf6e9 0%, #faebd7 100%);
-  padding: 28px 20px;
-  border-radius: 18px;
+  margin: 30px 0 10px;
+  padding: 18px 24px;
+  background: #fdfaf3;
+  border-radius: 14px;
   border: 1px solid #ebd39c;
 }
 
-.countdown-title {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 18px;
-  color: var(--royal-ruby);
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-.timer-grid {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.timer-box {
-  background: #ffffff;
-  border: 2px solid #d4af37;
-  border-radius: 12px;
-  padding: 14px 10px;
-  min-width: 72px;
-  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15);
-}
-
-.timer-number {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--royal-ruby);
-  display: block;
-  line-height: 1;
-}
-
-.timer-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  margin-top: 6px;
-  display: block;
+.poetic-quote-text {
+  font-size: 15px;
+  color: #590915;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.7;
 }
 
 /* ========================================================
-   EVENTS & RITUALS ITINERARY
+   STEP 2: CELEBRATIONS & SCHEDULE
    ======================================================== */
-.events-section {
-  margin: 45px 0;
-}
-
 .section-heading {
   text-align: center;
   font-family: 'Cinzel Decorative', serif;
@@ -544,8 +593,8 @@ body {
 
 .section-subheading {
   text-align: center;
-  font-size: 13px;
-  letter-spacing: 1px;
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
   color: #8c6b1b;
   margin-bottom: 35px;
 }
@@ -554,17 +603,18 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 22px;
+  margin-bottom: 25px;
 }
 
 .event-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 24px 20px;
-  border: 1px solid #ecc982;
+  border-radius: 18px;
+  padding: 26px 20px;
+  border: 1px solid #ebd39c;
   box-shadow: 0 6px 20px rgba(104, 13, 25, 0.06);
   text-align: center;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .event-card:hover {
@@ -597,13 +647,13 @@ body {
 .event-icon-circle {
   width: 58px;
   height: 58px;
-  margin: 5px auto 14px;
+  margin: 6px auto 14px;
   background: #fdf5e6;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 24px;
   border: 1.5px solid #d4af37;
 }
 
@@ -616,31 +666,32 @@ body {
 }
 
 .event-date {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 600;
   color: #3b050d;
   margin-bottom: 4px;
 }
 
 .event-time {
-  font-size: 12.5px;
+  font-size: 13px;
   color: #8c6b1b;
-  margin-bottom: 10px;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 
 .event-desc {
   font-size: 12.5px;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .event-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  font-size: 11.5px;
+  padding: 8px 16px;
+  font-size: 12px;
   color: var(--royal-ruby);
   background: transparent;
   border: 1px solid #d4af37;
@@ -649,58 +700,41 @@ body {
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .event-btn:hover {
   background: var(--royal-ruby);
   color: #fff9e6;
-}
-
-.kannada-text {
-  font-family: 'Noto Sans Kannada', 'Marcellus', serif;
-  letter-spacing: 0.5px;
-}
-
-.kannada-subtitle {
-  font-family: 'Noto Sans Kannada', sans-serif;
-  font-size: 13px;
-  color: #997819;
-  font-weight: 600;
-  margin-top: 2px;
-  margin-bottom: 6px;
-  display: block;
+  border-color: var(--royal-ruby);
 }
 
 /* ========================================================
-   VENUE & MAP
+   STEP 3: VENUE & LOCATION
    ======================================================== */
 .venue-section {
-  margin: 45px 0;
   background: #ffffff;
   border-radius: 18px;
   padding: 35px 24px;
   border: 1px solid #ecc982;
   text-align: center;
+  margin-bottom: 25px;
+}
+
+.venue-icon-header {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
 .venue-name {
   font-family: 'Marcellus', serif;
   font-size: 24px;
   color: var(--royal-ruby);
-  margin-bottom: 4px;
-}
-
-.venue-name-kannada {
-  font-family: 'Noto Sans Kannada', serif;
-  font-size: 16px;
-  color: #aa771c;
-  font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .venue-address {
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--text-muted);
   max-width: 480px;
   margin: 0 auto 18px;
@@ -723,13 +757,7 @@ body {
   display: block;
 }
 
-.venue-actions {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
+/* Primary Gold Action Buttons */
 .gold-primary-btn {
   background: linear-gradient(135deg, #d4af37, #997819);
   color: #2e0509;
@@ -756,10 +784,69 @@ body {
 }
 
 /* ========================================================
-   GUEST BLESSINGS & RSVP FORM
+   STEP 4: COUNTDOWN & BLESSINGS
    ======================================================== */
+.countdown-section {
+  text-align: center;
+  margin-bottom: 35px;
+  background: radial-gradient(circle, #fdf6e9 0%, #faebd7 100%);
+  padding: 30px 20px;
+  border-radius: 18px;
+  border: 1px solid #ebd39c;
+}
+
+.countdown-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  color: var(--royal-ruby);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.countdown-date-sub {
+  font-size: 13.5px;
+  color: #8c6b1b;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.timer-box {
+  background: #ffffff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 14px 10px;
+  min-width: 76px;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15);
+}
+
+.timer-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--royal-ruby);
+  display: block;
+  line-height: 1;
+}
+
+.timer-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Guest Blessings & Wishes Form */
 .blessings-section {
-  margin: 45px 0 20px;
+  margin-top: 20px;
 }
 
 .blessings-box {
@@ -783,10 +870,9 @@ body {
 }
 
 .form-group input, 
-.form-group textarea,
-.form-group select {
+.form-group textarea {
   width: 100%;
-  padding: 10px 14px;
+  padding: 11px 14px;
   border: 1px solid #dfc79b;
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;
@@ -797,8 +883,7 @@ body {
 }
 
 .form-group input:focus, 
-.form-group textarea:focus,
-.form-group select:focus {
+.form-group textarea:focus {
   border-color: #aa771c;
   box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
 }
@@ -808,7 +893,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 280px;
+  max-height: 260px;
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -835,18 +920,74 @@ body {
 }
 
 /* ========================================================
-   FOOTER
+   STEP NAVIGATION FOOTER CONTROLS
    ======================================================== */
+.step-nav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px dashed #ebd39c;
+  gap: 14px;
+}
+
+.nav-prev-btn {
+  background: transparent;
+  color: var(--royal-ruby);
+  border: 1.5px solid #d4af37;
+  border-radius: 25px;
+  padding: 10px 22px;
+  font-family: 'Marcellus', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-prev-btn:hover {
+  background: #fdf6e9;
+  border-color: #aa771c;
+}
+
+.nav-next-btn {
+  background: linear-gradient(135deg, #d4af37, #997819);
+  color: #290207;
+  border: 1px solid #fff2b2;
+  border-radius: 25px;
+  padding: 11px 26px;
+  font-family: 'Marcellus', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(184, 134, 11, 0.5);
+  background: linear-gradient(135deg, #e6ca65, #b8860b);
+}
+
+/* Card Closing Footer */
 .card-footer {
   text-align: center;
-  margin-top: 45px;
-  padding-top: 25px;
+  margin-top: 30px;
+  padding-top: 20px;
   border-top: 1px dashed #e2caa2;
 }
 
 .closing-blessing {
   font-family: 'Great Vibes', cursive;
-  font-size: 32px;
+  font-size: 34px;
   color: var(--royal-ruby);
   margin-bottom: 8px;
 }
@@ -863,7 +1004,7 @@ body {
    ======================================================== */
 @keyframes gentlePulse {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 2px 8px rgba(255, 223, 115, 0.6)); }
-  50% { transform: scale(1.06); filter: drop-shadow(0 4px 14px rgba(255, 223, 115, 0.9)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 4px 14px rgba(255, 223, 115, 0.9)); }
 }
 
 @keyframes sealGlow {
@@ -877,18 +1018,18 @@ body {
 }
 
 /* ========================================================
-   RESPONSIVE DESIGN: LAPTOP, TABLET & MOBILE
+   RESPONSIVE DESIGN: LAPTOP & MOBILE
    ======================================================== */
 
 /* Large Laptop / Desktop Displays (>= 1024px) */
 @media (min-width: 1024px) {
   .invitation-main-container {
     max-width: 920px;
-    margin: 60px auto 120px;
+    margin: 50px auto 120px;
   }
 
   .royal-card {
-    padding: 70px 55px;
+    padding: 65px 55px;
     border-radius: 30px;
   }
 
@@ -899,23 +1040,13 @@ body {
     border-radius: 20px;
   }
 
-  .envelope-header .ganesha-symbol {
-    width: 82px;
-    height: 82px;
-  }
-
   .envelope-header h3 {
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 4px;
   }
 
   .envelope-center .couple-preview {
-    font-size: 50px;
-  }
-
-  .envelope-center .auspicious-date {
-    font-size: 16px;
-    letter-spacing: 3px;
+    font-size: 52px;
   }
 
   .wax-seal-btn {
@@ -924,16 +1055,20 @@ body {
   }
 
   .wax-seal-btn span {
-    font-size: 14px;
+    font-size: 13px;
   }
 
-  .couple-portrait-frame {
+  .royal-monogram-emblem {
     width: 160px;
     height: 160px;
   }
 
+  .royal-letter {
+    font-size: 60px;
+  }
+
   .couple-name {
-    font-size: 48px;
+    font-size: 50px;
   }
 
   .events-timeline {
@@ -963,7 +1098,6 @@ body {
 @media (min-width: 768px) and (max-width: 1023px) {
   .invitation-main-container {
     max-width: 760px;
-    margin: 40px auto 100px;
   }
 
   .envelope-wrapper {
@@ -977,20 +1111,40 @@ body {
   }
 
   .couple-name {
-    font-size: 40px;
+    font-size: 42px;
   }
 }
 
 /* Mobile Screens & Tablets Portrait (<= 767px) */
 @media (max-width: 767px) {
   .invitation-main-container {
-    margin: 25px auto 90px;
+    margin: 20px auto 90px;
     padding: 0 12px;
   }
 
+  .step-progress-wrapper {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .step-tab {
+    padding: 8px 10px;
+    font-size: 11.5px;
+    letter-spacing: 0.5px;
+  }
+
+  .step-tab .step-text {
+    display: none;
+  }
+
+  .step-tab .step-text-short {
+    display: inline;
+  }
+
   .royal-card {
-    padding: 38px 18px;
+    padding: 36px 18px;
     border-radius: 18px;
+    min-height: 480px;
   }
 
   .royal-border-frame {
@@ -1020,25 +1174,20 @@ body {
     font-size: 38px;
   }
 
-  .envelope-center .sub-label {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-  }
-
   .couple-showcase {
     flex-direction: column;
     gap: 16px;
-    margin: 32px 0;
+    margin: 25px 0;
   }
 
-  .couple-avatar-card {
-    padding: 6px;
-  }
-
-  .couple-portrait-frame {
-    width: 124px;
-    height: 124px;
+  .royal-monogram-emblem {
+    width: 120px;
+    height: 120px;
     margin-bottom: 12px;
+  }
+
+  .royal-letter {
+    font-size: 44px;
   }
 
   .couple-knot {
@@ -1053,16 +1202,6 @@ body {
 
   .couple-name {
     font-size: 36px;
-  }
-
-  .shloka-sanskrit {
-    font-size: 14.5px;
-    line-height: 1.6;
-  }
-
-  .family-invite-words {
-    font-size: 15px;
-    line-height: 1.7;
   }
 
   .timer-grid {
@@ -1082,36 +1221,27 @@ body {
 
   .timer-label {
     font-size: 10px;
-    letter-spacing: 0.5px;
   }
 
   .events-timeline {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
 
   .event-card {
-    padding: 24px 18px;
+    padding: 22px 16px;
   }
 
   .venue-section {
-    padding: 28px 16px;
+    padding: 26px 14px;
   }
 
   .venue-name {
     font-size: 20px;
   }
 
-  .venue-name-kannada {
-    font-size: 15px;
-  }
-
   .venue-address {
-    font-size: 13px;
-  }
-
-  .map-embed-wrapper {
-    margin: 16px 0 20px;
+    font-size: 13.5px;
   }
 
   .map-embed-wrapper iframe {
@@ -1134,37 +1264,23 @@ body {
   .float-btn {
     width: 44px;
     height: 44px;
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .step-nav-footer {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .nav-prev-btn, .nav-next-btn {
+    padding: 10px 16px;
+    font-size: 12.5px;
   }
 }
 
-/* Small Smartphone Displays (<= 380px) */
-@media (max-width: 380px) {
-  .envelope-center .couple-preview {
-    font-size: 32px;
-  }
-
-  .couple-name {
-    font-size: 30px;
-  }
-
-  .shloka-sanskrit {
-    font-size: 13px;
-  }
-
-  .timer-number {
-    font-size: 18px;
-  }
-
-  .gold-primary-btn {
-    padding: 10px 18px;
-    font-size: 12.5px;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .blessings-shower-btn {
-    padding: 8px 12px;
-    font-size: 11px;
+/* Desktop short text vs full text helpers */
+@media (min-width: 768px) {
+  .step-tab .step-text-short {
+    display: none;
   }
 }
