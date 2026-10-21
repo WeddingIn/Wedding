@@ -66,7 +66,7 @@ function goToStep(stepNum) {
   currentStep = stepNum;
 
   // Update Progress Tabs
-  const tabs = document.querySelectorAll(".step-tab");
+  const tabs = document.querySelectorAll(".step-tab, .couture-nav-tab");
   tabs.forEach(tab => {
     const s = parseInt(tab.getAttribute("data-step"));
     if (s === currentStep) {
@@ -77,7 +77,7 @@ function goToStep(stepNum) {
   });
 
   // Update Step Panels
-  const steps = document.querySelectorAll(".invitation-step");
+  const steps = document.querySelectorAll(".invitation-step, .couture-step");
   steps.forEach((step, idx) => {
     if (idx + 1 === currentStep) {
       step.classList.add("active");
@@ -87,9 +87,9 @@ function goToStep(stepNum) {
   });
 
   // Smooth scroll to top of card on step change
-  const card = document.querySelector(".royal-card");
-  if (card && window.scrollY > 200) {
-    const topOffset = card.getBoundingClientRect().top + window.pageYOffset - 90;
+  const card = document.querySelector(".royal-card, .couture-card");
+  if (card && window.scrollY > 150) {
+    const topOffset = card.getBoundingClientRect().top + window.pageYOffset - 80;
     window.scrollTo({ top: topOffset, behavior: "smooth" });
   }
 
@@ -152,7 +152,8 @@ function initEnvelope() {
   const envelopeWrapper = document.getElementById("envelope-wrapper");
 
   function openCard() {
-    if (!envelopeScreen.classList.contains("opened")) {
+    if (!envelopeScreen.classList.contains("unveiled") && !envelopeScreen.classList.contains("opened")) {
+      envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
       showerPetals(60);
       playAudioIfAllowed();
@@ -375,9 +376,9 @@ function initGuestbook() {
   function renderWishes() {
     if (!list) return;
     list.innerHTML = savedWishes.map(item => `
-      <div class="wish-item">
-        <div class="wish-author">${escapeHtml(item.name)}</div>
-        <div class="wish-text">${escapeHtml(item.text)}</div>
+      <div class="wish-card-item wish-item">
+        <div class="wish-guest-name wish-author">${escapeHtml(item.name)}</div>
+        <div class="wish-content-quote wish-text">"${escapeHtml(item.text)}"</div>
       </div>
     `).join("");
   }
