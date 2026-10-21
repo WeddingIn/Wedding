@@ -73,6 +73,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: radial-gradient(circle, #5e0a16 0%, #300207 100%);
   display: flex;
   flex-direction: column;
@@ -875,51 +876,295 @@ body {
   50% { opacity: 1; }
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .royal-card {
-    padding: 35px 18px;
+/* ========================================================
+   RESPONSIVE DESIGN: LAPTOP, TABLET & MOBILE
+   ======================================================== */
+
+/* Large Laptop / Desktop Displays (>= 1024px) */
+@media (min-width: 1024px) {
+  .invitation-main-container {
+    max-width: 920px;
+    margin: 60px auto 120px;
   }
-  
+
+  .royal-card {
+    padding: 70px 55px;
+    border-radius: 30px;
+  }
+
+  .envelope-wrapper {
+    width: 440px;
+    height: 560px;
+    padding: 38px 28px;
+    border-radius: 20px;
+  }
+
+  .envelope-header .ganesha-symbol {
+    width: 82px;
+    height: 82px;
+  }
+
+  .envelope-header h3 {
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+
+  .envelope-center .couple-preview {
+    font-size: 50px;
+  }
+
+  .envelope-center .auspicious-date {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
+  .wax-seal-btn {
+    width: 96px;
+    height: 96px;
+  }
+
+  .wax-seal-btn span {
+    font-size: 14px;
+  }
+
+  .couple-portrait-frame {
+    width: 160px;
+    height: 160px;
+  }
+
+  .couple-name {
+    font-size: 48px;
+  }
+
+  .events-timeline {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .timer-grid {
+    gap: 20px;
+  }
+
+  .timer-box {
+    min-width: 92px;
+    padding: 16px 14px;
+  }
+
+  .timer-number {
+    font-size: 34px;
+  }
+
+  .map-embed-wrapper iframe {
+    height: 380px;
+  }
+}
+
+/* Medium Screens / Laptops / Tablets Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .invitation-main-container {
+    max-width: 760px;
+    margin: 40px auto 100px;
+  }
+
+  .envelope-wrapper {
+    width: 380px;
+    height: 520px;
+  }
+
+  .events-timeline {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .couple-name {
+    font-size: 40px;
+  }
+}
+
+/* Mobile Screens & Tablets Portrait (<= 767px) */
+@media (max-width: 767px) {
+  .invitation-main-container {
+    margin: 25px auto 90px;
+    padding: 0 12px;
+  }
+
+  .royal-card {
+    padding: 38px 18px;
+    border-radius: 18px;
+  }
+
+  .royal-border-frame {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 14px;
+  }
+
+  .royal-border-frame::after {
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border-radius: 10px;
+  }
+
+  .envelope-wrapper {
+    width: 92vw;
+    max-width: 340px;
+    height: min(490px, 82vh);
+    padding: 24px 16px;
+  }
+
+  .envelope-center .couple-preview {
+    font-size: 38px;
+  }
+
+  .envelope-center .sub-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
   .couple-showcase {
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    margin: 32px 0;
   }
-  
+
+  .couple-avatar-card {
+    padding: 6px;
+  }
+
+  .couple-portrait-frame {
+    width: 124px;
+    height: 124px;
+    margin-bottom: 12px;
+  }
+
   .couple-knot {
-    padding: 10px 0;
+    padding: 6px 0;
+    flex-direction: row;
+    gap: 8px;
   }
-  
+
   .couple-knot .ampersand {
-    font-size: 44px;
+    font-size: 40px;
   }
-  
+
   .couple-name {
     font-size: 36px;
   }
-  
+
+  .shloka-sanskrit {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .family-invite-words {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
   .timer-grid {
     gap: 8px;
+    justify-content: space-between;
   }
-  
+
   .timer-box {
-    min-width: 58px;
-    padding: 10px 6px;
+    flex: 1;
+    min-width: 0;
+    padding: 10px 4px;
   }
-  
+
   .timer-number {
     font-size: 22px;
   }
-  
+
+  .timer-label {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .events-timeline {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .event-card {
+    padding: 24px 18px;
+  }
+
+  .venue-section {
+    padding: 28px 16px;
+  }
+
+  .venue-name {
+    font-size: 20px;
+  }
+
+  .venue-name-kannada {
+    font-size: 15px;
+  }
+
+  .venue-address {
+    font-size: 13px;
+  }
+
+  .map-embed-wrapper {
+    margin: 16px 0 20px;
+  }
+
+  .map-embed-wrapper iframe {
+    height: 250px;
+  }
+
   .blessings-shower-btn {
-    left: 14px;
-    bottom: 14px;
+    left: 12px;
+    bottom: 16px;
     padding: 10px 16px;
     font-size: 12px;
   }
-  
+
   .floating-actions {
-    right: 14px;
-    bottom: 14px;
+    right: 12px;
+    bottom: 16px;
+    gap: 8px;
+  }
+
+  .float-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+}
+
+/* Small Smartphone Displays (<= 380px) */
+@media (max-width: 380px) {
+  .envelope-center .couple-preview {
+    font-size: 32px;
+  }
+
+  .couple-name {
+    font-size: 30px;
+  }
+
+  .shloka-sanskrit {
+    font-size: 13px;
+  }
+
+  .timer-number {
+    font-size: 18px;
+  }
+
+  .gold-primary-btn {
+    padding: 10px 18px;
+    font-size: 12.5px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .blessings-shower-btn {
+    padding: 8px 12px;
+    font-size: 11px;
   }
 }
