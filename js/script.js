@@ -393,3 +393,44 @@ function addToGoogleCalendar(title, startDate, endDate, location, details) {
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatTime(startDate)}/${formatTime(endDate)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`;
   window.open(url, "_blank");
 }
+
+// ========================================================
+// BABY ELEPHANT INTERACTIVE TAP BLESSING
+// ========================================================
+function onBabyElephantTap(e) {
+  if (e) e.stopPropagation();
+  const actor = document.getElementById("baby-elephant-actor");
+  if (!actor) return;
+
+  // Shower fragrant rose & golden petals
+  if (typeof showerPetals === "function") {
+    showerPetals(35);
+  }
+
+  // Trigger happy bounce jump
+  actor.classList.remove("happy-jump");
+  void actor.offsetWidth; // Force CSS reflow
+  actor.classList.add("happy-jump");
+
+  // Show floating auspicious blessing popup
+  const blessingMessages = [
+    "🌸 Gajaraja's Blessings! 🐘",
+    "✨ Auspicious Joy & Prosperity!",
+    "💍 Warm Blessings for Sumanth & Amrutha! 🌸",
+    "🪷 May Love & Fortune Forever Bloom! ✨"
+  ];
+  const chosenMsg = blessingMessages[Math.floor(Math.random() * blessingMessages.length)];
+
+  // Remove existing popup if any
+  const oldPopup = actor.querySelector(".elephant-blessing-popup");
+  if (oldPopup) oldPopup.remove();
+
+  const popup = document.createElement("div");
+  popup.className = "elephant-blessing-popup";
+  popup.textContent = chosenMsg;
+  actor.appendChild(popup);
+
+  setTimeout(() => {
+    if (popup.parentNode) popup.parentNode.removeChild(popup);
+  }, 1900);
+}

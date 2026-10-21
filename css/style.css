@@ -283,6 +283,184 @@ body {
 }
 
 /* ========================================================
+   BABY ELEPHANT WALKING ANIMATION (BOTTOM SCREEN EDGE)
+   ======================================================== */
+.bottom-elephant-stage {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  pointer-events: none;
+  z-index: 92;
+  overflow: hidden;
+}
+
+/* Subtle Golden Walkway Baseline */
+.elephant-walkway-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.2) 15%, 
+    rgba(255, 235, 153, 0.7) 50%, 
+    rgba(212, 175, 55, 0.2) 85%, 
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.baby-elephant-actor {
+  position: absolute;
+  bottom: 2px;
+  left: -130px;
+  width: 96px;
+  height: 68px;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
+  animation: elephantStroll 28s linear infinite;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@keyframes elephantStroll {
+  0% {
+    transform: translate3d(-130px, 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(100vw + 140px), 0, 0);
+  }
+}
+
+.elephant-bobber {
+  width: 100%;
+  height: 100%;
+  animation: elephantBob 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes elephantBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* 4-Leg Natural Walk Cycle */
+.elephant-leg-fn {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: legSwingFN 0.7s ease-in-out infinite alternate;
+}
+.elephant-leg-bn {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: legSwingBN 0.7s ease-in-out infinite alternate;
+}
+.elephant-leg-ff {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: legSwingFF 0.7s ease-in-out infinite alternate;
+}
+.elephant-leg-bf {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: legSwingBF 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes legSwingFN {
+  0% { transform: rotate(18deg); }
+  100% { transform: rotate(-18deg); }
+}
+@keyframes legSwingBN {
+  0% { transform: rotate(-16deg); }
+  100% { transform: rotate(16deg); }
+}
+@keyframes legSwingFF {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+@keyframes legSwingBF {
+  0% { transform: rotate(16deg); }
+  100% { transform: rotate(-16deg); }
+}
+
+/* Ear, Trunk & Tail Secondary Motion */
+.elephant-ear-flap {
+  transform-box: fill-box;
+  transform-origin: top right;
+  animation: earFlapCycle 0.7s ease-in-out infinite alternate;
+}
+@keyframes earFlapCycle {
+  0% { transform: rotate(0deg) scaleX(1); }
+  100% { transform: rotate(-9deg) scaleX(0.92); }
+}
+
+.elephant-trunk-sway {
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: trunkSwayCycle 1s ease-in-out infinite alternate;
+}
+@keyframes trunkSwayCycle {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(7deg); }
+}
+
+.elephant-tail-wag {
+  transform-box: fill-box;
+  transform-origin: top right;
+  animation: tailWagCycle 0.45s ease-in-out infinite alternate;
+}
+@keyframes tailWagCycle {
+  0% { transform: rotate(-14deg); }
+  100% { transform: rotate(12deg); }
+}
+
+/* Happy Jump on Tap/Click */
+.baby-elephant-actor.happy-jump {
+  animation: elephantHappyJump 0.6s ease-out;
+}
+@keyframes elephantHappyJump {
+  0% { transform: scale(1); }
+  40% { transform: translateY(-16px) scale(1.15); }
+  70% { transform: translateY(0) scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Floating Blessing Bubble */
+.elephant-blessing-popup {
+  position: absolute;
+  bottom: 74px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(34, 5, 11, 0.95);
+  border: 1px solid var(--gold-primary);
+  color: #fff2cc;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: floatFadeUp 1.8s ease-out forwards;
+  z-index: 99;
+}
+@keyframes floatFadeUp {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(0.8); }
+  15% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  75% { opacity: 1; transform: translate(-50%, -10px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -20px) scale(0.9); }
+}
+
+/* ========================================================
    FLOATING ACTION BUTTONS
    ======================================================== */
 .floating-controls {
@@ -1473,5 +1651,17 @@ body {
     padding: 8px 14px;
     font-size: 10px;
     letter-spacing: 1px;
+  }
+
+  /* Baby Elephant on Mobile Edge */
+  .bottom-elephant-stage {
+    height: 62px;
+  }
+
+  .baby-elephant-actor {
+    width: 76px;
+    height: 54px;
+    bottom: 2px;
+    animation-duration: 20s;
   }
 }
