@@ -31,12 +31,12 @@
     <button class="float-action-btn" id="music-toggle-btn" title="Toggle Music">
       <i class="fa-solid fa-music"></i>
     </button>
-    <button class="float-action-btn" onclick="goToStep(2)" title="View Schedule">
+    <a href="#events" class="float-action-btn" title="View Schedule">
       <i class="fa-regular fa-calendar-days"></i>
-    </button>
-    <button class="float-action-btn" onclick="goToStep(3)" title="View Venue">
+    </a>
+    <a href="#venue" class="float-action-btn" title="View Venue">
       <i class="fa-solid fa-location-dot"></i>
-    </button>
+    </a>
   </div>
 
   <button class="shower-petals-btn" onclick="showerPetals(50)">
@@ -78,31 +78,20 @@
   </div>
 
   <!-- ========================================================
-       MAIN CARD CONTAINER & NAVIGATION
+       MAIN SCROLLING INVITATION VIEWPORT
        ======================================================== -->
   <div class="invitation-viewport">
 
-    <!-- High-End Navigation Bar -->
-    <nav class="couture-nav-bar" aria-label="Invitation Navigation">
-      <button class="couture-nav-tab active" data-step="1" onclick="goToStep(1)">
-        <span class="tab-title-full">The Couple</span>
-        <span class="tab-title-short">Couple</span>
-      </button>
-      <button class="couture-nav-tab" data-step="2" onclick="goToStep(2)">
-        <span class="tab-title-full">Celebrations</span>
-        <span class="tab-title-short">Schedule</span>
-      </button>
-      <button class="couture-nav-tab" data-step="3" onclick="goToStep(3)">
-        <span class="tab-title-full">Venue &amp; Map</span>
-        <span class="tab-title-short">Venue</span>
-      </button>
-      <button class="couture-nav-tab" data-step="4" onclick="goToStep(4)">
-        <span class="tab-title-full">Blessings</span>
-        <span class="tab-title-short">Wishes</span>
-      </button>
+    <!-- Sticky Couture Navigation Dock -->
+    <nav class="couture-nav-dock" aria-label="Quick Navigation">
+      <a href="#couple" class="couture-nav-pill active">Couple</a>
+      <a href="#muhurtham" class="couture-nav-pill">Muhurtham</a>
+      <a href="#events" class="couture-nav-pill">Events</a>
+      <a href="#venue" class="couture-nav-pill">Venue</a>
+      <a href="#wishes" class="couture-nav-pill">Wishes</a>
     </nav>
 
-    <!-- Main Couture Card -->
+    <!-- Main Couture Card Container -->
     <main class="couture-card">
       <div class="couture-frame-inner"></div>
       <div class="couture-frame-corner tl"></div>
@@ -111,50 +100,43 @@
       <div class="couture-frame-corner br"></div>
 
       <!-- ====================================================
-           CHAPTER 1: THE COUPLE
+           SECTION 1: THE COUPLE WITH CUTE CARTOON AVATARS
            ==================================================== -->
-      <section class="couture-step active" id="step-1">
+      <section class="scroll-reveal-section revealed" id="couple">
         <div class="invocation-badge">
           <span class="invocation-tag">With the Blessings of the Almighty</span>
           <p class="invitation-prose">
-            Together with their families, we cordially invite you to celebrate the holy matrimony and eternal union of our beloved children
+            Together with their families, we warmly invite you and your family to celebrate the holy matrimony and joyous wedding of
           </p>
         </div>
 
-        <!-- Editorial Couple Portrait Frame -->
-        <div class="editorial-couple-art-frame">
-          <img src="assets/couple_bg.jpg" alt="Sumanth &amp; Amrutha">
-        </div>
-
-        <!-- Bespoke Couple Typography & Monograms -->
-        <div class="couple-monogram-row">
-          <!-- Groom -->
-          <div class="couple-entity">
-            <div class="entity-monogram-circle">
-              <span class="entity-initial">S</span>
+        <!-- Couple Cartoon Avatar Presentation -->
+        <div class="couple-avatar-row">
+          <!-- Groom (Sumanth S M) -->
+          <div class="couple-person-card">
+            <div class="cute-avatar-frame">
+              <img src="assets/avatars/groom_cartoon.jpg" alt="Sumanth S M">
             </div>
-            <h2 class="entity-name">Sumanth S M</h2>
-            <p class="entity-label">The Groom</p>
-            <p class="entity-parents">
+            <h2 class="person-name">Sumanth S M</h2>
+            <p class="person-parents">
               Together with family, relatives &amp; friends
             </p>
           </div>
 
-          <!-- Union Center -->
+          <!-- Central Union Knot -->
           <div class="couple-union-divider">
             <div class="union-hairline"></div>
             <span class="union-ampersand">&amp;</span>
             <div class="union-hairline"></div>
           </div>
 
-          <!-- Bride -->
-          <div class="couple-entity">
-            <div class="entity-monogram-circle">
-              <span class="entity-initial">A</span>
+          <!-- Bride (Amrutha S) -->
+          <div class="couple-person-card">
+            <div class="cute-avatar-frame">
+              <img src="assets/avatars/bride_cartoon.jpg" alt="Amrutha S">
             </div>
-            <h2 class="entity-name">Amrutha S</h2>
-            <p class="entity-label">The Bride</p>
-            <p class="entity-parents">
+            <h2 class="person-name">Amrutha S</h2>
+            <p class="person-parents">
               Together with family, relatives &amp; friends
             </p>
           </div>
@@ -166,19 +148,58 @@
             "Two lives, two hearts, joined together in friendship, united forever in love and companionship."
           </p>
         </div>
+      </section>
 
-        <!-- Step 1 Navigation -->
-        <div class="couture-step-actions" style="justify-content: flex-end;">
-          <button class="btn-couture-forward" onclick="goToStep(2)">
-            Celebrations &amp; Schedule &rarr;
-          </button>
+      <!-- Section Divider -->
+      <div class="couture-divider">
+        <span class="couture-divider-line"></span>
+        <span class="couture-divider-motif">✦ &nbsp; 💍 &nbsp; ✦</span>
+        <span class="couture-divider-line"></span>
+      </div>
+
+      <!-- ====================================================
+           SECTION 2: COUNTDOWN CLOCK
+           ==================================================== -->
+      <section class="scroll-reveal-section" id="muhurtham">
+        <div class="couture-countdown-panel">
+          <span class="countdown-sub-title">Auspicious Muhurtham Countdown</span>
+          <div class="countdown-target-date">Sunday, November 22, 2026 | 09:30 AM</div>
+
+          <div class="timer-columns">
+            <div class="timer-unit-col">
+              <span class="timer-digit" id="days">00</span>
+              <span class="timer-metric">Days</span>
+            </div>
+            <span class="timer-divider-dot">:</span>
+            <div class="timer-unit-col">
+              <span class="timer-digit" id="hours">00</span>
+              <span class="timer-metric">Hours</span>
+            </div>
+            <span class="timer-divider-dot">:</span>
+            <div class="timer-unit-col">
+              <span class="timer-digit" id="minutes">00</span>
+              <span class="timer-metric">Minutes</span>
+            </div>
+            <span class="timer-divider-dot">:</span>
+            <div class="timer-unit-col">
+              <span class="timer-digit" id="seconds">00</span>
+              <span class="timer-metric">Seconds</span>
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- Section Divider -->
+      <div class="couture-divider">
+        <span class="couture-divider-line"></span>
+        <span class="couture-divider-motif">✦ &nbsp; 🗓️ &nbsp; ✦</span>
+        <span class="couture-divider-line"></span>
+      </div>
+
       <!-- ====================================================
-           CHAPTER 2: CELEBRATIONS
+           SECTION 3: CEREMONIES & SCHEDULE
            ==================================================== -->
-      <section class="couture-step" id="step-2">
+      <section class="scroll-reveal-section" id="events">
         <div class="section-headline-group">
           <span class="section-label">The Wedding Itinerary</span>
           <h3 class="section-title">Order of Events</h3>
@@ -233,22 +254,19 @@
             </button>
           </div>
         </div>
-
-        <!-- Step 2 Navigation -->
-        <div class="couture-step-actions">
-          <button class="btn-couture-back" onclick="goToStep(1)">
-            &larr; The Couple
-          </button>
-          <button class="btn-couture-forward" onclick="goToStep(3)">
-            Venue &amp; Location &rarr;
-          </button>
-        </div>
       </section>
 
+      <!-- Section Divider -->
+      <div class="couture-divider">
+        <span class="couture-divider-line"></span>
+        <span class="couture-divider-motif">✦ &nbsp; 🏛️ &nbsp; ✦</span>
+        <span class="couture-divider-line"></span>
+      </div>
+
       <!-- ====================================================
-           CHAPTER 3: VENUE & LOCATION
+           SECTION 4: VENUE & LOCATION
            ==================================================== -->
-      <section class="couture-step" id="step-3">
+      <section class="scroll-reveal-section" id="venue">
         <div class="section-headline-group">
           <span class="section-label">Celebration Destination</span>
           <h3 class="section-title">The Wedding Venue</h3>
@@ -282,51 +300,19 @@
             </a>
           </div>
         </div>
-
-        <!-- Step 3 Navigation -->
-        <div class="couture-step-actions">
-          <button class="btn-couture-back" onclick="goToStep(2)">
-            &larr; Order of Events
-          </button>
-          <button class="btn-couture-forward" onclick="goToStep(4)">
-            Blessings &amp; Countdown &rarr;
-          </button>
-        </div>
       </section>
 
+      <!-- Section Divider -->
+      <div class="couture-divider">
+        <span class="couture-divider-line"></span>
+        <span class="couture-divider-motif">✦ &nbsp; 🌸 &nbsp; ✦</span>
+        <span class="couture-divider-line"></span>
+      </div>
+
       <!-- ====================================================
-           CHAPTER 4: COUNTDOWN & BLESSINGS
+           SECTION 5: BLESSINGS & GUESTBOOK
            ==================================================== -->
-      <section class="couture-step" id="step-4">
-        <!-- Minimalist Luxury Countdown -->
-        <div class="couture-countdown-panel">
-          <span class="countdown-sub-title">Auspicious Muhurtham Countdown</span>
-          <div class="countdown-target-date">Sunday, November 22, 2026 | 09:30 AM</div>
-
-          <div class="timer-columns">
-            <div class="timer-unit-col">
-              <span class="timer-digit" id="days">00</span>
-              <span class="timer-metric">Days</span>
-            </div>
-            <span class="timer-divider-dot">:</span>
-            <div class="timer-unit-col">
-              <span class="timer-digit" id="hours">00</span>
-              <span class="timer-metric">Hours</span>
-            </div>
-            <span class="timer-divider-dot">:</span>
-            <div class="timer-unit-col">
-              <span class="timer-digit" id="minutes">00</span>
-              <span class="timer-metric">Minutes</span>
-            </div>
-            <span class="timer-divider-dot">:</span>
-            <div class="timer-unit-col">
-              <span class="timer-digit" id="seconds">00</span>
-              <span class="timer-metric">Seconds</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Guestbook Box -->
+      <section class="scroll-reveal-section" id="wishes">
         <div class="couture-guestbook-box">
           <div class="section-headline-group" style="margin-bottom: 24px;">
             <span class="section-label">Words of Love &amp; Ashirwad</span>
@@ -336,7 +322,7 @@
           <form id="blessing-form">
             <div class="form-field-group">
               <label for="guest-name" class="form-field-label">Your Name &amp; Family</label>
-              <input type="text" id="guest-name" class="form-field-input" placeholder="e.g. Rajesh &amp; Family" required>
+              <input type="text" id="guest-name" class="form-field-input" placeholder="e.g. Ramesh &amp; Family" required>
             </div>
             <div class="form-field-group">
               <label for="guest-message" class="form-field-label">Your Message to the Couple</label>
@@ -360,16 +346,6 @@
             Your presence and blessings will be our greatest honor and joy.
           </p>
         </footer>
-
-        <!-- Step 4 Navigation -->
-        <div class="couture-step-actions">
-          <button class="btn-couture-back" onclick="goToStep(3)">
-            &larr; The Venue
-          </button>
-          <button class="btn-couture-forward" onclick="goToStep(1)">
-            Back to Beginning &circlearrowleft;
-          </button>
-        </div>
       </section>
 
     </main>

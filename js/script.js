@@ -52,95 +52,58 @@ document.addEventListener("DOMContentLoaded", () => {
   initAudio();
   initEnvelope();
   initGuestbook();
-  initSwipeAndKeyNav();
+  initScrollReveal();
+  initActiveNavTracker();
 });
 
 // ========================================================
-// STEP-BY-STEP REVEAL CONTROLLER
+// SCROLL-TRIGGERED REVEAL & NAVIGATION HIGHLIGHTER
 // ========================================================
-let currentStep = 1;
-const totalSteps = 4;
+function initScrollReveal() {
+  const sections = document.querySelectorAll(".scroll-reveal-section");
+  if (!sections.length) return;
 
-function goToStep(stepNum) {
-  if (stepNum < 1 || stepNum > totalSteps) return;
-  currentStep = stepNum;
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
 
-  // Update Progress Tabs
-  const tabs = document.querySelectorAll(".step-tab, .couture-nav-tab");
-  tabs.forEach(tab => {
-    const s = parseInt(tab.getAttribute("data-step"));
-    if (s === currentStep) {
-      tab.classList.add("active");
-    } else {
-      tab.classList.remove("active");
-    }
-  });
-
-  // Update Step Panels
-  const steps = document.querySelectorAll(".invitation-step, .couture-step");
-  steps.forEach((step, idx) => {
-    if (idx + 1 === currentStep) {
-      step.classList.add("active");
-    } else {
-      step.classList.remove("active");
-    }
-  });
-
-  // Smooth scroll to top of card on step change
-  const card = document.querySelector(".royal-card, .couture-card");
-  if (card && window.scrollY > 150) {
-    const topOffset = card.getBoundingClientRect().top + window.pageYOffset - 80;
-    window.scrollTo({ top: topOffset, behavior: "smooth" });
-  }
-
-  // Petal burst celebration on reaching blessings step
-  if (currentStep === 4) {
-    showerPetals(40);
+    sections.forEach(sec => observer.observe(sec));
+  } else {
+    sections.forEach(sec => sec.classList.add("revealed"));
   }
 }
 
-// Keyboard arrow and mobile swipe navigation
-function initSwipeAndKeyNav() {
-  document.addEventListener("keydown", (e) => {
-    const envelopeScreen = document.getElementById("envelope-screen");
-    if (!envelopeScreen || !envelopeScreen.classList.contains("opened")) return;
+function initActiveNavTracker() {
+  const navPills = document.querySelectorAll(".couture-nav-pill");
+  const sections = document.querySelectorAll(".scroll-reveal-section");
+  if (!navPills.length || !sections.length) return;
 
-    if (e.key === "ArrowRight") {
-      goToStep(currentStep + 1);
-    } else if (e.key === "ArrowLeft") {
-      goToStep(currentStep - 1);
-    }
-  });
-
-  // Touch swipe support for mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const card = document.querySelector(".royal-card");
-
-  if (card) {
-    card.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    card.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 55;
-    const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff < 0 && currentStep < totalSteps) {
-        // Swiped Left -> Next Step
-        goToStep(currentStep + 1);
-      } else if (diff > 0 && currentStep > 1) {
-        // Swiped Right -> Previous Step
-        goToStep(currentStep - 1);
+  window.addEventListener("scroll", () => {
+    let currentId = "";
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 140;
+      if (window.pageYOffset >= sectionTop) {
+        currentId = section.getAttribute("id");
       }
-    }
-  }
+    });
+
+    navPills.forEach(pill => {
+      const href = pill.getAttribute("href");
+      if (href === `#${currentId}`) {
+        pill.classList.add("active");
+      } else {
+        pill.classList.remove("active");
+      }
+    });
+  }, { passive: true });
 }
 
 // ========================================================
