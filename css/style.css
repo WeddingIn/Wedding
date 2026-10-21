@@ -387,14 +387,108 @@ body {
 }
 
 /* ========================================================
-   MAIN SCROLLING CARD CONTAINER
+   MAIN SCROLLING CARD CONTAINER & SOUTH INDIAN MANTAPA
    ======================================================== */
 .invitation-viewport {
-  max-width: 900px;
-  margin: 20px auto 100px;
+  max-width: 940px;
+  margin: 15px auto 100px;
   padding: 0 16px;
   position: relative;
   z-index: 10;
+}
+
+.mantapa-frame-container {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Mantapa Top Roof Arch with Kalasha, Peacocks, Parrots & Flowers */
+.mantapa-top-arch {
+  width: 100%;
+  margin-bottom: -22px;
+  position: relative;
+  z-index: 25;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5));
+}
+
+.mantapa-top-arch svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Base Plinth of the Mantapa with Lotuses & Brass Kuthu Vilakku */
+.mantapa-bottom-base {
+  width: 100%;
+  margin-top: -18px;
+  position: relative;
+  z-index: 25;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+}
+
+.mantapa-bottom-base svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Side Floral Garlands along the Card Borders */
+.mantapa-pillar-garland {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 22px;
+  pointer-events: none;
+  z-index: 15;
+  background-repeat: repeat-y;
+  background-size: 18px 55px;
+  opacity: 0.85;
+}
+
+.mantapa-pillar-garland.left {
+  left: 14px;
+  background-image: radial-gradient(circle at 9px 12px, #ff8c00 5px, transparent 6px),
+                    radial-gradient(circle at 9px 24px, #ffca28 5px, transparent 6px),
+                    radial-gradient(circle at 9px 36px, #ffffff 4.5px, transparent 5.5px),
+                    radial-gradient(circle at 9px 46px, #e53935 3.5px, transparent 4.5px);
+}
+
+.mantapa-pillar-garland.right {
+  right: 14px;
+  background-image: radial-gradient(circle at 9px 12px, #ff8c00 5px, transparent 6px),
+                    radial-gradient(circle at 9px 24px, #ffca28 5px, transparent 6px),
+                    radial-gradient(circle at 9px 36px, #ffffff 4.5px, transparent 5.5px),
+                    radial-gradient(circle at 9px 46px, #e53935 3.5px, transparent 4.5px);
+}
+
+/* Swaying Lamp Animations */
+@keyframes lampSwayLeft {
+  0%, 100% { transform: rotate(-2.5deg); transform-origin: 90px 25px; }
+  50% { transform: rotate(2.5deg); transform-origin: 90px 25px; }
+}
+
+@keyframes lampSwayRight {
+  0%, 100% { transform: rotate(2.5deg); transform-origin: 910px 25px; }
+  50% { transform: rotate(-2.5deg); transform-origin: 910px 25px; }
+}
+
+@keyframes flameFlicker {
+  0%, 100% { opacity: 0.85; transform: scale(1); filter: drop-shadow(0 0 4px #ffca28); }
+  50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 10px #ffe082); }
+}
+
+.swaying-lamp-left {
+  animation: lampSwayLeft 4.5s ease-in-out infinite;
+}
+
+.swaying-lamp-right {
+  animation: lampSwayRight 4.5s ease-in-out infinite;
+}
+
+.flickering-flame {
+  animation: flameFlicker 2s ease-in-out infinite;
+  transform-origin: center bottom;
 }
 
 .couture-card {
