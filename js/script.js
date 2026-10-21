@@ -278,28 +278,66 @@ function initAudio() {
 
   if (!musicBtn || !audioInstance) return;
 
-  musicBtn.addEventListener("click", () => {
+  function updateMusicBtn(playing) {
+    if (!musicBtn) return;
+    if (playing) {
+      musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+      musicBtn.classList.add("playing");
+      musicBtn.title = "Pause Music";
+    } else {
+      musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+      musicBtn.classList.remove("playing");
+      musicBtn.title = "Play Music";
+    }
+  }
+
+  musicBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     if (isAudioPlaying) {
       audioInstance.pause();
-      musicBtn.innerHTML = "🔇";
       isAudioPlaying = false;
+      updateMusicBtn(false);
     } else {
       audioInstance.play().then(() => {
-        musicBtn.innerHTML = "🎵";
         isAudioPlaying = true;
+        updateMusicBtn(true);
       }).catch(err => {
         console.log("Audio play prevented:", err);
       });
     }
   });
+
+  // Listen for audio events
+  audioInstance.addEventListener("play", () => {
+    isAudioPlaying = true;
+    updateMusicBtn(true);
+  });
+  audioInstance.addEventListener("pause", () => {
+    isAudioPlaying = false;
+    updateMusicBtn(false);
+  });
+
+  // Start on first user interaction anywhere on the page
+  const startOnFirstGesture = () => {
+    playAudioIfAllowed();
+    document.removeEventListener("click", startOnFirstGesture);
+    document.removeEventListener("touchstart", startOnFirstGesture);
+    document.removeEventListener("keydown", startOnFirstGesture);
+  };
+  document.addEventListener("click", startOnFirstGesture, { once: true });
+  document.addEventListener("touchstart", startOnFirstGesture, { once: true });
+  document.addEventListener("keydown", startOnFirstGesture, { once: true });
 }
 
 function playAudioIfAllowed() {
-  const musicBtn = document.getElementById("music-toggle-btn");
   if (audioInstance && !isAudioPlaying) {
     audioInstance.play().then(() => {
       isAudioPlaying = true;
-      if (musicBtn) musicBtn.innerHTML = "🎵";
+      const musicBtn = document.getElementById("music-toggle-btn");
+      if (musicBtn) {
+        musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+        musicBtn.classList.add("playing");
+      }
     }).catch(() => {
       // Browsers often require explicit user interaction
     });

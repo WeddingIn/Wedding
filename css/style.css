@@ -684,6 +684,17 @@ body {
   box-shadow: 0 6px 25px rgba(197, 168, 128, 0.35);
 }
 
+#music-toggle-btn.playing {
+  border-color: var(--gold-primary);
+  background: rgba(80, 10, 25, 0.95);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.5);
+  animation: musicPulse 2s ease-in-out infinite;
+}
+@keyframes musicPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); transform: scale(1); }
+  50%      { box-shadow: 0 0 22px rgba(212, 175, 55, 0.7); transform: scale(1.06); }
+}
+
 .shower-petals-btn {
   position: fixed;
   bottom: 24px;
