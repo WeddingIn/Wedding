@@ -34,11 +34,41 @@ html {
 
 body {
   font-family: 'Marcellus', serif;
-  background: radial-gradient(circle at center, #680d19 0%, #3b030b 70%, #200105 100%);
+  background-color: #200105;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+}
+
+/* Fixed Full-screen Background Artwork Photo */
+.page-bg-photo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-image: url('../assets/couple_bg.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  filter: brightness(0.48) saturate(1.15) contrast(1.05);
+  z-index: 0;
+  pointer-events: none;
+  transform: scale(1.02);
+}
+
+.page-bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: radial-gradient(circle at center, rgba(88, 10, 22, 0.55) 0%, rgba(32, 1, 5, 0.88) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Background Canvas for Falling Petals */
@@ -63,7 +93,7 @@ body {
     radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 25%),
     radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 25%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* ========================================================
@@ -76,7 +106,7 @@ body {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: radial-gradient(circle, #5e0a16 0%, #290207 100%);
+  background: linear-gradient(rgba(32, 1, 5, 0.65), rgba(32, 1, 5, 0.88)), url('../assets/couple_bg.jpg') center 25% / cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,9 +127,11 @@ body {
   width: 360px;
   max-width: 90vw;
   height: 500px;
-  background: #7a0e1e;
+  background: rgba(122, 14, 30, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(212, 175, 55, 0.5);
   border: 3px solid #d4af37;
   overflow: hidden;
   cursor: pointer;
@@ -352,10 +384,12 @@ body {
 
 /* Royal Card Box */
 .royal-card {
-  background: var(--card-bg);
+  background: rgba(255, 253, 250, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: 24px;
   position: relative;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65), 0 0 35px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.75), 0 0 45px rgba(212, 175, 55, 0.45);
   padding: 55px 40px;
   border: 2px solid #d4af37;
   overflow: hidden;
