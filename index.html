@@ -21,6 +21,147 @@
   <!-- Falling Rose & Golden Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
+  <!-- Flying Birds Animation Layer (Auspicious South Indian Parrots & Soaring Doves) -->
+  <div class="flying-birds-stage" aria-hidden="true">
+    <!-- Shared SVG Gradient Definitions -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <defs>
+        <linearGradient id="parrotBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2ecc71"/>
+          <stop offset="50%" stop-color="#27ae60"/>
+          <stop offset="100%" stop-color="#16a085"/>
+        </linearGradient>
+        <linearGradient id="parrotWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2ed573"/>
+          <stop offset="60%" stop-color="#26af61"/>
+          <stop offset="100%" stop-color="#0f8a5f"/>
+        </linearGradient>
+        <linearGradient id="doveBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="60%" stop-color="#f8fafc"/>
+          <stop offset="100%" stop-color="#cbd5e1"/>
+        </linearGradient>
+        <linearGradient id="doveWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="70%" stop-color="#f1f5f9"/>
+          <stop offset="100%" stop-color="#94a3b8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- Bird Actor 1: Green Parrot Pair (Lead) -->
+    <div class="flying-bird-actor bird-actor-1">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
+        <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
+        <path d="M 60 16 C 54 11 40 16 30 26 C 24 32 20 36 26 35 C 33 39 46 38 56 27 C 59 23 62 19 60 16 Z" fill="url(#parrotBodyGrad)"/>
+        <path d="M 54 18 Q 56 22 53 26" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 61 16 Q 71 18 70 23 Q 64 25 60 21 Z" fill="#ff4757"/>
+        <path d="M 61 21 Q 67 22 63 24 Z" fill="#d63031"/>
+        <circle cx="56.5" cy="16.5" r="2.2" fill="#2c3e50"/>
+        <circle cx="57.2" cy="15.8" r="0.8" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 7 24 6 16 12 C 22 17 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#parrotWingGrad)"/>
+          <path d="M 42 18 C 36 10 26 10 20 15 C 25 18 33 22 38 27 Z" fill="#7bed9f" opacity="0.5"/>
+          <path d="M 36 21 C 30 15 22 16 18 19 C 23 22 29 25 34 27 Z" fill="#f1c40f" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bird Actor 1 Partner: Green Parrot Pair (Companion) -->
+    <div class="flying-bird-actor bird-actor-1-partner">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
+        <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
+        <path d="M 60 16 C 54 11 40 16 30 26 C 24 32 20 36 26 35 C 33 39 46 38 56 27 C 59 23 62 19 60 16 Z" fill="url(#parrotBodyGrad)"/>
+        <path d="M 54 18 Q 56 22 53 26" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 61 16 Q 71 18 70 23 Q 64 25 60 21 Z" fill="#ff4757"/>
+        <path d="M 61 21 Q 67 22 63 24 Z" fill="#d63031"/>
+        <circle cx="56.5" cy="16.5" r="2.2" fill="#2c3e50"/>
+        <circle cx="57.2" cy="15.8" r="0.8" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 7 24 6 16 12 C 22 17 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#parrotWingGrad)"/>
+          <path d="M 42 18 C 36 10 26 10 20 15 C 25 18 33 22 38 27 Z" fill="#7bed9f" opacity="0.5"/>
+          <path d="M 36 21 C 30 15 22 16 18 19 C 23 22 29 25 34 27 Z" fill="#f1c40f" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bird Actor 2: White Dove soaring across the horizon -->
+    <div class="flying-bird-actor bird-actor-2">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 16 36 6 42 2 46 C 10 41 21 36 26 31 Z" fill="#e2e8f0"/>
+        <path d="M 27 34 C 18 39 8 45 4 48 C 12 43 22 38 25 32 Z" fill="#ffffff"/>
+        <path d="M 60 16 C 54 12 42 16 32 25 C 26 30 22 34 27 34 C 34 38 46 36 56 26 C 59 22 62 19 60 16 Z" fill="url(#doveBodyGrad)"/>
+        <path d="M 61 17 Q 69 19 68 22 Q 63 23 60 20 Z" fill="#f59e0b"/>
+        <circle cx="56.5" cy="16.5" r="2" fill="#1e293b"/>
+        <circle cx="57" cy="16" r="0.7" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 6 23 4 15 10 C 22 16 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#doveWingGrad)"/>
+          <path d="M 42 18 C 36 9 25 9 19 14 C 25 18 33 22 38 27 Z" fill="#ffffff" opacity="0.8"/>
+          <path d="M 36 21 C 30 14 21 15 17 18 C 22 22 29 25 34 27 Z" fill="#e2e8f0" opacity="0.7"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bird Actor 3: Fluttering Green Parrot near Kalyana Kalasha -->
+    <div class="flying-bird-actor bird-actor-3">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
+        <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
+        <path d="M 60 16 C 54 11 40 16 30 26 C 24 32 20 36 26 35 C 33 39 46 38 56 27 C 59 23 62 19 60 16 Z" fill="url(#parrotBodyGrad)"/>
+        <path d="M 54 18 Q 56 22 53 26" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 61 16 Q 71 18 70 23 Q 64 25 60 21 Z" fill="#ff4757"/>
+        <path d="M 61 21 Q 67 22 63 24 Z" fill="#d63031"/>
+        <circle cx="56.5" cy="16.5" r="2.2" fill="#2c3e50"/>
+        <circle cx="57.2" cy="15.8" r="0.8" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 7 24 6 16 12 C 22 17 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#parrotWingGrad)"/>
+          <path d="M 42 18 C 36 10 26 10 20 15 C 25 18 33 22 38 27 Z" fill="#7bed9f" opacity="0.5"/>
+          <path d="M 36 21 C 30 15 22 16 18 19 C 23 22 29 25 34 27 Z" fill="#f1c40f" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bird Actor 4: Pair of Parrots sweeping across the middle sky -->
+    <div class="flying-bird-actor bird-actor-4">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
+        <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
+        <path d="M 60 16 C 54 11 40 16 30 26 C 24 32 20 36 26 35 C 33 39 46 38 56 27 C 59 23 62 19 60 16 Z" fill="url(#parrotBodyGrad)"/>
+        <path d="M 54 18 Q 56 22 53 26" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 61 16 Q 71 18 70 23 Q 64 25 60 21 Z" fill="#ff4757"/>
+        <path d="M 61 21 Q 67 22 63 24 Z" fill="#d63031"/>
+        <circle cx="56.5" cy="16.5" r="2.2" fill="#2c3e50"/>
+        <circle cx="57.2" cy="15.8" r="0.8" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 7 24 6 16 12 C 22 17 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#parrotWingGrad)"/>
+          <path d="M 42 18 C 36 10 26 10 20 15 C 25 18 33 22 38 27 Z" fill="#7bed9f" opacity="0.5"/>
+          <path d="M 36 21 C 30 15 22 16 18 19 C 23 22 29 25 34 27 Z" fill="#f1c40f" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bird Actor 4 Partner -->
+    <div class="flying-bird-actor bird-actor-4-partner">
+      <svg class="bird-svg" viewBox="0 0 80 50">
+        <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
+        <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
+        <path d="M 60 16 C 54 11 40 16 30 26 C 24 32 20 36 26 35 C 33 39 46 38 56 27 C 59 23 62 19 60 16 Z" fill="url(#parrotBodyGrad)"/>
+        <path d="M 54 18 Q 56 22 53 26" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 61 16 Q 71 18 70 23 Q 64 25 60 21 Z" fill="#ff4757"/>
+        <path d="M 61 21 Q 67 22 63 24 Z" fill="#d63031"/>
+        <circle cx="56.5" cy="16.5" r="2.2" fill="#2c3e50"/>
+        <circle cx="57.2" cy="15.8" r="0.8" fill="#ffffff"/>
+        <g class="bird-wing-flap">
+          <path d="M 46 18 C 38 7 24 6 16 12 C 22 17 32 21 38 29 C 43 28 47 23 46 18 Z" fill="url(#parrotWingGrad)"/>
+          <path d="M 42 18 C 36 10 26 10 20 15 C 25 18 33 22 38 27 Z" fill="#7bed9f" opacity="0.5"/>
+          <path d="M 36 21 C 30 15 22 16 18 19 C 23 22 29 25 34 27 Z" fill="#f1c40f" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
   <!-- Ambient Instrumental Music -->
   <audio id="wedding-bg-music" loop preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">

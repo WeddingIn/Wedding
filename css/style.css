@@ -100,6 +100,189 @@ body {
 }
 
 /* ========================================================
+   FLYING BIRDS ANIMATION LAYER (PARROTS & DOVES)
+   ======================================================== */
+.flying-birds-stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  pointer-events: none;
+  z-index: 85;
+  overflow: hidden;
+}
+
+.flying-bird-actor {
+  position: absolute;
+  width: 62px;
+  height: 48px;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+}
+
+.bird-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Realistic Wing Flapping Keyframes */
+.bird-wing-flap {
+  transform-box: fill-box;
+  transform-origin: 40% 60%;
+  animation: wingBeatCycle 0.32s ease-in-out infinite alternate;
+}
+
+@keyframes wingBeatCycle {
+  0% {
+    transform: scaleY(1.05) rotate(0deg);
+  }
+  100% {
+    transform: scaleY(-0.7) rotate(-28deg);
+  }
+}
+
+/* Flight Path 1: Cute Pair of Parrots flying across the sky */
+.bird-actor-1 {
+  animation: flightPath1 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  top: 16vh;
+  left: -80px;
+}
+
+.bird-actor-1-partner {
+  animation: flightPath1 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.75s;
+  top: 20vh;
+  left: -110px;
+  transform: scale(0.85);
+}
+
+@keyframes flightPath1 {
+  0% {
+    transform: translate3d(-100px, 0, 0) rotate(6deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate3d(35vw, -35px, 0) rotate(-3deg);
+  }
+  65% {
+    transform: translate3d(70vw, 25px, 0) rotate(5deg);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(115vw, -40px, 0) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+/* Flight Path 2: White Dove soaring gracefully from right to left */
+.bird-actor-2 {
+  animation: flightPath2 19s ease-in-out infinite;
+  animation-delay: 4s;
+  top: 30vh;
+  right: -90px;
+}
+
+@keyframes flightPath2 {
+  0% {
+    transform: translate3d(100px, 0, 0) scaleX(-1) rotate(6deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.95;
+  }
+  45% {
+    transform: translate3d(-45vw, 40px, 0) scaleX(-1) rotate(-4deg);
+  }
+  75% {
+    transform: translate3d(-80vw, -25px, 0) scaleX(-1) rotate(3deg);
+  }
+  94% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(-115vw, 15px, 0) scaleX(-1) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* Flight Path 3: Green Parrot fluttering high near the Mantapa Kalasha */
+.bird-actor-3 {
+  animation: flightPath3 22s ease-in-out infinite;
+  animation-delay: 8.5s;
+  top: 7vh;
+  left: -90px;
+}
+
+@keyframes flightPath3 {
+  0% {
+    transform: translate3d(-100px, 0, 0) scale(0.9) rotate(8deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(50vw, -20px, 0) scale(0.9) rotate(-3deg);
+  }
+  94% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(115vw, 35px, 0) scale(0.9) rotate(4deg);
+    opacity: 0;
+  }
+}
+
+/* Flight Path 4: Second pair of parrots mid-screen */
+.bird-actor-4 {
+  animation: flightPath4 17s ease-in-out infinite;
+  animation-delay: 12.5s;
+  top: 48vh;
+  left: -80px;
+}
+
+.bird-actor-4-partner {
+  animation: flightPath4 17s ease-in-out infinite;
+  animation-delay: 13.2s;
+  top: 52vh;
+  left: -110px;
+  transform: scale(0.8);
+}
+
+@keyframes flightPath4 {
+  0% {
+    transform: translate3d(-100px, 0, 0) rotate(-4deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  40% {
+    transform: translate3d(40vw, 30px, 0) rotate(5deg);
+  }
+  70% {
+    transform: translate3d(75vw, -25px, 0) rotate(-3deg);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(115vw, 15px, 0) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+/* ========================================================
    FLOATING ACTION BUTTONS
    ======================================================== */
 .floating-controls {
