@@ -1,0 +1,886 @@
+/* Indian Traditional Royal Wedding Invitation Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --primary-maroon: #680d19;
+  --deep-maroon: #40050d;
+  --royal-ruby: #871025;
+  --gold-accent: #d4af37;
+  --gold-light: #fbeea4;
+  --gold-dark: #997819;
+  --gold-gradient: linear-gradient(135deg, #d4af37 0%, #fff2b2 50%, #aa771c 100%);
+  --gold-text-gradient: linear-gradient(135deg, #e6ca65, #ffd978, #b8860b);
+  --ivory-cream: #fcf9f2;
+  --card-bg: #fffdf9;
+  --text-primary: #3d0c11;
+  --text-muted: #6e5850;
+  --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
+  --shadow-deep: 0 15px 35px rgba(64, 5, 13, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Marcellus', serif;
+  background: radial-gradient(circle at center, #680d19 0%, #40050d 70%, #290207 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Canvas for Falling Petals */
+#petals-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Background Subtle Mandala Pattern */
+.bg-mandala-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 20%);
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========================================================
+   ENVELOPE INTRO / INTERACTIVE OPENING OVERLAY
+   ======================================================== */
+.envelope-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle, #5e0a16 0%, #300207 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1), transform 1.2s ease-in-out;
+  padding: 20px;
+}
+
+.envelope-screen.opened {
+  opacity: 0;
+  transform: scale(1.08) translateY(-40px);
+  pointer-events: none;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 340px;
+  max-width: 90vw;
+  height: 480px;
+  background: #7a0e1e;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.4);
+  border: 3px solid #d4af37;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.envelope-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(212, 175, 55, 0.6);
+}
+
+.envelope-corner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #fbeea4;
+  pointer-events: none;
+}
+
+.envelope-corner.tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.envelope-corner.tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.envelope-corner.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.envelope-corner.br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+.envelope-header .ganesha-symbol {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 2px 8px rgba(255, 223, 115, 0.6));
+  animation: gentlePulse 3s infinite ease-in-out;
+}
+
+.envelope-header h3 {
+  font-family: 'Marcellus', serif;
+  color: #fbeea4;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.envelope-center {
+  margin: auto 0;
+}
+
+.envelope-center .sub-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #ffdf73;
+  text-transform: uppercase;
+}
+
+.envelope-center .couple-preview {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  color: #fff9e6;
+  text-shadow: 0 2px 15px rgba(212, 175, 55, 0.7);
+  margin: 8px 0;
+  line-height: 1.2;
+}
+
+.envelope-center .auspicious-date {
+  font-size: 14px;
+  color: #fbeea4;
+  letter-spacing: 2px;
+}
+
+.wax-seal-btn {
+  margin-top: 15px;
+  position: relative;
+  width: 86px;
+  height: 86px;
+  background: radial-gradient(circle, #e6b800 0%, #997819 70%, #594406 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+  border: 3px solid #ffdf73;
+  animation: sealGlow 2.5s infinite;
+  cursor: pointer;
+}
+
+.wax-seal-btn span {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3b050d;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.tap-to-open-hint {
+  color: #fbeea4;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  animation: fadeInOut 2s infinite;
+}
+
+/* ========================================================
+   FLOATING AUDIO & BLESSING CONTROLS
+   ======================================================== */
+.floating-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.float-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  background: rgba(64, 5, 13, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffdf73;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+  background: #680d19;
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.5);
+}
+
+.blessings-shower-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  background: linear-gradient(135deg, #d4af37, #997819);
+  color: #3d0c11;
+  border: 1px solid #fff2b2;
+  border-radius: 30px;
+  padding: 12px 22px;
+  font-family: 'Marcellus', serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.blessings-shower-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7);
+}
+
+/* ========================================================
+   MAIN INVITATION CARD CONTAINER
+   ======================================================== */
+.invitation-main-container {
+  max-width: 820px;
+  margin: 40px auto 100px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.royal-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  position: relative;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 35px rgba(212, 175, 55, 0.3);
+  padding: 55px 35px;
+  border: 2px solid #d4af37;
+  overflow: hidden;
+}
+
+/* Ornate Border Inside Card */
+.royal-border-frame {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.royal-border-frame::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px dashed rgba(184, 134, 11, 0.35);
+  border-radius: 14px;
+}
+
+/* Mandir / Toran Top Arch Decoration */
+.top-toran {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.top-toran svg {
+  max-width: 320px;
+  height: auto;
+  fill: #aa771c;
+}
+
+/* Invocation Header */
+.ganesh-invocation {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.ganesh-invocation img, 
+.ganesh-invocation svg {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 3px 6px rgba(184, 134, 11, 0.4));
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.shloka-sanskrit {
+  font-family: 'Marcellus', serif;
+  font-size: 16px;
+  color: var(--royal-ruby);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.shloka-meaning {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Auspicious Announcement */
+.announcement-text {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.invite-tagline {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #997819;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.family-invite-words {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #4a151b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========================================================
+   COUPLE PRESENTATION
+   ======================================================== */
+.couple-showcase {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 45px 0;
+  gap: 20px;
+  position: relative;
+}
+
+.couple-avatar-card {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+}
+
+.couple-portrait-frame {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 4px solid #d4af37;
+  padding: 4px;
+  background: linear-gradient(135deg, #fbeea4, #aa771c);
+  box-shadow: 0 10px 25px rgba(104, 13, 25, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.couple-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.couple-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 44px;
+  color: var(--royal-ruby);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.couple-parents {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.couple-knot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.couple-knot .ampersand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 58px;
+  color: #b8860b;
+  line-height: 1;
+}
+
+.couple-knot .wedding-tie-icon {
+  width: 44px;
+  height: 44px;
+  margin-top: -6px;
+}
+
+/* Section Dividers with Lotus Motif */
+.ornate-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 40px 0;
+}
+
+.ornate-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.ornate-divider .symbol {
+  color: #aa771c;
+  font-size: 20px;
+}
+
+/* ========================================================
+   COUNTDOWN TIMER
+   ======================================================== */
+.countdown-section {
+  text-align: center;
+  margin: 40px 0;
+  background: radial-gradient(circle, #fdf6e9 0%, #faebd7 100%);
+  padding: 28px 20px;
+  border-radius: 18px;
+  border: 1px solid #ebd39c;
+}
+
+.countdown-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  color: var(--royal-ruby);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.timer-box {
+  background: #ffffff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 14px 10px;
+  min-width: 72px;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15);
+}
+
+.timer-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--royal-ruby);
+  display: block;
+  line-height: 1;
+}
+
+.timer-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 6px;
+  display: block;
+}
+
+/* ========================================================
+   EVENTS & RITUALS ITINERARY
+   ======================================================== */
+.events-section {
+  margin: 45px 0;
+}
+
+.section-heading {
+  text-align: center;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 26px;
+  color: var(--royal-ruby);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.section-subheading {
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #8c6b1b;
+  margin-bottom: 35px;
+}
+
+.events-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.event-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  border: 1px solid #ecc982;
+  box-shadow: 0 6px 20px rgba(104, 13, 25, 0.06);
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.25);
+  border-color: #d4af37;
+}
+
+.event-card.highlight {
+  background: linear-gradient(180deg, #fffcf5 0%, #fff7e6 100%);
+  border: 2px solid #d4af37;
+}
+
+.event-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--royal-ruby);
+  color: #fff9e6;
+  font-size: 10px;
+  padding: 3px 14px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid #fbeea4;
+}
+
+.event-icon-circle {
+  width: 58px;
+  height: 58px;
+  margin: 5px auto 14px;
+  background: #fdf5e6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  border: 1.5px solid #d4af37;
+}
+
+.event-title {
+  font-family: 'Marcellus', serif;
+  font-size: 20px;
+  color: var(--royal-ruby);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.event-date {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #3b050d;
+  margin-bottom: 4px;
+}
+
+.event-time {
+  font-size: 12.5px;
+  color: #8c6b1b;
+  margin-bottom: 10px;
+}
+
+.event-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.event-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 11.5px;
+  color: var(--royal-ruby);
+  background: transparent;
+  border: 1px solid #d4af37;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.event-btn:hover {
+  background: var(--royal-ruby);
+  color: #fff9e6;
+}
+
+/* ========================================================
+   VENUE & MAP
+   ======================================================== */
+.venue-section {
+  margin: 45px 0;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 35px 24px;
+  border: 1px solid #ecc982;
+  text-align: center;
+}
+
+.venue-name {
+  font-family: 'Marcellus', serif;
+  font-size: 24px;
+  color: var(--royal-ruby);
+  margin-bottom: 8px;
+}
+
+.venue-address {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 450px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.venue-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.gold-primary-btn {
+  background: linear-gradient(135deg, #d4af37, #997819);
+  color: #2e0509;
+  border: 1px solid #fff2b2;
+  border-radius: 25px;
+  padding: 12px 28px;
+  font-family: 'Marcellus', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.gold-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.5);
+  background: linear-gradient(135deg, #e6ca65, #b8860b);
+}
+
+/* ========================================================
+   GUEST BLESSINGS & RSVP FORM
+   ======================================================== */
+.blessings-section {
+  margin: 45px 0 20px;
+}
+
+.blessings-box {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 24px;
+  border: 1px solid #ecc982;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12.5px;
+  color: #4a151b;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group input, 
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #dfc79b;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  background: #fffefb;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #aa771c;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
+}
+
+.wishes-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.wish-item {
+  background: #fdfaf3;
+  border-left: 3px solid #d4af37;
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+}
+
+.wish-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--royal-ruby);
+  margin-bottom: 3px;
+}
+
+.wish-text {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ========================================================
+   FOOTER
+   ======================================================== */
+.card-footer {
+  text-align: center;
+  margin-top: 45px;
+  padding-top: 25px;
+  border-top: 1px dashed #e2caa2;
+}
+
+.closing-blessing {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  color: var(--royal-ruby);
+  margin-bottom: 8px;
+}
+
+.compliments-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+
+/* ========================================================
+   ANIMATIONS & KEYFRAMES
+   ======================================================== */
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 2px 8px rgba(255, 223, 115, 0.6)); }
+  50% { transform: scale(1.06); filter: drop-shadow(0 4px 14px rgba(255, 223, 115, 0.9)); }
+}
+
+@keyframes sealGlow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 4px 22px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 223, 115, 0.85); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .royal-card {
+    padding: 35px 18px;
+  }
+  
+  .couple-showcase {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .couple-knot {
+    padding: 10px 0;
+  }
+  
+  .couple-knot .ampersand {
+    font-size: 44px;
+  }
+  
+  .couple-name {
+    font-size: 36px;
+  }
+  
+  .timer-grid {
+    gap: 8px;
+  }
+  
+  .timer-box {
+    min-width: 58px;
+    padding: 10px 6px;
+  }
+  
+  .timer-number {
+    font-size: 22px;
+  }
+  
+  .blessings-shower-btn {
+    left: 14px;
+    bottom: 14px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .floating-actions {
+    right: 14px;
+    bottom: 14px;
+  }
+}
