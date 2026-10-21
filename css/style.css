@@ -282,19 +282,204 @@ body {
   }
 }
 
+
 /* ========================================================
-   BABY ELEPHANT WALKING ANIMATION (BOTTOM SCREEN EDGE)
+   ROYAL SOUTH INDIAN WEDDING BARAT PROCESSION
    ======================================================== */
 .bottom-elephant-stage {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 80px;
+  height: 145px;
   pointer-events: none;
   z-index: 92;
   overflow: hidden;
 }
+
+.royal-procession-actor {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 420px;
+  height: 138px;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
+  animation: processionMarch 26s linear infinite;
+  animation-delay: -8s;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@keyframes processionMarch {
+  0% { transform: translate3d(-340px, 0, 0); }
+  100% { transform: translate3d(calc(100vw + 340px), 0, 0); }
+}
+
+.royal-procession-actor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Keyframe animations for figures */
+@keyframes humanLegL {
+  0% { transform: rotate(24deg); }
+  50% { transform: rotate(-24deg); }
+  100% { transform: rotate(24deg); }
+}
+@keyframes humanLegR {
+  0% { transform: rotate(-24deg); }
+  50% { transform: rotate(24deg); }
+  100% { transform: rotate(-24deg); }
+}
+@keyframes humanTorsoBob {
+  0%, 50%, 100% { transform: translateY(0); }
+  25%, 75% { transform: translateY(-3.5px); }
+}
+@keyframes eleLegBF {
+  0%   { transform: rotate(4deg) translateY(-5px); }
+  18%  { transform: rotate(12deg) translateY(-2px); }
+  30%  { transform: rotate(10deg) translateY(0px); }
+  55%  { transform: rotate(0deg) translateY(0px); }
+  80%  { transform: rotate(-10deg) translateY(0px); }
+  100% { transform: rotate(4deg) translateY(-5px); }
+}
+@keyframes eleLegFF {
+  0%   { transform: rotate(-5deg) translateY(0px); }
+  15%  { transform: rotate(-10deg) translateY(0px); }
+  25%  { transform: rotate(4deg) translateY(-5px); }
+  43%  { transform: rotate(12deg) translateY(-2px); }
+  55%  { transform: rotate(10deg) translateY(0px); }
+  80%  { transform: rotate(0deg) translateY(0px); }
+  100% { transform: rotate(-5deg) translateY(0px); }
+}
+@keyframes eleLegBN {
+  0%   { transform: rotate(2deg) translateY(0px); }
+  25%  { transform: rotate(-4deg) translateY(0px); }
+  40%  { transform: rotate(-10deg) translateY(0px); }
+  50%  { transform: rotate(4deg) translateY(-5px); }
+  68%  { transform: rotate(12deg) translateY(-2px); }
+  80%  { transform: rotate(10deg) translateY(0px); }
+  100% { transform: rotate(2deg) translateY(0px); }
+}
+@keyframes eleLegFN {
+  0%   { transform: rotate(10deg) translateY(0px); }
+  30%  { transform: rotate(2deg) translateY(0px); }
+  55%  { transform: rotate(-6deg) translateY(0px); }
+  65%  { transform: rotate(-10deg) translateY(0px); }
+  75%  { transform: rotate(4deg) translateY(-5px); }
+  92%  { transform: rotate(12deg) translateY(-2px); }
+  100% { transform: rotate(10deg) translateY(0px); }
+}
+@keyframes eleTorsoBob {
+  0%, 25%, 50%, 75%, 100% { transform: translateY(0); }
+  12.5%, 37.5%, 62.5%, 87.5% { transform: translateY(-2.5px); }
+}
+@keyframes eleEarFlap {
+  0%, 100% { transform: rotate(0deg) scaleX(1); }
+  50%      { transform: rotate(-8deg) scaleX(0.92); }
+}
+@keyframes eleTrunkSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(5deg); }
+}
+@keyframes howdahRock {
+  0%, 50%, 100% { transform: rotate(0deg); }
+  25%           { transform: rotate(-1.5deg); }
+  75%           { transform: rotate(1.5deg); }
+}
+@keyframes groomWave {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(-14deg); }
+}
+@keyframes palanquinBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2.5px); }
+}
+@keyframes flagWave {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  50%      { transform: skewY(-5deg) scaleX(0.96); }
+}
+
+/* Procession Animation Classes */
+.h-leg-l {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: humanLegL 0.7s ease-in-out infinite;
+}
+.h-leg-r {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: humanLegR 0.7s ease-in-out infinite;
+}
+.h-bob {
+  animation: humanTorsoBob 0.7s ease-in-out infinite;
+}
+
+.e-leg-fn {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: eleLegFN 1.4s ease-in-out infinite;
+}
+.e-leg-bn {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: eleLegBN 1.4s ease-in-out infinite;
+}
+.e-leg-ff {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: eleLegFF 1.4s ease-in-out infinite;
+}
+.e-leg-bf {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: eleLegBF 1.4s ease-in-out infinite;
+}
+.e-bob {
+  animation: eleTorsoBob 1.4s ease-in-out infinite;
+}
+.e-ear {
+  transform-box: fill-box;
+  transform-origin: top right;
+  animation: eleEarFlap 1.4s ease-in-out infinite;
+}
+.e-trunk {
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: eleTrunkSway 2.8s ease-in-out infinite;
+}
+.e-howdah {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: howdahRock 1.4s ease-in-out infinite;
+}
+.groom-arm-wave {
+  transform-box: fill-box;
+  transform-origin: bottom left;
+  animation: groomWave 1.6s ease-in-out infinite;
+}
+.c-bob {
+  animation: palanquinBob 0.7s ease-in-out infinite;
+}
+.f-wave {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: flagWave 1.2s ease-in-out infinite;
+}
+.c-bob {
+  animation: palanquinBob 0.75s ease-in-out infinite;
+}
+.f-wave {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: flagWave 0.6s ease-in-out infinite;
+}
+
+/* (duplicate removed) */
 
 /* Subtle Golden Walkway Baseline */
 .elephant-walkway-line {
