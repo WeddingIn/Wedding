@@ -284,365 +284,12 @@ body {
 
 
 /* ========================================================
-   ROYAL SOUTH INDIAN WEDDING BARAT PROCESSION
+   BOTTOM PROCESSION REMOVED (STRICTLY DOOR OPEN & COUPLE ANIMATION)
    ======================================================== */
-.bottom-elephant-stage {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: 145px;
-  pointer-events: none;
-  z-index: 92;
-  overflow: hidden;
-}
-
+.bottom-elephant-stage,
+.bottom-procession-stage,
 .royal-procession-actor {
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  width: 420px;
-  height: 138px;
-  pointer-events: auto;
-  cursor: pointer;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
-  animation: processionMarch 26s linear infinite;
-  animation-delay: -8s;
-  will-change: transform;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-@keyframes processionMarch {
-  0% { transform: translate3d(-105%, 0, 0); }
-  100% { transform: translate3d(calc(100vw + 15px), 0, 0); }
-}
-
-.royal-procession-actor svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Keyframe animations for figures */
-@keyframes humanLegL {
-  0% { transform: rotate(24deg); }
-  50% { transform: rotate(-24deg); }
-  100% { transform: rotate(24deg); }
-}
-@keyframes humanLegR {
-  0% { transform: rotate(-24deg); }
-  50% { transform: rotate(24deg); }
-  100% { transform: rotate(-24deg); }
-}
-@keyframes humanTorsoBob {
-  0%, 50%, 100% { transform: translateY(0); }
-  25%, 75% { transform: translateY(-3.5px); }
-}
-@keyframes eleLegBF {
-  0%   { transform: rotate(4deg) translateY(-5px); }
-  18%  { transform: rotate(12deg) translateY(-2px); }
-  30%  { transform: rotate(10deg) translateY(0px); }
-  55%  { transform: rotate(0deg) translateY(0px); }
-  80%  { transform: rotate(-10deg) translateY(0px); }
-  100% { transform: rotate(4deg) translateY(-5px); }
-}
-@keyframes eleLegFF {
-  0%   { transform: rotate(-5deg) translateY(0px); }
-  15%  { transform: rotate(-10deg) translateY(0px); }
-  25%  { transform: rotate(4deg) translateY(-5px); }
-  43%  { transform: rotate(12deg) translateY(-2px); }
-  55%  { transform: rotate(10deg) translateY(0px); }
-  80%  { transform: rotate(0deg) translateY(0px); }
-  100% { transform: rotate(-5deg) translateY(0px); }
-}
-@keyframes eleLegBN {
-  0%   { transform: rotate(2deg) translateY(0px); }
-  25%  { transform: rotate(-4deg) translateY(0px); }
-  40%  { transform: rotate(-10deg) translateY(0px); }
-  50%  { transform: rotate(4deg) translateY(-5px); }
-  68%  { transform: rotate(12deg) translateY(-2px); }
-  80%  { transform: rotate(10deg) translateY(0px); }
-  100% { transform: rotate(2deg) translateY(0px); }
-}
-@keyframes eleLegFN {
-  0%   { transform: rotate(10deg) translateY(0px); }
-  30%  { transform: rotate(2deg) translateY(0px); }
-  55%  { transform: rotate(-6deg) translateY(0px); }
-  65%  { transform: rotate(-10deg) translateY(0px); }
-  75%  { transform: rotate(4deg) translateY(-5px); }
-  92%  { transform: rotate(12deg) translateY(-2px); }
-  100% { transform: rotate(10deg) translateY(0px); }
-}
-@keyframes eleTorsoBob {
-  0%, 25%, 50%, 75%, 100% { transform: translateY(0); }
-  12.5%, 37.5%, 62.5%, 87.5% { transform: translateY(-2.5px); }
-}
-@keyframes eleEarFlap {
-  0%, 100% { transform: rotate(0deg) scaleX(1); }
-  50%      { transform: rotate(-8deg) scaleX(0.92); }
-}
-@keyframes eleTrunkSway {
-  0%, 100% { transform: rotate(-2deg); }
-  50%      { transform: rotate(5deg); }
-}
-@keyframes howdahRock {
-  0%, 50%, 100% { transform: rotate(0deg); }
-  25%           { transform: rotate(-1.5deg); }
-  75%           { transform: rotate(1.5deg); }
-}
-@keyframes groomWave {
-  0%, 100% { transform: rotate(0deg); }
-  50%      { transform: rotate(-14deg); }
-}
-@keyframes palanquinBob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-2.5px); }
-}
-@keyframes flagWave {
-  0%, 100% { transform: skewY(0deg) scaleX(1); }
-  50%      { transform: skewY(-5deg) scaleX(0.96); }
-}
-
-/* Procession Animation Classes */
-.h-leg-l {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: humanLegL 0.7s ease-in-out infinite;
-}
-.h-leg-r {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: humanLegR 0.7s ease-in-out infinite;
-}
-.h-bob {
-  animation: humanTorsoBob 0.7s ease-in-out infinite;
-}
-
-.e-leg-fn {
-  transform-box: fill-box;
-  transform-origin: 50% 0%;
-  animation: eleLegFN 1.4s ease-in-out infinite;
-}
-.e-leg-bn {
-  transform-box: fill-box;
-  transform-origin: 50% 0%;
-  animation: eleLegBN 1.4s ease-in-out infinite;
-}
-.e-leg-ff {
-  transform-box: fill-box;
-  transform-origin: 50% 0%;
-  animation: eleLegFF 1.4s ease-in-out infinite;
-}
-.e-leg-bf {
-  transform-box: fill-box;
-  transform-origin: 50% 0%;
-  animation: eleLegBF 1.4s ease-in-out infinite;
-}
-.e-bob {
-  animation: eleTorsoBob 1.4s ease-in-out infinite;
-}
-.e-ear {
-  transform-box: fill-box;
-  transform-origin: top right;
-  animation: eleEarFlap 1.4s ease-in-out infinite;
-}
-.e-trunk {
-  transform-box: fill-box;
-  transform-origin: top left;
-  animation: eleTrunkSway 2.8s ease-in-out infinite;
-}
-.e-howdah {
-  transform-box: fill-box;
-  transform-origin: bottom center;
-  animation: howdahRock 1.4s ease-in-out infinite;
-}
-.groom-arm-wave {
-  transform-box: fill-box;
-  transform-origin: bottom left;
-  animation: groomWave 1.6s ease-in-out infinite;
-}
-.c-bob {
-  animation: palanquinBob 0.7s ease-in-out infinite;
-}
-.f-wave {
-  transform-box: fill-box;
-  transform-origin: left center;
-  animation: flagWave 1.2s ease-in-out infinite;
-}
-.c-bob {
-  animation: palanquinBob 0.75s ease-in-out infinite;
-}
-.f-wave {
-  transform-box: fill-box;
-  transform-origin: left center;
-  animation: flagWave 0.6s ease-in-out infinite;
-}
-
-/* (duplicate removed) */
-
-/* Subtle Golden Walkway Baseline */
-.elephant-walkway-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(212, 175, 55, 0.2) 15%, 
-    rgba(255, 235, 153, 0.7) 50%, 
-    rgba(212, 175, 55, 0.2) 85%, 
-    transparent 100%
-  );
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-}
-
-.baby-elephant-actor {
-  position: absolute;
-  bottom: 2px;
-  left: -130px;
-  width: 96px;
-  height: 68px;
-  pointer-events: auto;
-  cursor: pointer;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
-  animation: elephantStroll 28s linear infinite;
-  will-change: transform;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-@keyframes elephantStroll {
-  0% {
-    transform: translate3d(-130px, 0, 0);
-  }
-  100% {
-    transform: translate3d(calc(100vw + 140px), 0, 0);
-  }
-}
-
-.elephant-bobber {
-  width: 100%;
-  height: 100%;
-  animation: elephantBob 0.35s ease-in-out infinite alternate;
-}
-
-@keyframes elephantBob {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-/* 4-Leg Natural Walk Cycle */
-.elephant-leg-fn {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: legSwingFN 0.7s ease-in-out infinite alternate;
-}
-.elephant-leg-bn {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: legSwingBN 0.7s ease-in-out infinite alternate;
-}
-.elephant-leg-ff {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: legSwingFF 0.7s ease-in-out infinite alternate;
-}
-.elephant-leg-bf {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: legSwingBF 0.7s ease-in-out infinite alternate;
-}
-
-@keyframes legSwingFN {
-  0% { transform: rotate(18deg); }
-  100% { transform: rotate(-18deg); }
-}
-@keyframes legSwingBN {
-  0% { transform: rotate(-16deg); }
-  100% { transform: rotate(16deg); }
-}
-@keyframes legSwingFF {
-  0% { transform: rotate(-18deg); }
-  100% { transform: rotate(18deg); }
-}
-@keyframes legSwingBF {
-  0% { transform: rotate(16deg); }
-  100% { transform: rotate(-16deg); }
-}
-
-/* Ear, Trunk & Tail Secondary Motion */
-.elephant-ear-flap {
-  transform-box: fill-box;
-  transform-origin: top right;
-  animation: earFlapCycle 0.7s ease-in-out infinite alternate;
-}
-@keyframes earFlapCycle {
-  0% { transform: rotate(0deg) scaleX(1); }
-  100% { transform: rotate(-9deg) scaleX(0.92); }
-}
-
-.elephant-trunk-sway {
-  transform-box: fill-box;
-  transform-origin: top left;
-  animation: trunkSwayCycle 1s ease-in-out infinite alternate;
-}
-@keyframes trunkSwayCycle {
-  0% { transform: rotate(-3deg); }
-  100% { transform: rotate(7deg); }
-}
-
-.elephant-tail-wag {
-  transform-box: fill-box;
-  transform-origin: top right;
-  animation: tailWagCycle 0.45s ease-in-out infinite alternate;
-}
-@keyframes tailWagCycle {
-  0% { transform: rotate(-14deg); }
-  100% { transform: rotate(12deg); }
-}
-
-/* Happy Jump on Tap/Click */
-.baby-elephant-actor.happy-jump {
-  animation: elephantHappyJump 0.6s ease-out;
-}
-@keyframes elephantHappyJump {
-  0% { transform: scale(1); }
-  40% { transform: translateY(-16px) scale(1.15); }
-  70% { transform: translateY(0) scale(0.95); }
-  100% { transform: scale(1); }
-}
-
-/* Floating Blessing Bubble */
-.elephant-blessing-popup {
-  position: absolute;
-  bottom: 74px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(34, 5, 11, 0.95);
-  border: 1px solid var(--gold-primary);
-  color: #fff2cc;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  pointer-events: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  animation: floatFadeUp 1.8s ease-out forwards;
-  z-index: 99;
-}
-@keyframes floatFadeUp {
-  0% { opacity: 0; transform: translate(-50%, 8px) scale(0.8); }
-  15% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-  75% { opacity: 1; transform: translate(-50%, -10px) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -20px) scale(0.9); }
+  display: none !important;
 }
 
 /* ========================================================
@@ -727,397 +374,251 @@ body {
 }
 
 /* ========================================================
-   CINEMATIC 3D PHYSICAL GATEFOLD INVITATION CARD
+   TRADITIONAL CARVED WOODEN TEMPLE DOOR (MAHA DWARAM) INTRO
    ======================================================== */
-.unveil-gate-screen {
+.temple-door-gate {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: radial-gradient(circle at center, #25040a 0%, #0d0103 100%);
+  cursor: pointer;
+  background: radial-gradient(circle at center, #1b0307 0%, #080002 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   perspective: 1500px;
-  padding: 20px;
+  padding: 16px;
   transition: opacity 1.3s cubic-bezier(0.65, 0, 0.35, 1), transform 1.3s ease-in-out, visibility 1.3s;
 }
 
-.unveil-gate-screen.unveiled {
+.temple-door-gate.unveiled {
   opacity: 0;
   visibility: hidden;
   transform: scale(1.08) translateY(-30px);
   pointer-events: none;
 }
 
-/* 3D Physical Card Container */
-.physical-card-container {
+.temple-door-wrapper {
   position: relative;
   width: 380px;
-  max-width: 90vw;
-  height: 520px;
-  max-height: 82vh;
+  max-width: 92vw;
+  aspect-ratio: 848 / 1264;
+  max-height: 88vh;
   perspective: 1500px;
   transform-style: preserve-3d;
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
-}
-
-/* Outer Physical Card Frame */
-.physical-card-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 
     0 25px 70px rgba(0, 0, 0, 0.95),
-    0 10px 25px rgba(0, 0, 0, 0.8),
-    0 0 45px rgba(212, 175, 55, 0.25);
-  transform-style: preserve-3d;
-}
-
-/* Inner Invitation Card (revealed when flaps open) */
-.card-inner-sheet {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #fffdfa 0%, #faf3e5 50%, #f4e8ce 100%);
-  border-radius: 16px;
-  border: 3px solid #d4af37;
-  padding: 34px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  box-shadow: inset 0 0 35px rgba(184, 134, 11, 0.15);
-  z-index: 1;
+    0 0 45px rgba(212, 175, 55, 0.35);
+  background: #1a0803;
   overflow: hidden;
 }
 
-.inner-border-frame {
+/* Door Surround Frame (Ganesha header, bells, banana leaves & brass lamps) */
+.door-frame-bg {
   position: absolute;
-  inset: 8px;
-  border: 1.5px solid #c5a880;
-  border-radius: 12px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 15;
   pointer-events: none;
 }
-.inner-border-frame::after {
-  content: '';
+
+/* Inner Golden Light (Behind the opening doors) */
+.door-inner-glow {
   position: absolute;
-  inset: 4px;
-  border: 1px dashed rgba(184, 134, 11, 0.45);
-  border-radius: 8px;
-}
-
-.shree-ganesha {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 3px;
-  color: #941228;
-  font-weight: 700;
+  top: 34.81%;
+  bottom: 17.33%;
+  left: 29.48%;
+  right: 29.48%;
+  background: radial-gradient(circle at center, #fffbe6 0%, #ffd966 45%, #cc9933 80%, #664411 100%);
   display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.shree-ganesha::before, .shree-ganesha::after {
-  content: '✦';
-  font-size: 10px;
-  color: #d4af37;
-}
-
-.inner-gold-crest {
-  width: 48px;
-  height: 48px;
-  margin: 6px auto 0;
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  text-align: center;
+  padding: 10px 4px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.inner-subtitle {
+.inner-shree {
   font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: #8b6514;
-  font-weight: 600;
-  margin-top: 4px;
-}
-
-.inner-couple-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  font-weight: 600;
-  color: #5c0e1e;
-  line-height: 1.15;
-  margin: 8px 0;
-}
-.inner-couple-names span {
-  display: block;
-  font-style: italic;
-  font-size: 22px;
-  color: #b8860b;
-  margin: -2px 0;
-}
-
-.inner-date-line {
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
   color: #941228;
+  font-weight: 700;
+  margin-bottom: 3px;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+
+.inner-welcome-title {
+  font-family: 'Cinzel', serif;
+  font-size: 6.8px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  font-weight: 600;
-  border-top: 1px solid rgba(212, 175, 55, 0.4);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
-  padding: 6px 18px;
-  margin: 4px 0;
+  color: #5c0e1e;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.inner-auspicious-mantra {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14.5px;
-  font-style: italic;
-  color: #5c4327;
-  line-height: 1.45;
-  max-width: 290px;
+.inner-welcome-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 15px;
+  color: #3e0712;
+  margin-top: 4px;
+  line-height: 1.15;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+  white-space: nowrap;
 }
 
-/* ============================================================
-   GATEFOLD FLAPS (LEFT & RIGHT PHYSICAL DOORS)
-   ============================================================ */
-.card-flap {
+/* Moving Door Panels Stage - Perfectly aligned with doorway opening in frame */
+.door-leaves-stage {
+  position: absolute;
+  top: 34.81%;
+  bottom: 17.33%;
+  left: 29.48%;
+  right: 29.48%;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  z-index: 10;
+}
+
+.door-leaf {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 50.3%;
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(145, 18, 45, 0.45) 0%, transparent 80%),
-    linear-gradient(145deg, #440915 0%, #2b040b 55%, #180206 100%);
-  box-shadow: 
-    inset 0 0 25px rgba(0, 0, 0, 0.7),
-    0 4px 15px rgba(0, 0, 0, 0.5);
+  width: 50.15%;
   transform-style: preserve-3d;
-  transition: transform 1.25s cubic-bezier(0.4, 0, 0.15, 1);
-  z-index: 10;
+  transition: transform 1.4s cubic-bezier(0.35, 0, 0.15, 1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.85);
   overflow: hidden;
 }
 
-.card-flap.flap-left {
+.door-leaf img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+.door-leaf.door-left {
   left: 0;
-  border-radius: 16px 0 0 16px;
-  border-left: 2px solid #d4af37;
-  border-top: 2px solid #d4af37;
-  border-bottom: 2px solid #d4af37;
-  border-right: 1px solid #ffd700;
   transform-origin: left center;
 }
 
-.card-flap.flap-right {
+.door-leaf.door-right {
   right: 0;
-  border-radius: 0 16px 16px 0;
-  border-right: 2px solid #d4af37;
-  border-top: 2px solid #d4af37;
-  border-bottom: 2px solid #d4af37;
-  border-left: 1px solid #ffd700;
   transform-origin: right center;
 }
 
-/* Flap Decorative Borders */
-.flap-inner-border {
-  position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(212, 175, 55, 0.55);
-  pointer-events: none;
-}
-.flap-left .flap-inner-border {
-  border-radius: 10px 0 0 10px;
-  border-right: none;
-}
-.flap-right .flap-inner-border {
-  border-radius: 0 10px 10px 0;
-  border-left: none;
+/* 3D Door Open State */
+.temple-door-gate.opening .door-leaf.door-left {
+  transform: rotateY(-115deg);
+  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.95);
 }
 
-.flap-motif {
-  position: absolute;
-  color: rgba(212, 175, 55, 0.5);
-  font-size: 13px;
-}
-.flap-left .flap-top-corner { top: 12px; left: 12px; }
-.flap-left .flap-bottom-corner { bottom: 12px; left: 12px; }
-.flap-right .flap-top-corner { top: 12px; right: 12px; }
-.flap-right .flap-bottom-corner { bottom: 12px; right: 12px; }
-
-/* Half-mandala on the center vertical seam */
-.flap-mandala-half {
-  position: absolute;
-  top: 50%;
-  width: 70px;
-  height: 140px;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-.flap-left .flap-mandala-half {
-  right: 0;
-}
-.flap-right .flap-mandala-half {
-  left: 0;
+.temple-door-gate.opening .door-leaf.door-right {
+  transform: rotateY(115deg);
+  box-shadow: 15px 0 35px rgba(0, 0, 0, 0.95);
 }
 
-/* Flap Cover Titles */
-.flap-cover-title {
-  position: absolute;
-  top: 24%;
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #ffd700;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-  opacity: 0.95;
-  transition: opacity 0.3s ease;
-}
-.flap-left .flap-cover-title { right: 20px; text-align: right; }
-.flap-right .flap-cover-title { left: 20px; text-align: left; }
-
-.physical-card-container.opening .flap-cover-title,
-.physical-card-container.opening .flap-motif,
-.physical-card-container.opening .flap-mandala-half {
+.temple-door-gate.opening .door-couple-overlay {
   opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* ============================================================
-   ROYAL WAX SEAL (PHYSICAL 3D CENTERPIECE)
-   ============================================================ */
-.bespoke-wax-seal {
+/* Royal Carved Teak & Gold Dedication Plaque Overlay */
+.door-couple-overlay {
   position: absolute;
-  top: 50%;
+  bottom: 22%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff2cf 0%, #d4af37 45%, #8a6514 85%, #523b0a 100%);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.8),
-    inset 0 3px 6px rgba(255, 255, 255, 0.65),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.55),
-    0 0 25px rgba(212, 175, 55, 0.55);
-  border: 3px solid #ffea9f;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 25;
+  pointer-events: auto;
   cursor: pointer;
-  z-index: 50;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-  animation: sealPulse 2.8s ease-in-out infinite;
-}
-
-.bespoke-wax-seal:hover {
-  transform: translate(-50%, -50%) scale(1.08);
+  text-align: center;
+  width: 76%;
+  background: radial-gradient(ellipse at center, rgba(32, 6, 10, 0.94) 0%, rgba(18, 3, 6, 0.82) 75%, rgba(10, 1, 3, 0.6) 100%);
+  padding: 10px 14px 8px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
   box-shadow: 
-    0 14px 40px rgba(0, 0, 0, 0.9),
-    0 0 35px rgba(255, 215, 0, 0.8);
+    0 8px 30px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(212, 175, 55, 0.3),
+    inset 0 0 15px rgba(212, 175, 55, 0.2);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-@keyframes sealPulse {
-  0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.45); }
-  50%      { box-shadow: 0 12px 36px rgba(0,0,0,0.9), 0 0 35px rgba(212, 175, 55, 0.8); }
-}
-
-.seal-ribbon {
-  position: absolute;
-  width: 14px;
-  height: 55px;
-  background: linear-gradient(180deg, #941228, #4a0812);
-  bottom: -40px;
-  z-index: -1;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.6);
-  transition: transform 0.4s ease, opacity 0.3s ease;
-}
-.seal-ribbon.ribbon-left {
-  left: 28px;
-  transform: rotate(15deg);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
-}
-.seal-ribbon.ribbon-right {
-  right: 28px;
-  transform: rotate(-15deg);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
-}
-
-.seal-crown {
-  font-size: 14px;
-  margin-bottom: 2px;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
-}
-
-.seal-monogram {
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: #2b080e;
-  letter-spacing: 1.5px;
-  line-height: 1;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-}
-
-.seal-date {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
+.door-couple-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 34px;
+  color: #fff9e6;
+  text-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(255, 215, 0, 0.9),
+    0 0 25px rgba(212, 175, 55, 0.7);
   letter-spacing: 1px;
-  color: #3b1016;
-  margin-top: 3px;
-  font-weight: 700;
+  line-height: 1.1;
+  padding: 0 8px;
 }
 
-/* ============================================================
-   OPENING STATE (PHYSICAL 3D FLAPS REVEAL)
-   ============================================================ */
-.physical-card-container.opening .bespoke-wax-seal {
-  transform: translate(-50%, -70%) scale(1.2) rotate(6deg);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.physical-card-container.opening .card-flap.flap-left {
-  transform: rotateY(-120deg);
-  box-shadow: -12px 0 35px rgba(0, 0, 0, 0.9);
-}
-
-.physical-card-container.opening .card-flap.flap-right {
-  transform: rotateY(120deg);
-  box-shadow: 12px 0 35px rgba(0, 0, 0, 0.9);
-}
-
-.physical-card-container.opening {
-  transform: scale(1.04);
-}
-
-/* Prompt Text */
-.unveil-prompt-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: #f7e7ce;
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
-  margin-top: 26px;
-  font-weight: 500;
+.door-tap-prompt {
+  margin-top: 8px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 9px;
-  animation: promptGlow 2.5s infinite ease-in-out;
-  cursor: pointer;
+  animation: tapPulse 1.8s infinite ease-in-out;
 }
 
-@keyframes promptGlow {
-  0%, 100% { opacity: 0.8; transform: translateY(0); }
-  50%      { opacity: 1; transform: translateY(-3px); text-shadow: 0 0 20px rgba(255, 215, 0, 0.9); }
+.tap-finger {
+  font-size: 22px;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+}
+
+.tap-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  color: #ffd700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(255, 215, 0, 0.8);
+  margin-top: 2px;
+}
+
+@keyframes tapPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ========================================================
+   COUPLE SECTION ANCHOR (#couple)
+   ======================================================== */
+#couple {
+  scroll-margin-top: 75px;
+}
+
+/* Remove Bottom Procession */
+.bottom-procession-stage {
+  display: none !important;
+}
+
+.floating-controls,
+.shower-petals-btn {
+  bottom: 24px !important;
+}
 }
 
 /* ========================================================
@@ -2065,8 +1566,8 @@ body {
   }
 
   .floating-controls {
-    right: 14px;
-    bottom: 100px;
+    right: 16px;
+    bottom: 20px;
     gap: 8px;
   }
 
@@ -2077,63 +1578,22 @@ body {
   }
 
   .shower-petals-btn {
-    left: 14px;
-    bottom: 100px;
+    left: 16px;
+    bottom: 20px;
     padding: 8px 14px;
     font-size: 10px;
     letter-spacing: 1px;
   }
-
-  /* Royal Barat Procession on Mobile Screens (Full Visibility, No Cropping!) */
-  .bottom-elephant-stage {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 94px;
-    pointer-events: none;
-    z-index: 92;
-    overflow: hidden;
-  }
-
-  .royal-procession-actor {
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    width: 265px;
-    height: 87px;
-    pointer-events: auto;
-    cursor: pointer;
-    animation: processionMarch 20s linear infinite;
-    animation-delay: -5s;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.75));
-    will-change: transform;
-  }
-
-  .royal-procession-actor svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
 }
 
 @media (max-width: 420px) {
-  .bottom-elephant-stage {
-    height: 86px;
-  }
-
-  .royal-procession-actor {
-    width: 240px;
-    height: 79px;
-    bottom: 2px;
-    animation-duration: 18s;
-  }
-
   .floating-controls {
-    bottom: 92px;
+    right: 12px;
+    bottom: 16px;
   }
 
   .shower-petals-btn {
-    bottom: 92px;
+    left: 12px;
+    bottom: 16px;
   }
 }

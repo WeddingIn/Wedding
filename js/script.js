@@ -107,7 +107,7 @@ function initActiveNavTracker() {
 }
 
 // ========================================================
-// 3D PHYSICAL GATEFOLD CARD OPENING INTERACTION
+// TRADITIONAL TEMPLE DOOR OPENING INTERACTION
 // ========================================================
 function initEnvelope() {
   const envelopeScreen = document.getElementById("envelope-screen");
@@ -119,29 +119,42 @@ function initEnvelope() {
 
   let isOpening = false;
 
-  function openCard() {
+  function openDoor(e) {
     if (isOpening) return;
     isOpening = true;
 
-    // 1. Play background music immediately on user gesture
-    playAudioIfAllowed();
-
-    // 2. Trigger 3D physical card unfold (seal breaks & flaps swing outward)
-    if (cardContainer) {
-      cardContainer.classList.add("opening");
+    // 1. Play background music on user gesture
+    try {
+      playAudioIfAllowed();
+    } catch (err) {
+      console.warn("Audio:", err);
     }
 
-    // 3. Allow guest to witness the physical 3D card opening and inner invitation
+    // 2. Trigger 3D temple doors swinging open
+    envelopeScreen.classList.add("opening");
+
+    // 3. Allow guest to witness the majestic carved doors parting
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
-      showerPetals(25);
+      try {
+        if (typeof showerPetals === "function") {
+          showerPetals(30);
+        }
+      } catch (err) {}
     }, 1300);
   }
 
-  if (sealBtn) sealBtn.addEventListener("click", openCard);
-  if (envelopeWrapper) envelopeWrapper.addEventListener("click", openCard);
-  if (cardContainer) cardContainer.addEventListener("click", openCard);
+  // Expose globally as safe fallback
+  window.openTempleDoor = openDoor;
+
+  const tapEvents = ["click", "pointerdown", "touchstart"];
+  tapEvents.forEach(evt => {
+    envelopeScreen.addEventListener(evt, openDoor, { passive: true });
+    if (sealBtn) sealBtn.addEventListener(evt, openDoor, { passive: true });
+    if (envelopeWrapper) envelopeWrapper.addEventListener(evt, openDoor, { passive: true });
+    if (cardContainer) cardContainer.addEventListener(evt, openDoor, { passive: true });
+  });
 }
 
 // ========================================================
@@ -439,45 +452,4 @@ function addToGoogleCalendar(title, startDate, endDate, location, details) {
   const formatTime = (isoStr) => new Date(isoStr).toISOString().replace(/-|:|\.\d\d\d/g, "");
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatTime(startDate)}/${formatTime(endDate)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`;
   window.open(url, "_blank");
-}
-
-// ========================================================
-// BABY ELEPHANT INTERACTIVE TAP BLESSING
-// ========================================================
-function onBabyElephantTap(e) {
-  if (e) e.stopPropagation();
-  const actor = document.getElementById("baby-elephant-actor");
-  if (!actor) return;
-
-  // Shower fragrant rose & golden petals
-  if (typeof showerPetals === "function") {
-    showerPetals(35);
-  }
-
-  // Trigger happy bounce jump
-  actor.classList.remove("happy-jump");
-  void actor.offsetWidth; // Force CSS reflow
-  actor.classList.add("happy-jump");
-
-  // Show floating auspicious blessing popup
-  const blessingMessages = [
-    "🌸 Gajaraja's Blessings! 🐘",
-    "✨ Auspicious Joy & Prosperity!",
-    "💍 Warm Blessings for Sumanth & Amrutha! 🌸",
-    "🪷 May Love & Fortune Forever Bloom! ✨"
-  ];
-  const chosenMsg = blessingMessages[Math.floor(Math.random() * blessingMessages.length)];
-
-  // Remove existing popup if any
-  const oldPopup = actor.querySelector(".elephant-blessing-popup");
-  if (oldPopup) oldPopup.remove();
-
-  const popup = document.createElement("div");
-  popup.className = "elephant-blessing-popup";
-  popup.textContent = chosenMsg;
-  actor.appendChild(popup);
-
-  setTimeout(() => {
-    if (popup.parentNode) popup.parentNode.removeChild(popup);
-  }, 1900);
 }
