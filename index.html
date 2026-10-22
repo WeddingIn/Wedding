@@ -838,37 +838,92 @@
   </button>
 
   <!-- ========================================================
-       CINEMATIC GATEFOLD REVEAL SCREEN
+       CINEMATIC 3D PHYSICAL GATEFOLD INVITATION CARD
        ======================================================== -->
   <div class="unveil-gate-screen" id="envelope-screen">
-    <div class="gatefold-envelope" id="envelope-wrapper">
-      <div class="gatefold-border-inner"></div>
+    
+    <div class="physical-card-container" id="card-container">
+      <div class="physical-card-wrapper" id="envelope-wrapper">
+        
+        <!-- INNER INVITATION CARD (REVEALED WHEN DOORS OPEN) -->
+        <div class="card-inner-sheet">
+          <div class="inner-border-frame"></div>
+          
+          <div class="shree-ganesha">॥ श्री गणेशाय नमः ॥</div>
 
-      <div class="envelope-top-brand">
-        <div class="envelope-crest">
-          <i class="fa-solid fa-crown"></i>
+          <div class="inner-gold-crest">
+            <svg viewBox="0 0 60 50" width="46" height="38" fill="none">
+              <path d="M 30 4 L 33 12 L 41 12 L 35 17 L 37 25 L 30 20 L 23 25 L 25 17 L 19 12 L 27 12 Z" fill="#d4af37"/>
+              <ellipse cx="30" cy="30" rx="14" ry="10" fill="#d4af37" stroke="#8b6514" stroke-width="1.5"/>
+              <circle cx="30" cy="20" r="5" fill="#ffd700"/>
+              <path d="M 22 24 Q 15 15 10 16 Q 16 22 22 24 Z" fill="#2e7d32"/>
+              <path d="M 38 24 Q 45 15 50 16 Q 44 22 38 24 Z" fill="#2e7d32"/>
+            </svg>
+          </div>
+
+          <div class="inner-content-block">
+            <p class="inner-subtitle">Royal Wedding Invitation</p>
+            <h1 class="inner-couple-names">
+              Sumanth
+              <span>&amp;</span>
+              Amrutha
+            </h1>
+            <div class="inner-date-line">November 21 &amp; 22, 2026</div>
+          </div>
+
+          <p class="inner-auspicious-mantra">
+            "Together with their families, cordially invite your gracious presence and blessings on their holy union."
+          </p>
         </div>
-        <p class="envelope-subtitle">Wedding Invitation</p>
+
+        <!-- LEFT GATEFOLD FLAP (SWINGS OPEN 3D TO THE LEFT) -->
+        <div class="card-flap flap-left">
+          <div class="flap-inner-border"></div>
+          <span class="flap-motif flap-top-corner">✦</span>
+          <span class="flap-motif flap-bottom-corner">✦</span>
+          
+          <svg class="flap-mandala-half" viewBox="0 0 70 140" fill="none">
+            <path d="M 70 0 C 31 0 0 31 0 70 C 0 109 31 140 70 140 Z" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+            <path d="M 70 20 C 42 20 20 42 20 70 C 20 98 42 120 70 120 Z" stroke="#ffd700" stroke-width="1.5" opacity="0.7"/>
+            <path d="M 70 40 C 53 40 40 53 40 70 C 40 87 53 100 70 100 Z" stroke="#d4af37" stroke-width="2" opacity="0.9"/>
+            <circle cx="70" cy="70" r="15" fill="rgba(212,175,55,0.2)"/>
+          </svg>
+
+          <div class="flap-cover-title">Sumanth</div>
+        </div>
+
+        <!-- RIGHT GATEFOLD FLAP (SWINGS OPEN 3D TO THE RIGHT) -->
+        <div class="card-flap flap-right">
+          <div class="flap-inner-border"></div>
+          <span class="flap-motif flap-top-corner">✦</span>
+          <span class="flap-motif flap-bottom-corner">✦</span>
+          
+          <svg class="flap-mandala-half" viewBox="0 0 70 140" fill="none">
+            <path d="M 0 0 C 39 0 70 31 70 70 C 70 109 39 140 0 140 Z" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+            <path d="M 0 20 C 28 20 50 42 50 70 C 50 98 28 120 0 120 Z" stroke="#ffd700" stroke-width="1.5" opacity="0.7"/>
+            <path d="M 0 40 C 17 40 30 53 30 70 C 30 87 17 100 0 100 Z" stroke="#d4af37" stroke-width="2" opacity="0.9"/>
+            <circle cx="0" cy="70" r="15" fill="rgba(212,175,55,0.2)"/>
+          </svg>
+
+          <div class="flap-cover-title">Amrutha</div>
+        </div>
+
+        <!-- ROYAL GOLDEN WAX SEAL (LOCKING THE FLAPS TOGETHER) -->
+        <div class="bespoke-wax-seal" id="wax-seal-btn" title="Tap to Open">
+          <div class="seal-ribbon ribbon-left"></div>
+          <div class="seal-ribbon ribbon-right"></div>
+          <div class="seal-crown">👑</div>
+          <span class="seal-monogram">S &amp; A</span>
+          <span class="seal-date">22 . 11 . 2026</span>
+        </div>
+
       </div>
 
-      <div class="envelope-center-content">
-        <h1 class="envelope-couples-names">
-          Sumanth
-          <span>&amp;</span>
-          Amrutha
-        </h1>
-        <p class="envelope-date-mark">November 21 &amp; 22, 2026</p>
-      </div>
-
-      <div class="bespoke-wax-seal" id="wax-seal-btn" title="Tap to Open">
-        <span class="seal-monogram">S &amp; A</span>
-        <span class="seal-date">22 . 11 . 2026</span>
+      <div class="unveil-prompt-text">
+        <span>✨</span> Tap the Golden Seal to Open Invitation
       </div>
     </div>
 
-    <div class="unveil-prompt-text">
-      Tap the seal to unveil invitation
-    </div>
   </div>
 
   <!-- ========================================================
@@ -1092,9 +1147,6 @@
               <img src="assets/avatars/groom_cartoon.jpg" alt="Sumanth S M">
             </div>
             <h2 class="person-name">Sumanth S M</h2>
-            <p class="person-parents">
-              Together with family, relatives &amp; friends
-            </p>
           </div>
 
           <!-- Central Union Knot -->
@@ -1110,9 +1162,6 @@
               <img src="assets/avatars/bride_cartoon.jpg" alt="Amrutha S">
             </div>
             <h2 class="person-name">Amrutha S</h2>
-            <p class="person-parents">
-              Together with family, relatives &amp; friends
-            </p>
           </div>
         </div>
 

@@ -727,150 +727,343 @@ body {
 }
 
 /* ========================================================
-   CINEMATIC UNVEILING ENVELOPE / SEAL SCREEN
+   CINEMATIC 3D PHYSICAL GATEFOLD INVITATION CARD
    ======================================================== */
 .unveil-gate-screen {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: radial-gradient(circle at center, rgba(34, 5, 11, 0.82) 0%, rgba(15, 2, 4, 0.96) 100%);
+  background: radial-gradient(circle at center, #25040a 0%, #0d0103 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: opacity 1.3s cubic-bezier(0.65, 0, 0.35, 1), transform 1.3s ease-in-out;
+  perspective: 1500px;
   padding: 20px;
+  transition: opacity 1.3s cubic-bezier(0.65, 0, 0.35, 1), transform 1.3s ease-in-out, visibility 1.3s;
 }
 
 .unveil-gate-screen.unveiled {
   opacity: 0;
+  visibility: hidden;
   transform: scale(1.08) translateY(-30px);
   pointer-events: none;
 }
 
-.gatefold-envelope {
+/* 3D Physical Card Container */
+.physical-card-container {
   position: relative;
   width: 380px;
   max-width: 90vw;
   height: 520px;
-  background: linear-gradient(145deg, rgba(48, 8, 16, 0.92) 0%, rgba(26, 4, 8, 0.96) 100%);
-  border: 1px solid var(--gold-border);
+  max-height: 82vh;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+}
+
+/* Outer Physical Card Frame */
+.physical-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(197, 168, 128, 0.2);
+  box-shadow: 
+    0 25px 70px rgba(0, 0, 0, 0.95),
+    0 10px 25px rgba(0, 0, 0, 0.8),
+    0 0 45px rgba(212, 175, 55, 0.25);
+  transform-style: preserve-3d;
+}
+
+/* Inner Invitation Card (revealed when flaps open) */
+.card-inner-sheet {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #fffdfa 0%, #faf3e5 50%, #f4e8ce 100%);
+  border-radius: 16px;
+  border: 3px solid #d4af37;
+  padding: 34px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 28px;
   text-align: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
+  box-shadow: inset 0 0 35px rgba(184, 134, 11, 0.15);
+  z-index: 1;
+  overflow: hidden;
 }
 
-.gatefold-envelope:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9), 0 0 50px rgba(197, 168, 128, 0.35);
-  border-color: var(--gold-primary);
-}
-
-.gatefold-border-inner {
+.inner-border-frame {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  border: 1px solid var(--gold-hairline);
+  inset: 8px;
+  border: 1.5px solid #c5a880;
   border-radius: 12px;
   pointer-events: none;
 }
+.inner-border-frame::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(184, 134, 11, 0.45);
+  border-radius: 8px;
+}
 
-.envelope-crest {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 12px;
+.shree-ganesha {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #941228;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.shree-ganesha::before, .shree-ganesha::after {
+  content: '✦';
+  font-size: 10px;
+  color: #d4af37;
+}
+
+.inner-gold-crest {
+  width: 48px;
+  height: 48px;
+  margin: 6px auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--gold-border);
-  border-radius: 50%;
-  color: var(--gold-light);
-  font-size: 20px;
-  background: rgba(197, 168, 128, 0.08);
 }
 
-.envelope-subtitle {
+.inner-subtitle {
   font-family: 'Cinzel', serif;
   font-size: 11px;
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: var(--gold-primary);
-  font-weight: 500;
+  color: #8b6514;
+  font-weight: 600;
+  margin-top: 4px;
 }
 
-.envelope-center-content {
-  margin: auto 0;
-}
-
-.envelope-couples-names {
+.inner-couple-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 46px;
-  font-weight: 400;
-  color: #fff9f0;
+  font-size: 42px;
+  font-weight: 600;
+  color: #5c0e1e;
   line-height: 1.15;
-  letter-spacing: 1px;
-  margin: 12px 0;
+  margin: 8px 0;
 }
-
-.envelope-couples-names span {
+.inner-couple-names span {
   display: block;
-  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 24px;
-  color: var(--gold-light);
+  font-size: 22px;
+  color: #b8860b;
   margin: -2px 0;
 }
 
-.envelope-date-mark {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
+.inner-date-line {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
   letter-spacing: 3px;
-  color: var(--gold-primary);
+  color: #941228;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
+  border-top: 1px solid rgba(212, 175, 55, 0.4);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 6px 18px;
+  margin: 4px 0;
 }
 
+.inner-auspicious-mantra {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14.5px;
+  font-style: italic;
+  color: #5c4327;
+  line-height: 1.45;
+  max-width: 290px;
+}
+
+/* ============================================================
+   GATEFOLD FLAPS (LEFT & RIGHT PHYSICAL DOORS)
+   ============================================================ */
+.card-flap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.3%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(145, 18, 45, 0.45) 0%, transparent 80%),
+    linear-gradient(145deg, #440915 0%, #2b040b 55%, #180206 100%);
+  box-shadow: 
+    inset 0 0 25px rgba(0, 0, 0, 0.7),
+    0 4px 15px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+  transition: transform 1.25s cubic-bezier(0.4, 0, 0.15, 1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card-flap.flap-left {
+  left: 0;
+  border-radius: 16px 0 0 16px;
+  border-left: 2px solid #d4af37;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
+  border-right: 1px solid #ffd700;
+  transform-origin: left center;
+}
+
+.card-flap.flap-right {
+  right: 0;
+  border-radius: 0 16px 16px 0;
+  border-right: 2px solid #d4af37;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
+  border-left: 1px solid #ffd700;
+  transform-origin: right center;
+}
+
+/* Flap Decorative Borders */
+.flap-inner-border {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  pointer-events: none;
+}
+.flap-left .flap-inner-border {
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+}
+.flap-right .flap-inner-border {
+  border-radius: 0 10px 10px 0;
+  border-left: none;
+}
+
+.flap-motif {
+  position: absolute;
+  color: rgba(212, 175, 55, 0.5);
+  font-size: 13px;
+}
+.flap-left .flap-top-corner { top: 12px; left: 12px; }
+.flap-left .flap-bottom-corner { bottom: 12px; left: 12px; }
+.flap-right .flap-top-corner { top: 12px; right: 12px; }
+.flap-right .flap-bottom-corner { bottom: 12px; right: 12px; }
+
+/* Half-mandala on the center vertical seam */
+.flap-mandala-half {
+  position: absolute;
+  top: 50%;
+  width: 70px;
+  height: 140px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.flap-left .flap-mandala-half {
+  right: 0;
+}
+.flap-right .flap-mandala-half {
+  left: 0;
+}
+
+/* Flap Cover Titles */
+.flap-cover-title {
+  position: absolute;
+  top: 24%;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd700;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+.flap-left .flap-cover-title { right: 20px; text-align: right; }
+.flap-right .flap-cover-title { left: 20px; text-align: left; }
+
+.physical-card-container.opening .flap-cover-title,
+.physical-card-container.opening .flap-motif,
+.physical-card-container.opening .flap-mandala-half {
+  opacity: 0;
+}
+
+/* ============================================================
+   ROYAL WAX SEAL (PHYSICAL 3D CENTERPIECE)
+   ============================================================ */
 .bespoke-wax-seal {
-  position: relative;
-  width: 86px;
-  height: 86px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: radial-gradient(circle, #e2cca8 0%, #aa8756 70%, #684f29 100%);
-  border: 2px solid #f6edd9;
+  background: radial-gradient(circle at 35% 35%, #fff2cf 0%, #d4af37 45%, #8a6514 85%, #523b0a 100%);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 3px 6px rgba(255, 255, 255, 0.65),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(212, 175, 55, 0.55);
+  border: 3px solid #ffea9f;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  animation: sealGentleGlow 3s infinite ease-in-out;
-  transition: transform 0.3s ease;
+  z-index: 50;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  animation: sealPulse 2.8s ease-in-out infinite;
 }
 
 .bespoke-wax-seal:hover {
-  transform: scale(1.06);
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 
+    0 14px 40px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.45); }
+  50%      { box-shadow: 0 12px 36px rgba(0,0,0,0.9), 0 0 35px rgba(212, 175, 55, 0.8); }
+}
+
+.seal-ribbon {
+  position: absolute;
+  width: 14px;
+  height: 55px;
+  background: linear-gradient(180deg, #941228, #4a0812);
+  bottom: -40px;
+  z-index: -1;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+.seal-ribbon.ribbon-left {
+  left: 28px;
+  transform: rotate(15deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+}
+.seal-ribbon.ribbon-right {
+  right: 28px;
+  transform: rotate(-15deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+}
+
+.seal-crown {
+  font-size: 14px;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
 }
 
 .seal-monogram {
   font-family: 'Cinzel', serif;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 800;
   color: #2b080e;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   line-height: 1;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .seal-date {
@@ -879,18 +1072,52 @@ body {
   letter-spacing: 1px;
   color: #3b1016;
   margin-top: 3px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
+/* ============================================================
+   OPENING STATE (PHYSICAL 3D FLAPS REVEAL)
+   ============================================================ */
+.physical-card-container.opening .bespoke-wax-seal {
+  transform: translate(-50%, -70%) scale(1.2) rotate(6deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.physical-card-container.opening .card-flap.flap-left {
+  transform: rotateY(-120deg);
+  box-shadow: -12px 0 35px rgba(0, 0, 0, 0.9);
+}
+
+.physical-card-container.opening .card-flap.flap-right {
+  transform: rotateY(120deg);
+  box-shadow: 12px 0 35px rgba(0, 0, 0, 0.9);
+}
+
+.physical-card-container.opening {
+  transform: scale(1.04);
+}
+
+/* Prompt Text */
 .unveil-prompt-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
+  font-size: 12px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: var(--gold-light);
-  margin-top: 24px;
-  opacity: 0.85;
-  animation: fadeInOut 2.5s infinite;
+  color: #f7e7ce;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+  margin-top: 26px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  animation: promptGlow 2.5s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes promptGlow {
+  0%, 100% { opacity: 0.8; transform: translateY(0); }
+  50%      { opacity: 1; transform: translateY(-3px); text-shadow: 0 0 20px rgba(255, 215, 0, 0.9); }
 }
 
 /* ========================================================
@@ -1666,14 +1893,13 @@ body {
     border-radius: 24px;
   }
 
-  .gatefold-envelope {
+  .physical-card-container {
     width: 440px;
-    height: 570px;
-    padding: 45px 32px;
+    height: 580px;
   }
 
-  .envelope-couples-names {
-    font-size: 54px;
+  .inner-couple-names {
+    font-size: 50px;
   }
 
   .bespoke-wax-seal {
@@ -1750,15 +1976,24 @@ body {
     bottom: 8px;
   }
 
-  .gatefold-envelope {
+  .physical-card-container {
     width: 92vw;
-    max-width: 340px;
-    height: min(490px, 80vh);
-    padding: 30px 18px;
+    max-width: 350px;
+    height: min(500px, 80vh);
   }
 
-  .envelope-couples-names {
-    font-size: 38px;
+  .inner-couple-names {
+    font-size: 36px;
+  }
+
+  .inner-auspicious-mantra {
+    font-size: 13.5px;
+    max-width: 260px;
+  }
+
+  .bespoke-wax-seal {
+    width: 82px;
+    height: 82px;
   }
 
   .couple-avatar-row {

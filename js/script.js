@@ -107,24 +107,41 @@ function initActiveNavTracker() {
 }
 
 // ========================================================
-// ENVELOPE OPENING INTERACTION
+// 3D PHYSICAL GATEFOLD CARD OPENING INTERACTION
 // ========================================================
 function initEnvelope() {
   const envelopeScreen = document.getElementById("envelope-screen");
+  const cardContainer = document.getElementById("card-container");
   const sealBtn = document.getElementById("wax-seal-btn");
   const envelopeWrapper = document.getElementById("envelope-wrapper");
 
+  if (!envelopeScreen) return;
+
+  let isOpening = false;
+
   function openCard() {
-    if (!envelopeScreen.classList.contains("unveiled") && !envelopeScreen.classList.contains("opened")) {
+    if (isOpening) return;
+    isOpening = true;
+
+    // 1. Play background music immediately on user gesture
+    playAudioIfAllowed();
+
+    // 2. Trigger 3D physical card unfold (seal breaks & flaps swing outward)
+    if (cardContainer) {
+      cardContainer.classList.add("opening");
+    }
+
+    // 3. Allow guest to witness the physical 3D card opening and inner invitation
+    setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
-      showerPetals(60);
-      playAudioIfAllowed();
-    }
+      showerPetals(25);
+    }, 1300);
   }
 
   if (sealBtn) sealBtn.addEventListener("click", openCard);
   if (envelopeWrapper) envelopeWrapper.addEventListener("click", openCard);
+  if (cardContainer) cardContainer.addEventListener("click", openCard);
 }
 
 // ========================================================
@@ -184,8 +201,8 @@ function initPetalCanvas() {
   resize();
   window.addEventListener("resize", resize);
 
-  // Initial ambient floating petals
-  for (let i = 0; i < 28; i++) {
+  // Subtle ambient floating petals (calm, minimal, elegant)
+  for (let i = 0; i < 8; i++) {
     petals.push(createPetal(true));
   }
 
@@ -237,33 +254,33 @@ function createPetal(randomY = false) {
   return {
     x: Math.random() * (canvas ? canvas.width : window.innerWidth),
     y: randomY ? Math.random() * (canvas ? canvas.height : window.innerHeight) : -20,
-    size: Math.random() * 9 + 8,
-    speedY: Math.random() * 1.5 + 0.8,
-    speedX: Math.random() * 1.2 + 0.4,
+    size: Math.random() * 6 + 5,
+    speedY: Math.random() * 0.75 + 0.3,
+    speedX: Math.random() * 0.6 + 0.2,
     angle: Math.random() * Math.PI * 2,
-    angularSpeed: Math.random() * 0.02 + 0.01,
+    angularSpeed: Math.random() * 0.01 + 0.003,
     rotation: Math.random() * Math.PI * 2,
-    rotationSpeed: (Math.random() - 0.5) * 0.03,
-    scale: Math.random() * 0.5 + 0.7,
-    opacity: Math.random() * 0.35 + 0.65,
+    rotationSpeed: (Math.random() - 0.5) * 0.015,
+    scale: Math.random() * 0.3 + 0.55,
+    opacity: Math.random() * 0.25 + 0.2,
     color: colors[Math.floor(Math.random() * colors.length)]
   };
 }
 
-function showerPetals(count = 50) {
+function showerPetals(count = 18) {
   if (!canvas) return;
   for (let i = 0; i < count; i++) {
     const p = createPetal(false);
-    p.y = Math.random() * (canvas.height * 0.4);
-    p.speedY = Math.random() * 3.5 + 2;
+    p.y = Math.random() * (canvas.height * 0.3);
+    p.speedY = Math.random() * 1.8 + 0.9;
     petals.push(p);
   }
 
   setTimeout(() => {
-    if (petals.length > 35) {
-      petals.splice(35, petals.length - 35);
+    if (petals.length > 12) {
+      petals.splice(12, petals.length - 12);
     }
-  }, 6000);
+  }, 3500);
 }
 
 // ========================================================
@@ -349,16 +366,8 @@ function playAudioIfAllowed() {
 // ========================================================
 const DEFAULT_BLESSINGS = [
   {
-    name: "Uncle Ramesh & Family",
-    text: "Wishing Sumanth & Amrutha a lifetime of everlasting love, happiness, and prosperity! Heartiest congratulations."
-  },
-  {
-    name: "Friends & Well-wishers",
-    text: "Warmest congratulations to the wonderful couple! May your journey ahead be blessed with joy and beautiful moments."
-  },
-  {
-    name: "Family Parivaar",
-    text: "May the divine blessings always guide you and fill your home with laughter, peace, and togetherness."
+    name: "Family & Well-Wishers",
+    text: "Wishing Sumanth & Amrutha a lifetime of everlasting love, joy, and togetherness!"
   }
 ];
 
@@ -368,10 +377,10 @@ function initGuestbook() {
 
   let savedWishes = [];
   try {
-    const stored = localStorage.getItem("wedding_blessings_en");
-    savedWishes = stored ? JSON.parse(stored) : DEFAULT_BLESSINGS;
+    const stored = localStorage.getItem("wedding_blessings_v2");
+    savedWishes = stored ? JSON.parse(stored) : [...DEFAULT_BLESSINGS];
   } catch (e) {
-    savedWishes = DEFAULT_BLESSINGS;
+    savedWishes = [...DEFAULT_BLESSINGS];
   }
 
   function renderWishes() {
@@ -398,11 +407,11 @@ function initGuestbook() {
       if (name && text) {
         savedWishes.unshift({ name, text });
         try {
-          localStorage.setItem("wedding_blessings_en", JSON.stringify(savedWishes));
+          localStorage.setItem("wedding_blessings_v2", JSON.stringify(savedWishes));
         } catch (e) {}
 
         renderWishes();
-        showerPetals(45);
+        showerPetals(18);
         nameInput.value = "";
         textInput.value = "";
 
