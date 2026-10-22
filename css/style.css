@@ -314,8 +314,8 @@ body {
 }
 
 @keyframes processionMarch {
-  0% { transform: translate3d(-340px, 0, 0); }
-  100% { transform: translate3d(calc(100vw + 340px), 0, 0); }
+  0% { transform: translate3d(-105%, 0, 0); }
+  100% { transform: translate3d(calc(100vw + 15px), 0, 0); }
 }
 
 .royal-procession-actor svg {
@@ -1831,7 +1831,7 @@ body {
 
   .floating-controls {
     right: 14px;
-    bottom: 16px;
+    bottom: 100px;
     gap: 8px;
   }
 
@@ -1843,21 +1843,62 @@ body {
 
   .shower-petals-btn {
     left: 14px;
-    bottom: 16px;
+    bottom: 100px;
     padding: 8px 14px;
     font-size: 10px;
     letter-spacing: 1px;
   }
 
-  /* Baby Elephant on Mobile Edge */
+  /* Royal Barat Procession on Mobile Screens (Full Visibility, No Cropping!) */
   .bottom-elephant-stage {
-    height: 62px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 94px;
+    pointer-events: none;
+    z-index: 92;
+    overflow: hidden;
   }
 
-  .baby-elephant-actor {
-    width: 76px;
-    height: 54px;
+  .royal-procession-actor {
+    position: absolute;
     bottom: 2px;
-    animation-duration: 20s;
+    left: 0;
+    width: 265px;
+    height: 87px;
+    pointer-events: auto;
+    cursor: pointer;
+    animation: processionMarch 20s linear infinite;
+    animation-delay: -5s;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.75));
+    will-change: transform;
+  }
+
+  .royal-procession-actor svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+@media (max-width: 420px) {
+  .bottom-elephant-stage {
+    height: 86px;
+  }
+
+  .royal-procession-actor {
+    width: 240px;
+    height: 79px;
+    bottom: 2px;
+    animation-duration: 18s;
+  }
+
+  .floating-controls {
+    bottom: 92px;
+  }
+
+  .shower-petals-btn {
+    bottom: 92px;
   }
 }
