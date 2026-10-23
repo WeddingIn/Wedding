@@ -106,12 +106,14 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   height: 100vh;
   height: 100dvh;
   pointer-events: none;
   z-index: 85;
   overflow: hidden;
+  contain: strict;
 }
 
 .flying-bird-actor {
@@ -1929,71 +1931,113 @@ body {
 /* Mobile Screens & Smartphones (<= 767px) */
 @media (max-width: 767px) {
   .invitation-viewport {
-    margin: 15px auto 90px;
-    padding: 0 12px;
+    margin: 12px auto 95px;
+    padding: 0 10px;
   }
 
+  /* Navigation Dock */
   .couture-nav-dock {
-    top: 10px;
-    padding: 4px 6px;
-    gap: 2px;
+    top: 8px;
+    padding: 3px 6px;
+    gap: 3px;
+    max-width: calc(100vw - 20px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+  }
+
+  .couture-nav-dock::-webkit-scrollbar {
+    display: none;
   }
 
   .couture-nav-pill {
-    padding: 6px 10px;
-    font-size: 9.5px;
-    letter-spacing: 1px;
+    padding: 6px 9px;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
+  /* Card Container & Inner Border */
   .couture-card {
-    padding: 40px 20px;
+    padding: 28px 14px 22px;
     border-radius: 16px;
   }
 
   .couture-frame-inner {
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 12px;
   }
 
-  .physical-card-container {
-    width: 92vw;
-    max-width: 350px;
-    height: min(500px, 80vh);
+  /* Section Dividers */
+  .couture-divider {
+    margin: 26px auto;
   }
 
-  .inner-couple-names {
-    font-size: 36px;
+  /* Section Headlines */
+  .section-headline-group {
+    margin-bottom: 20px;
   }
 
-  .inner-auspicious-mantra {
-    font-size: 13.5px;
-    max-width: 260px;
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 2.2px;
+    margin-bottom: 4px;
   }
 
-  .bespoke-wax-seal {
-    width: 82px;
-    height: 82px;
+  .section-title {
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  /* Section 1: Invocation & Couple */
+  .invocation-badge {
+    margin-bottom: 20px;
+  }
+
+  .invocation-tag {
+    font-size: 9.5px;
+    letter-spacing: 1.8px;
+    line-height: 1.55;
+    padding: 0 4px;
+    margin-bottom: 8px;
+  }
+
+  .invitation-prose {
+    font-size: 15.5px;
+    line-height: 1.55;
+    padding: 0 4px;
   }
 
   .couple-avatar-row {
     flex-direction: column;
-    gap: 18px;
-    margin: 24px 0 16px;
-  }
-
-  .person-name {
-    font-size: 32px;
+    gap: 14px;
+    margin: 20px 0 12px;
   }
 
   .cute-avatar-frame {
-    width: 115px;
-    height: 115px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+  }
+
+  .person-name {
+    font-size: 27px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+
+  .person-parents {
+    font-size: 11px;
+    margin-top: 4px;
   }
 
   .couple-union-divider {
-    padding: 4px 0;
+    padding: 2px 0;
   }
 
   .union-hairline {
@@ -2001,77 +2045,243 @@ body {
   }
 
   .union-ampersand {
-    font-size: 34px;
+    font-size: 26px;
+    line-height: 1;
   }
 
-  .schedule-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .poetic-dedication {
+    margin: 18px auto 6px;
+    padding: 12px 14px;
   }
 
-  .ceremony-card {
-    padding: 24px 18px;
+  .dedication-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* Section 2: Muhurtham Countdown */
+  .couture-countdown-panel {
+    padding: 20px 10px 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .countdown-sub-title {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 3px;
+  }
+
+  .countdown-target-date {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 14px;
   }
 
   .timer-columns {
-    gap: 8px;
+    gap: 5px;
   }
 
   .timer-unit-col {
-    min-width: 55px;
+    min-width: 48px;
   }
 
   .timer-digit {
-    font-size: 32px;
+    font-size: 28px;
+    line-height: 1;
   }
 
   .timer-metric {
-    font-size: 9px;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    margin-top: 4px;
   }
 
   .timer-divider-dot {
-    font-size: 20px;
+    font-size: 16px;
+    margin-top: -6px;
   }
 
+  /* Section 3: Order of Events */
+  .schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .ceremony-card {
+    padding: 20px 14px 16px;
+    border-radius: 12px;
+  }
+
+  .ceremony-motif {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .ceremony-name {
+    font-size: 19px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .ceremony-date {
+    font-size: 10.5px;
+    letter-spacing: 1.2px;
+    margin-bottom: 2px;
+  }
+
+  .ceremony-time {
+    font-size: 12px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .ceremony-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .calendar-action-btn {
+    padding: 9px 16px;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    min-height: 38px;
+  }
+
+  /* Section 4: Venue */
   .venue-showcase-box {
-    padding: 26px 16px;
+    padding: 22px 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+
+  .venue-palace-icon {
+    font-size: 26px;
+    margin-bottom: 8px;
   }
 
   .venue-title {
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .venue-location-line {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .venue-map-frame {
+    border-radius: 8px;
+    margin-bottom: 16px;
   }
 
   .venue-map-frame iframe {
-    height: 250px;
+    height: 210px;
   }
 
+  .luxury-gold-btn {
+    padding: 10px 22px;
+    font-size: 9.5px;
+    letter-spacing: 1.5px;
+    min-height: 42px;
+  }
+
+  /* Section 5: Guestbook Wishes */
+  .couture-guestbook-box {
+    padding: 20px 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+  }
+
+  .form-field-label {
+    font-size: 8.5px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+
+  .form-field-input,
+  .form-field-textarea {
+    font-size: 16px !important; /* Critical: prevents auto-zoom on iOS Safari */
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+
+  .wishes-stream {
+    margin-top: 18px;
+    gap: 10px;
+    max-height: 220px;
+  }
+
+  .wish-card-item {
+    padding: 10px 12px;
+  }
+
+  .wish-guest-name {
+    font-size: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .wish-content-quote {
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+
+  /* Footer */
+  .couture-closing-footer {
+    margin-top: 24px;
+    padding-top: 18px;
+  }
+
+  .closing-brand-tag {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .closing-host-prose {
+    font-size: 10.5px;
+    line-height: 1.55;
+    letter-spacing: 0.6px;
+  }
+
+  /* Floating Actions & Buttons - 44px min touch target standard */
   .floating-controls {
-    right: 14px;
-    bottom: 100px;
+    right: 12px;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
     gap: 8px;
   }
 
   .float-action-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 15px;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    border-radius: 50%;
   }
 
   .shower-petals-btn {
-    left: 14px;
-    bottom: 100px;
-    padding: 8px 14px;
+    left: 12px;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    padding: 9px 14px;
     font-size: 10px;
     letter-spacing: 1px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
 
-  /* Royal Barat Procession on Mobile Screens (Full Visibility, No Cropping!) */
+  /* Royal Barat Procession on Mobile Screens */
   .bottom-elephant-stage {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 94px;
+    height: 90px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     pointer-events: none;
     z-index: 92;
     overflow: hidden;
@@ -2081,8 +2291,8 @@ body {
     position: absolute;
     bottom: 2px;
     left: 0;
-    width: 265px;
-    height: 87px;
+    width: 250px;
+    height: 82px;
     pointer-events: auto;
     cursor: pointer;
     animation: processionMarch 20s linear infinite;
@@ -2098,23 +2308,60 @@ body {
   }
 }
 
-@media (max-width: 420px) {
+/* Extra Compact Phones (<= 360px) */
+@media (max-width: 360px) {
+  .invitation-viewport {
+    padding: 0 6px;
+  }
+
+  .couture-card {
+    padding: 24px 10px 18px;
+  }
+
+  .couture-nav-pill {
+    padding: 5px 7px;
+    font-size: 8px;
+  }
+
+  .person-name {
+    font-size: 24px;
+  }
+
+  .cute-avatar-frame {
+    width: 90px;
+    height: 90px;
+  }
+
+  .timer-unit-col {
+    min-width: 42px;
+  }
+
+  .timer-digit {
+    font-size: 24px;
+  }
+
+  .ceremony-name {
+    font-size: 18px;
+  }
+
+  .venue-title {
+    font-size: 18px;
+  }
+
   .bottom-elephant-stage {
-    height: 86px;
+    height: 82px;
   }
 
   .royal-procession-actor {
-    width: 240px;
-    height: 79px;
-    bottom: 2px;
-    animation-duration: 18s;
+    width: 225px;
+    height: 74px;
   }
 
   .floating-controls {
-    bottom: 92px;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 
   .shower-petals-btn {
-    bottom: 92px;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 }
