@@ -857,8 +857,8 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 2.0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s, transform 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+  transform: scale(0.96);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -946,37 +946,33 @@ body {
 }
 
 .temple-door-gate.opening .door-sun-radiance {
-  animation: smoothConstantSunlight 5.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: smoothSunlightBurst 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-@keyframes smoothConstantSunlight {
+@keyframes smoothSunlightBurst {
   0% {
     opacity: 0;
     transform: scale(0.7);
   }
   20% {
-    /* Bright golden sunlight burst as doors swing open */
+    /* Bright golden sunlight shining as doors swing open */
     opacity: 1;
     transform: scale(1.1);
   }
-  36% {
-    /* Sunlight gently softens into a warm divine aura, revealing the standing couple */
-    opacity: 0.5;
-    transform: scale(1.15);
+  50% {
+    /* Full radiant peak golden sunlight */
+    opacity: 0.95;
+    transform: scale(1.14);
   }
-  76% {
-    /* Stable, warm celestial glow holding while couple is clearly visible */
-    opacity: 0.32;
-    transform: scale(1.18);
-  }
-  92% {
-    /* Softly fades away as card prepares to unveil */
-    opacity: 0.12;
-    transform: scale(1.2);
+  75% {
+    /* Light smoothly subsides and rolls back */
+    opacity: 0.4;
+    transform: scale(1.17);
   }
   100% {
+    /* Light completely clears out by 1.5s, revealing couple clearly */
     opacity: 0;
-    transform: scale(1.22);
+    transform: scale(1.2);
   }
 }
 
@@ -1005,7 +1001,7 @@ body {
   backface-visibility: hidden;
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
-  transition: transform 2.8s cubic-bezier(0.3, 0.1, 0.25, 1);
+  transition: transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
   pointer-events: auto;
 }
@@ -2036,21 +2032,34 @@ body {
   }
 
   .couple-avatar-row {
-    flex-direction: column;
-    gap: 14px;
-    margin: 20px 0 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0 14px;
+    width: 100%;
+  }
+
+  .couple-person-card {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
   }
 
   .cute-avatar-frame {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 10px;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 8px;
+    padding: 3px;
+    box-shadow: 0 6px 18px rgba(43, 14, 19, 0.15);
   }
 
   .person-name {
-    font-size: 27px;
+    font-size: 21px;
     line-height: 1.2;
     letter-spacing: 0.3px;
+    white-space: nowrap;
   }
 
   .person-parents {
@@ -2059,16 +2068,25 @@ body {
   }
 
   .couple-union-divider {
-    padding: 2px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    flex-shrink: 0;
   }
 
   .union-hairline {
-    display: none;
+    display: block;
+    width: 1px;
+    height: 22px;
+    background: linear-gradient(to bottom, transparent, var(--gold-primary), transparent);
   }
 
   .union-ampersand {
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1;
+    margin: 4px 0;
   }
 
   .poetic-dedication {
@@ -2346,12 +2364,20 @@ body {
   }
 
   .person-name {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .cute-avatar-frame {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .couple-avatar-row {
+    gap: 4px;
+  }
+
+  .union-ampersand {
+    font-size: 20px;
   }
 
   .timer-unit-col {

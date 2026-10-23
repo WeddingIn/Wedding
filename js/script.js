@@ -134,7 +134,7 @@ function initEnvelope() {
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
 
-    // 3. Keep couple portrait visible for 4 seconds after slow-mo door opening, then land on main page
+    // 3. Lighting shines for 1.5s, then standing couple pic visible for 2.5s (4.0s total), then land on main page
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
@@ -143,7 +143,7 @@ function initEnvelope() {
           showerPetals(45);
         }
       } catch (err) {}
-    }, 5600);
+    }, 4000);
   }
 
   // Expose globally as safe fallback
