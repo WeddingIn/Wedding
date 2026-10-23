@@ -135,7 +135,7 @@ function initEnvelope() {
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
 
-    // 3. Lighting shines for 1.5s, then standing couple pic visible for 2.5s (4.0s total), then land on main page
+    // 3. Lighting shines for 1.5s, then standing couple pic visible for 2.0s (3.5s total), then land on main page
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
@@ -147,7 +147,7 @@ function initEnvelope() {
       if (typeof window.stopAutoScroll === "function") {
         window.stopAutoScroll(true);
       }
-    }, 4000);
+    }, 3500);
   }
 
   // Expose globally as safe fallback
@@ -302,11 +302,21 @@ function showerPetals(count = 18) {
 // BACKGROUND MUSIC / AUDIO HANDLER
 // ========================================================
 let audioInstance = null;
+let elephantAudioInstance = null;
 let isAudioPlaying = false;
+let elephantInterval = null;
 
 function initAudio() {
   const musicBtn = document.getElementById("music-toggle-btn");
   audioInstance = document.getElementById("wedding-bg-music");
+  elephantAudioInstance = document.getElementById("elephant-ambient-sound");
+
+  if (audioInstance) {
+    audioInstance.volume = 1.0; // Current wedding music remains dominant
+  }
+  if (elephantAudioInstance) {
+    elephantAudioInstance.volume = 0.16; // Very soothing, gentle ambient background level
+  }
 
   if (!musicBtn || !audioInstance) return;
 
@@ -327,12 +337,16 @@ function initAudio() {
     e.stopPropagation();
     if (isAudioPlaying) {
       audioInstance.pause();
+      if (elephantAudioInstance) {
+        elephantAudioInstance.pause();
+      }
       isAudioPlaying = false;
       updateMusicBtn(false);
     } else {
       audioInstance.play().then(() => {
         isAudioPlaying = true;
         updateMusicBtn(true);
+        startElephantWalkSoundCycle();
       }).catch(err => {
         console.log("Audio play prevented:", err);
       });
@@ -343,10 +357,14 @@ function initAudio() {
   audioInstance.addEventListener("play", () => {
     isAudioPlaying = true;
     updateMusicBtn(true);
+    startElephantWalkSoundCycle();
   });
   audioInstance.addEventListener("pause", () => {
     isAudioPlaying = false;
     updateMusicBtn(false);
+    if (elephantAudioInstance) {
+      elephantAudioInstance.pause();
+    }
   });
 
   // Start on first user interaction anywhere on the page
@@ -363,6 +381,7 @@ function initAudio() {
 
 function playAudioIfAllowed() {
   if (audioInstance && !isAudioPlaying) {
+    audioInstance.volume = 1.0;
     audioInstance.play().then(() => {
       isAudioPlaying = true;
       const musicBtn = document.getElementById("music-toggle-btn");
@@ -370,10 +389,105 @@ function playAudioIfAllowed() {
         musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
         musicBtn.classList.add("playing");
       }
+      startElephantWalkSoundCycle();
     }).catch(() => {
       // Browsers often require explicit user interaction
     });
   }
+}
+
+// Play soothing elephant rising sound in background
+function playSoothingElephantSound(customVol = 0.16) {
+  if (!isAudioPlaying) return;
+
+  if (elephantAudioInstance) {
+    elephantAudioInstance.volume = customVol;
+    elephantAudioInstance.currentTime = 0;
+    const playPromise = elephantAudioInstance.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        synthesizeSoothingElephantCall(customVol);
+      });
+    }
+  } else {
+    synthesizeSoothingElephantCall(customVol);
+  }
+}
+
+// Web Audio API soothing synthesized elephant ambient call fallback
+function synthesizeSoothingElephantCall(volume = 0.16) {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+
+    const t = ctx.currentTime;
+    const dur = 3.6;
+
+    // Gentle master gain
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0, t);
+    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 1.2);
+    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 2.2);
+    masterGain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+    // Warm Lowpass filter (soothing, mellow tone)
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(360, t);
+    filter.frequency.linearRampToValueAtTime(680, t + 1.2);
+    filter.frequency.exponentialRampToValueAtTime(320, t + dur);
+    filter.Q.value = 1.6;
+
+    // Rising Pitch Oscillator: 125Hz -> 215Hz -> 185Hz
+    const osc1 = ctx.createOscillator();
+    osc1.type = "sawtooth";
+    osc1.frequency.setValueAtTime(125, t);
+    osc1.frequency.exponentialRampToValueAtTime(215, t + 1.3);
+    osc1.frequency.linearRampToValueAtTime(185, t + dur);
+
+    // Sub-harmonic sine for deep chest resonance
+    const osc2 = ctx.createOscillator();
+    osc2.type = "sine";
+    osc2.frequency.setValueAtTime(62, t);
+    osc2.frequency.exponentialRampToValueAtTime(107, t + 1.3);
+    osc2.frequency.linearRampToValueAtTime(92, t + dur);
+
+    const osc2Gain = ctx.createGain();
+    osc2Gain.gain.value = 0.55;
+
+    osc1.connect(filter);
+    osc2.connect(osc2Gain);
+    osc2Gain.connect(filter);
+    filter.connect(masterGain);
+    masterGain.connect(ctx.destination);
+
+    osc1.start(t);
+    osc2.start(t);
+    osc1.stop(t + dur);
+    osc2.stop(t + dur);
+  } catch (err) {}
+}
+
+function startElephantWalkSoundCycle() {
+  if (elephantInterval) clearInterval(elephantInterval);
+
+  // Play initial gentle sound shortly after elephant walks onto screen
+  setTimeout(() => {
+    if (isAudioPlaying) {
+      playSoothingElephantSound(0.16);
+    }
+  }, 2200);
+
+  // Synchronized with processionMarch 26s walking cycle
+  elephantInterval = setInterval(() => {
+    if (isAudioPlaying) {
+      playSoothingElephantSound(0.16);
+    }
+  }, 26000);
 }
 
 // ========================================================
@@ -468,6 +582,9 @@ function onProcessionTap(e) {
   if (typeof showerPetals === "function") {
     showerPetals(35);
   }
+
+  // Play gentle soothing elephant blessing sound
+  playSoothingElephantSound(0.20);
 
   // Trigger happy bounce jump
   actor.classList.remove("happy-jump");
