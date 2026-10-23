@@ -808,7 +808,7 @@ body.door-opening .divine-light-burst,
 
 .temple-door-wrapper {
   position: relative;
-  width: 400px;
+  width: min(390px, 92vw);
   max-width: 95vw;
   aspect-ratio: 700 / 1120;
   max-height: 90vh;
@@ -821,6 +821,36 @@ body.door-opening .divine-light-burst,
     0 0 45px rgba(212, 175, 55, 0.35);
   background: #1a0803;
   overflow: hidden;
+}
+
+/* Desktop & Laptop View: Fits the UI page elegantly with commanding presence */
+@media (min-width: 768px) {
+  .temple-door-wrapper {
+    height: min(92vh, 880px);
+    width: calc(min(92vh, 880px) * (700 / 1120));
+    aspect-ratio: 700 / 1120;
+    max-width: 90vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    box-shadow: 
+      0 30px 85px rgba(0, 0, 0, 0.98),
+      0 0 65px rgba(212, 175, 55, 0.42);
+  }
+
+  .inner-shree {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .inner-welcome-title {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .inner-welcome-names {
+    font-size: 20px;
+    margin-top: 6px;
+  }
 }
 
 /* Zoomed in closer: Door & Door Frame prominently fill the view */
