@@ -149,14 +149,9 @@ function initEnvelope() {
   // Expose globally as safe fallback
   window.openTempleDoor = openDoor;
 
-  const tapEvents = ["click", "pointerdown", "touchstart"];
-  const rig = document.querySelector(".door-zoom-rig");
-  tapEvents.forEach(evt => {
+  // Single cleanly bound touch/click trigger on the door gate
+  ["pointerdown", "click"].forEach(evt => {
     envelopeScreen.addEventListener(evt, openDoor, { passive: true });
-    if (rig) rig.addEventListener(evt, openDoor, { passive: true });
-    if (sealBtn) sealBtn.addEventListener(evt, openDoor, { passive: true });
-    if (envelopeWrapper) envelopeWrapper.addEventListener(evt, openDoor, { passive: true });
-    if (cardContainer) cardContainer.addEventListener(evt, openDoor, { passive: true });
   });
 }
 

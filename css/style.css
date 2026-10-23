@@ -746,7 +746,6 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  perspective: 1500px;
   padding: 16px;
   overflow: hidden;
   transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1), transform 1.2s ease-in-out, visibility 1.2s;
@@ -770,8 +769,6 @@ body {
   max-width: 95vw;
   aspect-ratio: 700 / 1120;
   max-height: 90vh;
-  perspective: 1500px;
-  transform-style: preserve-3d;
   cursor: pointer;
   border-radius: 14px;
   box-shadow: 
@@ -919,7 +916,7 @@ body {
 
 .door-couple-names {
   font-family: 'Great Vibes', cursive;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   margin: 2px 0 0;
   line-height: 1.15;
@@ -935,47 +932,46 @@ body {
   inset: -35%;
   background: radial-gradient(
     ellipse at 50% 46%,
-    #ffffff 0%,
-    rgba(255, 255, 245, 1) 22%,
-    rgba(255, 235, 130, 0.95) 45%,
-    rgba(255, 200, 50, 0.75) 65%,
-    rgba(212, 140, 20, 0.3) 82%,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 250, 230, 0.95) 25%,
+    rgba(255, 220, 110, 0.85) 50%,
+    rgba(255, 185, 45, 0.55) 70%,
+    rgba(212, 130, 15, 0.2) 85%,
     transparent 100%
   );
   opacity: 0;
   pointer-events: none;
   z-index: 8;
-  mix-blend-mode: screen;
   will-change: opacity, transform;
 }
 
 .temple-door-gate.opening .door-sun-radiance {
-  animation: smoothConstantSunlight 5.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: smoothConstantSunlight 5.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 @keyframes smoothConstantSunlight {
   0% {
     opacity: 0;
-    transform: scale(0.65);
+    transform: scale(0.7);
   }
-  16% {
-    /* Smooth, silky rise as the doors slowly swing open */
+  20% {
+    /* Bright golden sunlight burst as doors swing open */
     opacity: 1;
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
-  24% {
-    /* Full brilliant golden sunshine */
-    opacity: 0.98;
-    transform: scale(1.12);
+  36% {
+    /* Sunlight gently softens into a warm divine aura, revealing the standing couple */
+    opacity: 0.5;
+    transform: scale(1.15);
   }
-  72% {
-    /* CONSTANT, STEADY, FLUTTER-FREE SUNSHINE */
-    opacity: 0.92;
-    transform: scale(1.16);
+  76% {
+    /* Stable, warm celestial glow holding while couple is clearly visible */
+    opacity: 0.32;
+    transform: scale(1.18);
   }
-  88% {
-    /* Softly and smoothly fades out before unveiling main card */
-    opacity: 0.35;
+  92% {
+    /* Softly fades away as card prepares to unveil */
+    opacity: 0.12;
     transform: scale(1.2);
   }
   100% {
@@ -991,9 +987,12 @@ body {
   bottom: 17.33%;
   left: 29.48%;
   right: 29.48%;
-  perspective: 700px;
+  perspective: 1100px;
+  -webkit-perspective: 1100px;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   z-index: 10;
+  pointer-events: none;
 }
 
 .door-leaf {
@@ -1001,9 +1000,14 @@ body {
   top: 0;
   bottom: 0;
   width: 50.15%;
-  transform-style: preserve-3d;
-  transition: transform 3.4s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.85);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transition: transform 2.8s cubic-bezier(0.3, 0.1, 0.25, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+  pointer-events: auto;
 }
 
 .door-leaf img {
@@ -1011,27 +1015,31 @@ body {
   height: 100%;
   object-fit: fill;
   display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .door-leaf.door-left {
   left: 0;
   transform-origin: left center;
+  -webkit-transform-origin: left center;
 }
 
 .door-leaf.door-right {
   right: 0;
   transform-origin: right center;
+  -webkit-transform-origin: right center;
 }
 
-/* 3D Slow-Mo Door Open State */
+/* 3D Silky-Smooth Temple Door Open State - Single-axis Hardware Accelerated */
 .temple-door-gate.opening .door-leaf.door-left {
-  transform: perspective(600px) rotateY(-88deg);
-  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.95);
+  transform: rotateY(-87.5deg);
+  -webkit-transform: rotateY(-87.5deg);
 }
 
 .temple-door-gate.opening .door-leaf.door-right {
-  transform: perspective(600px) rotateY(88deg);
-  box-shadow: 15px 0 35px rgba(0, 0, 0, 0.95);
+  transform: rotateY(87.5deg);
+  -webkit-transform: rotateY(87.5deg);
 }
 
 .temple-door-gate.opening .door-couple-overlay {
