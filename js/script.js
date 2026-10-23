@@ -130,20 +130,20 @@ function initEnvelope() {
       console.warn("Audio:", err);
     }
 
-    // 2. Trigger slow-mo 3D temple doors swinging open with inner sanctum glow
+    // 2. Trigger slow-mo 3D temple doors swinging open with bright flash & couple portrait
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
 
-    // 3. Seamlessly reveal main card as the radiant light peaks
+    // 3. Keep couple portrait visible for 4 seconds, then land on main page
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
       try {
         if (typeof showerPetals === "function") {
-          showerPetals(35);
+          showerPetals(45);
         }
       } catch (err) {}
-    }, 2000);
+    }, 4800);
   }
 
   // Expose globally as safe fallback
