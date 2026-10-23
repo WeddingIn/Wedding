@@ -130,11 +130,9 @@ function initEnvelope() {
       console.warn("Audio:", err);
     }
 
-    // 2. Trigger slow-mo 3D temple doors swinging open & divine light flash
+    // 2. Trigger slow-mo 3D temple doors swinging open with inner sanctum glow
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
-    const burst = document.getElementById("divine-light-burst");
-    if (burst) burst.classList.add("active");
 
     // 3. Seamlessly reveal main card as the radiant light peaks
     setTimeout(() => {
