@@ -48,6 +48,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html.auto-scrolling {
+  scroll-behavior: auto !important;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--bg-deep);
