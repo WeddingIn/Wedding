@@ -23,19 +23,19 @@ const WEDDING_CONFIG = {
   },
   events: [
     {
-      title: "Engagement & Welcoming",
+      title: "Ceremonial Reception",
       date: "Saturday, November 21, 2026",
-      time: "07:30 PM Onwards",
+      time: "7:30 PM Onwards",
       venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
     },
     {
       title: "Wedding Muhurtham",
       date: "Sunday, November 22, 2026",
-      time: "09:30 AM to 10:15 AM",
+      time: "9:30 AM – 10:15 AM",
       venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
     },
     {
-      title: "Reception & Feast",
+      title: "Wedding Reception & Feast",
       date: "Sunday, November 22, 2026",
       time: "12:00 PM Onwards",
       venue: "Sri Taralabalu Samudaya Bhavana, Harapanahalli"
