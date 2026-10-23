@@ -218,9 +218,10 @@ function initPetalCanvas() {
 
   // Subtle ambient floating petals (calm, minimal, elegant)
   for (let i = 0; i < 8; i++) {
-    petals.push(createPetal(true));
+    petals.push(createPetal(true, false));
   }
 
+  let frameTick = 0;
   function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -245,9 +246,22 @@ function initPetalCanvas() {
       ctx.fill();
       ctx.restore();
 
-      if (p.y > canvas.height + 20) {
-        petals[i] = createPetal(false);
+      if (p.y > canvas.height + 25) {
+        if (p.isShower) {
+          // Gracefully dispose shower petals when they finish falling past the screen
+          petals.splice(i, 1);
+          i--;
+        } else {
+          // Continuous looping ambient petals
+          petals[i] = createPetal(false, false);
+        }
       }
+    }
+
+    // Check if elephant procession is passing over the shower blessing button on that side
+    frameTick++;
+    if (frameTick % 5 === 0) {
+      updateProcessionButtonOverlap();
     }
 
     animationFrameId = requestAnimationFrame(loop);
@@ -256,7 +270,7 @@ function initPetalCanvas() {
   loop();
 }
 
-function createPetal(randomY = false) {
+function createPetal(randomY = false, isShower = false) {
   const colors = [
     "#e63946", // Royal Red Rose
     "#ff4d6d", // Soft Pink Rose
@@ -266,36 +280,82 @@ function createPetal(randomY = false) {
     "#ffd166"  // Golden Petal
   ];
 
+  const w = canvas ? canvas.width : window.innerWidth;
+  const h = canvas ? canvas.height : window.innerHeight;
+
   return {
-    x: Math.random() * (canvas ? canvas.width : window.innerWidth),
-    y: randomY ? Math.random() * (canvas ? canvas.height : window.innerHeight) : -20,
+    isShower: isShower,
+    x: Math.random() * w,
+    y: randomY ? Math.random() * h : (isShower ? Math.random() * -120 - 15 : -25),
     size: Math.random() * 6 + 5,
-    speedY: Math.random() * 0.75 + 0.3,
-    speedX: Math.random() * 0.6 + 0.2,
+    speedY: isShower ? (Math.random() * 1.6 + 1.2) : (Math.random() * 0.75 + 0.3),
+    speedX: Math.random() * 0.6 + 0.25,
     angle: Math.random() * Math.PI * 2,
-    angularSpeed: Math.random() * 0.01 + 0.003,
+    angularSpeed: Math.random() * 0.015 + 0.005,
     rotation: Math.random() * Math.PI * 2,
-    rotationSpeed: (Math.random() - 0.5) * 0.015,
-    scale: Math.random() * 0.3 + 0.55,
-    opacity: Math.random() * 0.25 + 0.2,
+    rotationSpeed: (Math.random() - 0.5) * 0.02,
+    scale: Math.random() * 0.3 + 0.6,
+    opacity: isShower ? (Math.random() * 0.3 + 0.55) : (Math.random() * 0.25 + 0.2),
     color: colors[Math.floor(Math.random() * colors.length)]
   };
 }
 
-function showerPetals(count = 18) {
+// Multi-click safe petal shower that never freezes or breaks on rapid clicks
+function showerPetals(count = 28) {
   if (!canvas) return;
-  for (let i = 0; i < count; i++) {
-    const p = createPetal(false);
-    p.y = Math.random() * (canvas.height * 0.3);
-    p.speedY = Math.random() * 1.8 + 0.9;
-    petals.push(p);
+
+  // Tactile button click feedback
+  const btn = document.querySelector(".shower-petals-btn");
+  if (btn) {
+    btn.classList.remove("btn-pulsing");
+    void btn.offsetWidth;
+    btn.classList.add("btn-pulsing");
+    setTimeout(() => {
+      if (btn) btn.classList.remove("btn-pulsing");
+    }, 350);
   }
 
-  setTimeout(() => {
-    if (petals.length > 12) {
-      petals.splice(12, petals.length - 12);
+  // Safe cap so performance stays locked at 60fps regardless of rapid tapping
+  const effectiveCount = Math.min(count, 32);
+  const maxTotalPetals = 70;
+
+  const canAdd = Math.max(0, maxTotalPetals - petals.length);
+  const toAdd = Math.min(effectiveCount, canAdd);
+
+  for (let i = 0; i < toAdd; i++) {
+    petals.push(createPetal(false, true));
+  }
+
+  // If already near cap from multiple rapid clicks, refresh petals from the top
+  if (toAdd < effectiveCount) {
+    let refreshed = 0;
+    const needed = effectiveCount - toAdd;
+    for (let i = 0; i < petals.length && refreshed < needed; i++) {
+      if (petals[i].isShower && petals[i].y > (canvas.height * 0.35)) {
+        petals[i] = createPetal(false, true);
+        refreshed++;
+      }
     }
-  }, 3500);
+  }
+}
+
+// Hide shower blessings button smoothly when elephant procession passes on that side
+function updateProcessionButtonOverlap() {
+  const actor = document.getElementById("royal-procession-actor");
+  const btn = document.querySelector(".shower-petals-btn");
+  if (!actor || !btn) return;
+
+  const aRect = actor.getBoundingClientRect();
+  const bRect = btn.getBoundingClientRect();
+
+  // Determine if elephant procession is passing across the button's horizontal zone on that side
+  const isPassing = (aRect.right > (bRect.left - 25)) && (aRect.left < (bRect.right + 30));
+
+  if (isPassing) {
+    btn.classList.add("procession-passing");
+  } else {
+    btn.classList.remove("procession-passing");
+  }
 }
 
 // ========================================================
@@ -312,10 +372,10 @@ function initAudio() {
   elephantAudioInstance = document.getElementById("elephant-ambient-sound");
 
   if (audioInstance) {
-    audioInstance.volume = 1.0; // Current wedding music remains dominant
+    audioInstance.volume = 1.0;
   }
   if (elephantAudioInstance) {
-    elephantAudioInstance.volume = 0.16; // Very soothing, gentle ambient background level
+    elephantAudioInstance.volume = 0.22;
   }
 
   if (!musicBtn || !audioInstance) return;
@@ -337,16 +397,12 @@ function initAudio() {
     e.stopPropagation();
     if (isAudioPlaying) {
       audioInstance.pause();
-      if (elephantAudioInstance) {
-        elephantAudioInstance.pause();
-      }
       isAudioPlaying = false;
       updateMusicBtn(false);
     } else {
       audioInstance.play().then(() => {
         isAudioPlaying = true;
         updateMusicBtn(true);
-        startElephantWalkSoundCycle();
       }).catch(err => {
         console.log("Audio play prevented:", err);
       });
@@ -357,17 +413,13 @@ function initAudio() {
   audioInstance.addEventListener("play", () => {
     isAudioPlaying = true;
     updateMusicBtn(true);
-    startElephantWalkSoundCycle();
   });
   audioInstance.addEventListener("pause", () => {
     isAudioPlaying = false;
     updateMusicBtn(false);
-    if (elephantAudioInstance) {
-      elephantAudioInstance.pause();
-    }
   });
 
-  // Start on first user interaction anywhere on the page
+  // Start background wedding music on first user interaction anywhere on page
   const startOnFirstGesture = () => {
     playAudioIfAllowed();
     document.removeEventListener("click", startOnFirstGesture);
@@ -389,17 +441,12 @@ function playAudioIfAllowed() {
         musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
         musicBtn.classList.add("playing");
       }
-      startElephantWalkSoundCycle();
-    }).catch(() => {
-      // Browsers often require explicit user interaction
-    });
+    }).catch(() => {});
   }
 }
 
-// Play soothing elephant rising sound in background
-function playSoothingElephantSound(customVol = 0.16) {
-  if (!isAudioPlaying) return;
-
+// Elephant sound ONLY plays when user clicks on the elephant
+function playSoothingElephantSound(customVol = 0.22) {
   if (elephantAudioInstance) {
     elephantAudioInstance.volume = customVol;
     elephantAudioInstance.currentTime = 0;
@@ -415,7 +462,7 @@ function playSoothingElephantSound(customVol = 0.16) {
 }
 
 // Web Audio API soothing synthesized elephant ambient call fallback
-function synthesizeSoothingElephantCall(volume = 0.16) {
+function synthesizeSoothingElephantCall(volume = 0.22) {
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return;
@@ -425,20 +472,20 @@ function synthesizeSoothingElephantCall(volume = 0.16) {
     }
 
     const t = ctx.currentTime;
-    const dur = 3.6;
+    const dur = 2.6;
 
     // Gentle master gain
     const masterGain = ctx.createGain();
     masterGain.gain.setValueAtTime(0, t);
-    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 1.2);
-    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 2.2);
+    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 0.8);
+    masterGain.gain.linearRampToValueAtTime(volume * 0.45, t + 1.6);
     masterGain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
 
     // Warm Lowpass filter (soothing, mellow tone)
     const filter = ctx.createBiquadFilter();
     filter.type = "lowpass";
     filter.frequency.setValueAtTime(360, t);
-    filter.frequency.linearRampToValueAtTime(680, t + 1.2);
+    filter.frequency.linearRampToValueAtTime(680, t + 0.8);
     filter.frequency.exponentialRampToValueAtTime(320, t + dur);
     filter.Q.value = 1.6;
 
@@ -446,14 +493,14 @@ function synthesizeSoothingElephantCall(volume = 0.16) {
     const osc1 = ctx.createOscillator();
     osc1.type = "sawtooth";
     osc1.frequency.setValueAtTime(125, t);
-    osc1.frequency.exponentialRampToValueAtTime(215, t + 1.3);
+    osc1.frequency.exponentialRampToValueAtTime(215, t + 0.9);
     osc1.frequency.linearRampToValueAtTime(185, t + dur);
 
     // Sub-harmonic sine for deep chest resonance
     const osc2 = ctx.createOscillator();
     osc2.type = "sine";
     osc2.frequency.setValueAtTime(62, t);
-    osc2.frequency.exponentialRampToValueAtTime(107, t + 1.3);
+    osc2.frequency.exponentialRampToValueAtTime(107, t + 0.9);
     osc2.frequency.linearRampToValueAtTime(92, t + dur);
 
     const osc2Gain = ctx.createGain();
@@ -472,23 +519,8 @@ function synthesizeSoothingElephantCall(volume = 0.16) {
   } catch (err) {}
 }
 
-function startElephantWalkSoundCycle() {
-  if (elephantInterval) clearInterval(elephantInterval);
-
-  // Play initial gentle sound shortly after elephant walks onto screen
-  setTimeout(() => {
-    if (isAudioPlaying) {
-      playSoothingElephantSound(0.16);
-    }
-  }, 2200);
-
-  // Synchronized with processionMarch 26s walking cycle
-  elephantInterval = setInterval(() => {
-    if (isAudioPlaying) {
-      playSoothingElephantSound(0.16);
-    }
-  }, 26000);
-}
+// Default walk sound cycle removed - sound only plays on user tap
+function startElephantWalkSoundCycle() {}
 
 // ========================================================
 // BLESSINGS & GUESTBOOK
@@ -573,23 +605,31 @@ function addToGoogleCalendar(title, startDate, endDate, location, details) {
 // ========================================================
 // ROYAL PROCESSION & ELEPHANT CHARIOT INTERACTIVE TAP BLESSING
 // ========================================================
+let processionJumpTimeout = null;
 function onProcessionTap(e) {
-  if (e) e.stopPropagation();
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  }
   const actor = document.getElementById("royal-procession-actor") || document.getElementById("baby-elephant-actor");
   if (!actor) return;
 
-  // Shower fragrant rose & golden petals
+  // Shower fragrant rose & golden petals safely
   if (typeof showerPetals === "function") {
-    showerPetals(35);
+    showerPetals(25);
   }
 
-  // Play gentle soothing elephant blessing sound
-  playSoothingElephantSound(0.20);
+  // Play gentle elephant blessing sound ONLY on user click!
+  playSoothingElephantSound(0.25);
 
-  // Trigger happy bounce jump
+  // Trigger happy bounce jump on the inner SVG (never stopping or resetting the horizontal march!)
   actor.classList.remove("happy-jump");
-  void actor.offsetWidth; // Force CSS reflow
+  void actor.offsetWidth; // Force reflow
   actor.classList.add("happy-jump");
+
+  if (processionJumpTimeout) clearTimeout(processionJumpTimeout);
+  processionJumpTimeout = setTimeout(() => {
+    actor.classList.remove("happy-jump");
+  }, 700);
 
   // Auspicious blessing messages
   const blessingMessages = [
@@ -611,7 +651,7 @@ function onProcessionTap(e) {
 
   setTimeout(() => {
     if (popup.parentNode) popup.parentNode.removeChild(popup);
-  }, 1900);
+  }, 2200);
 }
 
 // Global fallback accessors
