@@ -130,27 +130,32 @@ function initEnvelope() {
       console.warn("Audio:", err);
     }
 
-    // 2. Trigger 3D temple doors swinging open
+    // 2. Trigger slow-mo 3D temple doors swinging open & divine light flash
+    document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
+    const burst = document.getElementById("divine-light-burst");
+    if (burst) burst.classList.add("active");
 
-    // 3. Allow guest to witness the majestic carved doors parting
+    // 3. Seamlessly reveal main card as the radiant light peaks
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
       try {
         if (typeof showerPetals === "function") {
-          showerPetals(30);
+          showerPetals(35);
         }
       } catch (err) {}
-    }, 1300);
+    }, 2000);
   }
 
   // Expose globally as safe fallback
   window.openTempleDoor = openDoor;
 
   const tapEvents = ["click", "pointerdown", "touchstart"];
+  const rig = document.querySelector(".door-zoom-rig");
   tapEvents.forEach(evt => {
     envelopeScreen.addEventListener(evt, openDoor, { passive: true });
+    if (rig) rig.addEventListener(evt, openDoor, { passive: true });
     if (sealBtn) sealBtn.addEventListener(evt, openDoor, { passive: true });
     if (envelopeWrapper) envelopeWrapper.addEventListener(evt, openDoor, { passive: true });
     if (cardContainer) cardContainer.addEventListener(evt, openDoor, { passive: true });
@@ -453,3 +458,49 @@ function addToGoogleCalendar(title, startDate, endDate, location, details) {
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatTime(startDate)}/${formatTime(endDate)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`;
   window.open(url, "_blank");
 }
+
+// ========================================================
+// ROYAL PROCESSION & ELEPHANT CHARIOT INTERACTIVE TAP BLESSING
+// ========================================================
+function onProcessionTap(e) {
+  if (e) e.stopPropagation();
+  const actor = document.getElementById("royal-procession-actor") || document.getElementById("baby-elephant-actor");
+  if (!actor) return;
+
+  // Shower fragrant rose & golden petals
+  if (typeof showerPetals === "function") {
+    showerPetals(35);
+  }
+
+  // Trigger happy bounce jump
+  actor.classList.remove("happy-jump");
+  void actor.offsetWidth; // Force CSS reflow
+  actor.classList.add("happy-jump");
+
+  // Auspicious blessing messages
+  const blessingMessages = [
+    "🌸 Gajaraja's Auspicious Blessings! 🐘",
+    "✨ Auspicious Joy & Eternal Prosperity!",
+    "💍 Warm Blessings for Sumanth & Amrutha! 🌸",
+    "🪷 May Love & Harmony Forever Bloom! ✨"
+  ];
+  const chosenMsg = blessingMessages[Math.floor(Math.random() * blessingMessages.length)];
+
+  // Remove existing popup if any
+  const oldPopup = actor.querySelector(".elephant-blessing-popup");
+  if (oldPopup) oldPopup.remove();
+
+  const popup = document.createElement("div");
+  popup.className = "elephant-blessing-popup";
+  popup.textContent = chosenMsg;
+  actor.appendChild(popup);
+
+  setTimeout(() => {
+    if (popup.parentNode) popup.parentNode.removeChild(popup);
+  }, 1900);
+}
+
+// Global fallback accessors
+window.onProcessionTap = onProcessionTap;
+window.onBabyElephantTap = onProcessionTap;
+
