@@ -927,11 +927,133 @@ body {
   white-space: nowrap;
 }
 
-/* Intensely Radiant Divine Light Flash Burst on Door Open */
+/* ========================================================
+   DIVINE SUNSHINE SOLAR FLARE & SUNBEAM SYSTEM
+   ======================================================== */
+
+/* 1. Radiant Sun Rays (Rotating Solar Beams Bursting Outward) */
+.door-sun-rays {
+  position: absolute;
+  top: -65%;
+  left: -65%;
+  width: 230%;
+  height: 230%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 48%,
+    rgba(255, 255, 255, 0.98) 0deg 8deg,
+    transparent 8deg 17deg,
+    rgba(255, 230, 110, 0.9) 17deg 26deg,
+    transparent 26deg 36deg,
+    rgba(255, 245, 190, 0.92) 36deg 43deg,
+    transparent 43deg 55deg
+  );
+  -webkit-mask-image: radial-gradient(circle at 50% 48%, black 0%, black 30%, transparent 68%);
+  mask-image: radial-gradient(circle at 50% 48%, black 0%, black 30%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 8;
+  mix-blend-mode: screen;
+}
+
+.temple-door-gate.opening .door-sun-rays {
+  animation: sunRaysBurst 2.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sunRaysBurst {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.3);
+    filter: brightness(1.5);
+  }
+  22% {
+    opacity: 1;
+    transform: rotate(20deg) scale(1.15);
+    filter: brightness(4.0) drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 90px #ffd700);
+  }
+  48% {
+    opacity: 0.92;
+    transform: rotate(38deg) scale(1.28);
+    filter: brightness(2.6) drop-shadow(0 0 40px #ffbb00);
+  }
+  72% {
+    opacity: 0.35;
+    transform: rotate(54deg) scale(1.38);
+    filter: brightness(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(68deg) scale(1.48);
+    filter: blur(12px);
+  }
+}
+
+/* 2. Anamorphic Solar Glint Streak (Horizontal Sun Flare Beam) */
+.door-sun-shimmer {
+  position: absolute;
+  top: 42%;
+  left: -85%;
+  width: 270%;
+  height: 48px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 215, 0, 0.35) 28%,
+    rgba(255, 255, 255, 0.95) 47%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.95) 53%,
+    rgba(255, 215, 0, 0.35) 72%,
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9;
+  mix-blend-mode: screen;
+  filter: blur(2px) drop-shadow(0 0 30px #ffffff);
+}
+
+.temple-door-gate.opening .door-sun-shimmer {
+  animation: sunGlintSweep 2.5s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes sunGlintSweep {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.18) rotate(-7deg);
+  }
+  22% {
+    opacity: 1;
+    transform: scaleX(1.2) rotate(0deg);
+    filter: blur(1px) brightness(4.0) drop-shadow(0 0 45px #ffffff) drop-shadow(0 0 70px #ffd700);
+  }
+  48% {
+    opacity: 0.85;
+    transform: scaleX(1.32) rotate(4deg);
+    filter: blur(3px) brightness(2.2);
+  }
+  74% {
+    opacity: 0.25;
+    transform: scaleX(1.42) rotate(7deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.52);
+  }
+}
+
+/* 3. Intensely Radiant Solar Corona Flash (Sunburst Core) */
 .door-bright-flash {
   position: absolute;
-  inset: -50%;
-  background: radial-gradient(circle at center, #ffffff 0%, #ffffff 25%, rgba(255, 255, 240, 1) 45%, rgba(255, 225, 90, 0.98) 65%, rgba(212, 175, 55, 0.6) 82%, transparent 100%);
+  inset: -60%;
+  background: radial-gradient(
+    circle at center,
+    #ffffff 0%,
+    #ffffff 22%,
+    rgba(255, 255, 235, 1) 40%,
+    rgba(255, 225, 80, 0.98) 60%,
+    rgba(255, 175, 20, 0.75) 75%,
+    rgba(212, 140, 20, 0.4) 86%,
+    transparent 100%
+  );
   opacity: 0;
   pointer-events: none;
   z-index: 10;
@@ -939,34 +1061,39 @@ body {
 }
 
 .temple-door-gate.opening .door-bright-flash {
-  animation: sanctumBrightFlash 3.0s cubic-bezier(0.18, 0.85, 0.3, 1) forwards;
+  animation: solarBurstPulse 3.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes sanctumBrightFlash {
+@keyframes solarBurstPulse {
   0% {
     opacity: 0;
-    transform: scale(0.35);
+    transform: scale(0.3);
     filter: brightness(1);
   }
-  24% {
+  22% {
     opacity: 1;
     transform: scale(1.2);
-    filter: brightness(4.0) drop-shadow(0 0 75px #ffffff) drop-shadow(0 0 110px rgba(255, 230, 120, 1));
+    filter: brightness(4.8) drop-shadow(0 0 95px #ffffff) drop-shadow(0 0 150px rgba(255, 215, 0, 1));
   }
-  50% {
-    opacity: 0.92;
-    transform: scale(1.3);
-    filter: brightness(2.2) drop-shadow(0 0 50px rgba(255, 225, 110, 0.95));
+  45% {
+    opacity: 0.96;
+    transform: scale(1.32);
+    filter: brightness(3.2) drop-shadow(0 0 75px rgba(255, 230, 100, 1));
   }
-  75% {
-    opacity: 0.35;
-    transform: scale(1.4);
-    filter: brightness(1.2) drop-shadow(0 0 25px rgba(255, 215, 0, 0.6));
+  70% {
+    opacity: 0.45;
+    transform: scale(1.42);
+    filter: brightness(1.7) drop-shadow(0 0 35px rgba(255, 200, 50, 0.8));
+  }
+  88% {
+    opacity: 0.15;
+    transform: scale(1.48);
+    filter: brightness(1.2);
   }
   100% {
     opacity: 0;
-    transform: scale(1.48);
-    filter: blur(14px);
+    transform: scale(1.54);
+    filter: blur(16px);
   }
 }
 
