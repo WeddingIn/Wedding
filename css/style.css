@@ -784,30 +784,32 @@ body {
 
 .temple-door-wrapper {
   position: relative;
-  width: min(calc(min(88vh, 88dvh) * (848 / 1264)), 92vw);
-  height: min(88vh, 88dvh);
+  height: min(95vh, 95dvh);
+  width: calc(min(95vh, 95dvh) * (848 / 1264));
   aspect-ratio: 848 / 1264;
-  max-width: 94vw;
-  max-height: 88vh;
+  max-height: 96vh;
+  max-height: 96dvh;
   cursor: pointer;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+  margin-top: -1.5vh;
 }
 
 /* Desktop & Laptop View: Fits the UI page elegantly with commanding presence */
 @media (min-width: 768px) {
   .temple-door-wrapper {
-    height: min(88vh, 850px);
-    width: calc(min(88vh, 850px) * (848 / 1264));
+    height: min(94vh, 920px);
+    width: calc(min(94vh, 920px) * (848 / 1264));
     aspect-ratio: 848 / 1264;
-    max-width: 90vw;
-    max-height: 88vh;
+    max-width: 92vw;
+    max-height: 94vh;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
     filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.7));
+    margin-top: -1.5vh;
   }
 
   .door-couple-shree {
