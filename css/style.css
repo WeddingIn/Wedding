@@ -951,25 +951,31 @@ body {
    ======================================================== */
 .door-sun-radiance {
   position: absolute;
-  top: 34%;
-  bottom: 9%;
-  left: 26%;
-  right: 26%;
+  top: 32%;
+  bottom: 7%;
+  left: 22%;
+  right: 22%;
   background: 
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 240, 1) 32%,
-      rgba(255, 235, 130, 0.98) 55%,
-      rgba(255, 195, 60, 0.8) 75%,
-      rgba(240, 140, 25, 0.35) 90%,
+      #ffffff 0%,
+      #ffffff 22%,
+      rgba(255, 255, 220, 1) 40%,
+      rgba(255, 228, 90, 0.98) 60%,
+      rgba(255, 175, 30, 0.85) 78%,
+      rgba(255, 120, 10, 0.4) 92%,
       transparent 100%
     );
+  mix-blend-mode: screen;
+  filter: 
+    drop-shadow(0 0 15px #ffffff)
+    drop-shadow(0 0 35px rgba(255, 245, 160, 1))
+    drop-shadow(0 0 70px rgba(255, 215, 0, 0.95))
+    drop-shadow(0 0 110px rgba(255, 150, 0, 0.85));
   opacity: 0;
   pointer-events: none;
   z-index: 9;
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 45px rgba(255, 235, 140, 0.98)) drop-shadow(0 0 80px rgba(255, 200, 50, 0.9));
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
 
 .temple-door-gate.opening .door-sun-radiance {
@@ -979,27 +985,40 @@ body {
 @keyframes smoothSunlightBurst {
   0% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.75);
+    filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 25px #ffd700);
   }
-  20% {
-    /* Radiant, intense golden sunlight filling the doorway */
-    opacity: 1;
-    transform: scale(1.08);
-  }
-  50% {
-    /* Full peak bright golden radiance */
+  22% {
+    /* Brilliant, shimmering divine shine filling the doorway */
     opacity: 1;
     transform: scale(1.12);
+    filter: 
+      drop-shadow(0 0 25px #ffffff)
+      drop-shadow(0 0 50px rgba(255, 245, 180, 1))
+      drop-shadow(0 0 90px rgba(255, 215, 0, 1))
+      drop-shadow(0 0 130px rgba(255, 140, 0, 0.9));
   }
-  75% {
+  52% {
+    /* Full peak dazzling golden shine */
+    opacity: 1;
+    transform: scale(1.18);
+    filter: 
+      drop-shadow(0 0 25px #ffffff)
+      drop-shadow(0 0 50px rgba(255, 245, 180, 1))
+      drop-shadow(0 0 90px rgba(255, 215, 0, 1))
+      drop-shadow(0 0 130px rgba(255, 140, 0, 0.9));
+  }
+  78% {
     /* Sunlight gently softens as doors open wide */
-    opacity: 0.45;
-    transform: scale(1.15);
+    opacity: 0.55;
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 20px #ffd700) drop-shadow(0 0 50px rgba(255, 180, 0, 0.6));
   }
   100% {
-    /* Light completely clears out by 1.5s, revealing couple clearly */
+    /* Light completely clears out, revealing couple clearly */
     opacity: 0;
-    transform: scale(1.18);
+    transform: scale(1.26);
+    filter: none;
   }
 }
 
