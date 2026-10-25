@@ -786,6 +786,7 @@ body {
   position: relative;
   height: 100vh;
   height: 100dvh;
+  width: calc(100vh * (848 / 1170));
   width: calc(100dvh * (848 / 1170));
   aspect-ratio: 848 / 1170;
   max-height: 100vh;
@@ -798,15 +799,37 @@ body {
   margin: 0;
 }
 
-/* Desktop & Laptop View: Fits the UI page elegantly with commanding presence */
-@media (min-width: 768px) {
+/* Mobile Screens: Completely cover top and bottom without any empty gaps */
+@media (max-width: 767px) {
   .temple-door-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -49.5%) scale(1.24);
     height: 100vh;
     height: 100dvh;
     width: calc(100vh * (848 / 1170));
+    width: calc(100dvh * (848 / 1170));
     aspect-ratio: 848 / 1170;
-    max-height: 100vh;
-    max-height: 100dvh;
+    max-height: none;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Desktop & Laptop View: Fits the UI page elegantly with commanding presence */
+@media (min-width: 768px) {
+  .temple-door-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -49.5%) scale(1.06);
+    height: 100vh;
+    height: 100dvh;
+    width: calc(100vh * (848 / 1170));
+    width: calc(100dvh * (848 / 1170));
+    aspect-ratio: 848 / 1170;
+    max-height: none;
     max-width: none;
     border-radius: 0;
     background: transparent;
