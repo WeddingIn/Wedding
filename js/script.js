@@ -121,15 +121,15 @@ function initEnvelope() {
   let isOpening = false;
 
   function openDoor(e) {
-    if (isOpening) return;
-    isOpening = true;
-
-    // 1. Play background music on user gesture
+    // 1. Always attempt background music on every gesture (pointerdown, touchend, click)
     try {
       playAudioIfAllowed();
     } catch (err) {
       console.warn("Audio:", err);
     }
+
+    if (isOpening) return;
+    isOpening = true;
 
     // 2. Trigger slow-mo 3D temple doors swinging open with bright flash & couple portrait
     document.body.classList.add("door-opening");
@@ -153,8 +153,8 @@ function initEnvelope() {
   // Expose globally as safe fallback
   window.openTempleDoor = openDoor;
 
-  // Single cleanly bound touch/click trigger on the door gate
-  ["pointerdown", "click"].forEach(evt => {
+  // Single cleanly bound touch/click trigger on the door gate (pointerdown, touchend, click)
+  ["pointerdown", "touchend", "click"].forEach(evt => {
     envelopeScreen.addEventListener(evt, openDoor, { passive: true });
   });
 }
@@ -359,12 +359,64 @@ function updateProcessionButtonOverlap() {
 }
 
 // ========================================================
-// BACKGROUND MUSIC / AUDIO HANDLER
+// BACKGROUND MUSIC / AUDIO HANDLER (ANDROID & IOS COMPATIBLE)
 // ========================================================
 let audioInstance = null;
 let elephantAudioInstance = null;
 let isAudioPlaying = false;
 let elephantInterval = null;
+let audioCtxUnlocked = false;
+
+function updateMusicBtn(playing) {
+  const musicBtn = document.getElementById("music-toggle-btn");
+  if (!musicBtn) return;
+  if (playing) {
+    musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+    musicBtn.classList.add("playing");
+    musicBtn.title = "Pause Music";
+  } else {
+    musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+    musicBtn.classList.remove("playing");
+    musicBtn.title = "Play Music";
+  }
+}
+
+function unlockAudioContext() {
+  if (audioCtxUnlocked) return;
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) {
+      if (!window.__weddingAudioCtx) {
+        window.__weddingAudioCtx = new AudioCtx();
+      }
+      if (window.__weddingAudioCtx.state === "suspended") {
+        window.__weddingAudioCtx.resume().then(() => {
+          audioCtxUnlocked = true;
+        });
+      } else {
+        audioCtxUnlocked = true;
+      }
+    }
+  } catch (e) {}
+}
+
+const GLOBAL_AUDIO_EVENTS = ["click", "touchend", "pointerup", "keydown"];
+
+function onUserGestureAudioTrigger() {
+  playAudioIfAllowed();
+}
+
+function attachGlobalAudioTriggers() {
+  GLOBAL_AUDIO_EVENTS.forEach(evt => {
+    document.addEventListener(evt, onUserGestureAudioTrigger, { passive: true });
+  });
+}
+
+function removeGlobalAudioTriggers() {
+  GLOBAL_AUDIO_EVENTS.forEach(evt => {
+    document.removeEventListener(evt, onUserGestureAudioTrigger);
+  });
+}
 
 function initAudio() {
   const musicBtn = document.getElementById("music-toggle-btn");
@@ -380,19 +432,6 @@ function initAudio() {
 
   if (!musicBtn || !audioInstance) return;
 
-  function updateMusicBtn(playing) {
-    if (!musicBtn) return;
-    if (playing) {
-      musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
-      musicBtn.classList.add("playing");
-      musicBtn.title = "Pause Music";
-    } else {
-      musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-      musicBtn.classList.remove("playing");
-      musicBtn.title = "Play Music";
-    }
-  }
-
   musicBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     if (isAudioPlaying) {
@@ -400,9 +439,13 @@ function initAudio() {
       isAudioPlaying = false;
       updateMusicBtn(false);
     } else {
+      unlockAudioContext();
+      audioInstance.muted = false;
+      audioInstance.volume = 1.0;
       audioInstance.play().then(() => {
         isAudioPlaying = true;
         updateMusicBtn(true);
+        removeGlobalAudioTriggers();
       }).catch(err => {
         console.log("Audio play prevented:", err);
       });
@@ -413,35 +456,39 @@ function initAudio() {
   audioInstance.addEventListener("play", () => {
     isAudioPlaying = true;
     updateMusicBtn(true);
+    removeGlobalAudioTriggers();
   });
   audioInstance.addEventListener("pause", () => {
     isAudioPlaying = false;
     updateMusicBtn(false);
   });
 
-  // Start background wedding music on first user interaction anywhere on page
-  const startOnFirstGesture = () => {
-    playAudioIfAllowed();
-    document.removeEventListener("click", startOnFirstGesture);
-    document.removeEventListener("touchstart", startOnFirstGesture);
-    document.removeEventListener("keydown", startOnFirstGesture);
-  };
-  document.addEventListener("click", startOnFirstGesture, { once: true });
-  document.addEventListener("touchstart", startOnFirstGesture, { once: true });
-  document.addEventListener("keydown", startOnFirstGesture, { once: true });
+  // Attach persistent interaction listeners that wait for genuine user gesture
+  attachGlobalAudioTriggers();
+
+  // Try immediate autoplay (works on desktop / permitted environments)
+  playAudioIfAllowed();
 }
 
 function playAudioIfAllowed() {
-  if (audioInstance && !isAudioPlaying) {
-    audioInstance.volume = 1.0;
-    audioInstance.play().then(() => {
+  if (!audioInstance || isAudioPlaying) return;
+
+  try {
+    unlockAudioContext();
+  } catch (e) {}
+
+  audioInstance.muted = false;
+  audioInstance.volume = 1.0;
+
+  const playPromise = audioInstance.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
       isAudioPlaying = true;
-      const musicBtn = document.getElementById("music-toggle-btn");
-      if (musicBtn) {
-        musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
-        musicBtn.classList.add("playing");
-      }
-    }).catch(() => {});
+      updateMusicBtn(true);
+      removeGlobalAudioTriggers();
+    }).catch(err => {
+      // Pending genuine Android/iOS user gesture (e.g. touchend/click); keep triggers active
+    });
   }
 }
 
