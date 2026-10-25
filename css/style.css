@@ -784,32 +784,35 @@ body {
 
 .temple-door-wrapper {
   position: relative;
-  height: min(95vh, 95dvh);
-  width: calc(min(95vh, 95dvh) * (848 / 1264));
-  aspect-ratio: 848 / 1264;
-  max-height: 96vh;
-  max-height: 96dvh;
+  height: 100vh;
+  height: 100dvh;
+  width: calc(100dvh * (848 / 1170));
+  aspect-ratio: 848 / 1170;
+  max-height: 100vh;
+  max-height: 100dvh;
   cursor: pointer;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
-  margin-top: -1.5vh;
+  margin: 0;
 }
 
 /* Desktop & Laptop View: Fits the UI page elegantly with commanding presence */
 @media (min-width: 768px) {
   .temple-door-wrapper {
-    height: min(94vh, 920px);
-    width: calc(min(94vh, 920px) * (848 / 1264));
-    aspect-ratio: 848 / 1264;
-    max-width: 92vw;
-    max-height: 94vh;
+    height: 100vh;
+    height: 100dvh;
+    width: calc(100vh * (848 / 1170));
+    aspect-ratio: 848 / 1170;
+    max-height: 100vh;
+    max-height: 100dvh;
+    max-width: none;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
     filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.7));
-    margin-top: -1.5vh;
+    margin: 0;
   }
 
   .door-couple-shree {
@@ -851,8 +854,8 @@ body {
 /* Inner Sanctum (Behind opening doors - holding Anime Couple Portrait & Divine Flash) */
 .door-inner-glow {
   position: absolute;
-  top: 34.81%;
-  bottom: 17.33%;
+  top: 37.01%;
+  bottom: 11.28%;
   left: 29.48%;
   right: 29.48%;
   background: radial-gradient(circle at center, #fffef0 0%, #ffe070 38%, #d4a025 72%, #1e0904 100%);
@@ -948,8 +951,8 @@ body {
    ======================================================== */
 .door-sun-radiance {
   position: absolute;
-  top: 32%;
-  bottom: 15%;
+  top: 34%;
+  bottom: 9%;
   left: 26%;
   right: 26%;
   background: 
@@ -1003,8 +1006,8 @@ body {
 /* Moving Door Panels Stage - Perfectly aligned with doorway opening in frame */
 .door-leaves-stage {
   position: absolute;
-  top: 34.81%;
-  bottom: 17.33%;
+  top: 37.01%;
+  bottom: 11.28%;
   left: 29.48%;
   right: 29.48%;
   perspective: 1100px;
