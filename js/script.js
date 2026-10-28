@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initActiveNavTracker();
   initAutoScroll();
+  initBirdsInteraction();
 });
 
 // ========================================================
@@ -363,6 +364,7 @@ function updateProcessionButtonOverlap() {
 // ========================================================
 let audioInstance = null;
 let elephantAudioInstance = null;
+let birdAudioInstance = null;
 let isAudioPlaying = false;
 let elephantInterval = null;
 let audioCtxUnlocked = false;
@@ -422,12 +424,16 @@ function initAudio() {
   const musicBtn = document.getElementById("music-toggle-btn");
   audioInstance = document.getElementById("wedding-bg-music");
   elephantAudioInstance = document.getElementById("elephant-ambient-sound");
+  birdAudioInstance = document.getElementById("bird-chirp-sound");
 
   if (audioInstance) {
     audioInstance.volume = 1.0;
   }
   if (elephantAudioInstance) {
     elephantAudioInstance.volume = 0.22;
+  }
+  if (birdAudioInstance) {
+    birdAudioInstance.volume = 0.75;
   }
 
   if (!musicBtn || !audioInstance) return;
@@ -506,6 +512,47 @@ function playSoothingElephantSound(customVol = 0.22) {
   } else {
     synthesizeSoothingElephantCall(customVol);
   }
+}
+
+// Melodious Cuckoo / Bird Chirp sound handler
+function playBirdChirpSound(customVol = 0.75) {
+  unlockAudioContext();
+  if (birdAudioInstance) {
+    try {
+      if (birdAudioInstance.paused || birdAudioInstance.ended) {
+        birdAudioInstance.volume = customVol;
+        birdAudioInstance.currentTime = 0;
+        const p = birdAudioInstance.play();
+        if (p !== undefined) {
+          p.catch(() => {
+            playCloneBirdAudio(customVol);
+          });
+        }
+      } else {
+        // Fast repeated taps: clone node for overlapping chirps
+        playCloneBirdAudio(customVol);
+      }
+    } catch (e) {
+      playCloneBirdAudio(customVol);
+    }
+  } else {
+    playCloneBirdAudio(customVol);
+  }
+}
+
+function playCloneBirdAudio(vol = 0.75) {
+  try {
+    const src = birdAudioInstance || document.getElementById("bird-chirp-sound");
+    if (src) {
+      const clone = src.cloneNode(true);
+      clone.volume = vol;
+      clone.currentTime = 0;
+      clone.play().catch(() => {});
+      clone.addEventListener("ended", () => {
+        try { clone.remove(); } catch (e) {}
+      });
+    }
+  } catch (e) {}
 }
 
 // Web Audio API soothing synthesized elephant ambient call fallback
@@ -704,6 +751,117 @@ function onProcessionTap(e) {
 // Global fallback accessors
 window.onProcessionTap = onProcessionTap;
 window.onBabyElephantTap = onProcessionTap;
+
+// ========================================================
+// AUSPICIOUS BIRD TAP / CHIRP SOUND INTERACTION
+// ========================================================
+const BIRD_CHIRP_PHRASES = [
+  "🎶 Ku-hoo! 🌸",
+  "🎵 Chirp! 🌿",
+  "✨ Koo-hoo! 🕊️",
+  "🎶 🕊️ 🌸",
+  "✨ Sweet Chirp! 🦜"
+];
+
+let lastBirdTapTime = 0;
+
+function onBirdTap(e, targetEl) {
+  const now = Date.now();
+  if (now - lastBirdTapTime < 280) {
+    return; // Debounce dual click/touchend
+  }
+  lastBirdTapTime = now;
+
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  }
+
+  const bird = targetEl || (e && (e.currentTarget || (e.target && e.target.closest(".flying-bird-actor, .arch-bird-actor, #left-parrot, #right-parrot, #left-peacock, #right-peacock"))));
+  if (!bird) return;
+
+  // Play melodious bird sound instantly
+  playBirdChirpSound(0.75);
+
+  // Trigger happy flutter bounce
+  bird.classList.remove("happy-flutter");
+  void bird.offsetWidth; // Force reflow
+  bird.classList.add("happy-flutter");
+
+  setTimeout(() => {
+    bird.classList.remove("happy-flutter");
+  }, 750);
+
+  // Shower fragrant rose & golden petals
+  if (typeof showerPetals === "function") {
+    showerPetals(12);
+  }
+
+  // Display floating chirp bubble
+  showBirdChirpPopup(bird);
+}
+
+function showBirdChirpPopup(bird) {
+  try {
+    const phrase = BIRD_CHIRP_PHRASES[Math.floor(Math.random() * BIRD_CHIRP_PHRASES.length)];
+    const popup = document.createElement("div");
+    popup.className = "bird-chirp-popup";
+    popup.textContent = phrase;
+
+    if (bird.tagName && bird.tagName.toLowerCase() === "g") {
+      // SVG arch element: position based on viewport rect
+      const rect = bird.getBoundingClientRect();
+      popup.style.position = "fixed";
+      popup.style.left = (rect.left + rect.width / 2) + "px";
+      popup.style.top = (rect.top - 8) + "px";
+      popup.style.transform = "translate(-50%, -100%)";
+      document.body.appendChild(popup);
+      setTimeout(() => {
+        if (popup.parentNode) popup.parentNode.removeChild(popup);
+      }, 1800);
+    } else {
+      // HTML flying bird: remove old popup inside this bird if any, append new
+      const old = bird.querySelector(".bird-chirp-popup");
+      if (old) old.remove();
+      bird.appendChild(popup);
+      setTimeout(() => {
+        if (popup.parentNode) popup.parentNode.removeChild(popup);
+      }, 1800);
+    }
+  } catch (err) {
+    console.log("Bird popup error:", err);
+  }
+}
+
+function initBirdsInteraction() {
+  const birds = document.querySelectorAll(".flying-bird-actor, .arch-bird-actor, #left-parrot, #right-parrot, #left-peacock, #right-peacock");
+  birds.forEach((bird) => {
+    bird.style.cursor = "pointer";
+    bird.style.pointerEvents = "auto";
+
+    bird.addEventListener("click", (e) => {
+      onBirdTap(e, bird);
+    });
+
+    let touchMoved = false;
+    bird.addEventListener("touchstart", () => {
+      touchMoved = false;
+    }, { passive: true });
+
+    bird.addEventListener("touchmove", () => {
+      touchMoved = true;
+    }, { passive: true });
+
+    bird.addEventListener("touchend", (e) => {
+      if (!touchMoved) {
+        onBirdTap(e, bird);
+      }
+    });
+  });
+}
+
+// Global fallback accessors
+window.onBirdTap = onBirdTap;
+window.playBirdChirpSound = playBirdChirpSound;
 
 // ========================================================
 // ELEGANT IDLE AUTO-SCROLL ENGINE

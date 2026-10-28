@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
   
   <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="css/style.css?v=2.9">
+  <link rel="stylesheet" href="css/style.css?v=3.5">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
   <canvas id="petals-canvas"></canvas>
 
   <!-- Flying Birds Animation Layer (Auspicious South Indian Parrots & Soaring Doves) -->
-  <div class="flying-birds-stage" aria-hidden="true">
+  <div class="flying-birds-stage" role="region" aria-label="Auspicious birds">
     <!-- Shared SVG Gradient Definitions -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
       <defs>
@@ -50,7 +50,7 @@
     </svg>
 
     <!-- Bird Actor 1: Green Parrot Pair (Lead) -->
-    <div class="flying-bird-actor bird-actor-1">
+    <div class="flying-bird-actor bird-actor-1" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
         <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
@@ -69,7 +69,7 @@
     </div>
 
     <!-- Bird Actor 1 Partner: Green Parrot Pair (Companion) -->
-    <div class="flying-bird-actor bird-actor-1-partner">
+    <div class="flying-bird-actor bird-actor-1-partner" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
         <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
@@ -88,7 +88,7 @@
     </div>
 
     <!-- Bird Actor 2: White Dove soaring across the horizon -->
-    <div class="flying-bird-actor bird-actor-2">
+    <div class="flying-bird-actor bird-actor-2" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 16 36 6 42 2 46 C 10 41 21 36 26 31 Z" fill="#e2e8f0"/>
         <path d="M 27 34 C 18 39 8 45 4 48 C 12 43 22 38 25 32 Z" fill="#ffffff"/>
@@ -105,7 +105,7 @@
     </div>
 
     <!-- Bird Actor 3: Fluttering Green Parrot near Kalyana Kalasha -->
-    <div class="flying-bird-actor bird-actor-3">
+    <div class="flying-bird-actor bird-actor-3" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
         <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
@@ -124,7 +124,7 @@
     </div>
 
     <!-- Bird Actor 4: Pair of Parrots sweeping across the middle sky -->
-    <div class="flying-bird-actor bird-actor-4">
+    <div class="flying-bird-actor bird-actor-4" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
         <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
@@ -143,7 +143,7 @@
     </div>
 
     <!-- Bird Actor 4 Partner -->
-    <div class="flying-bird-actor bird-actor-4-partner">
+    <div class="flying-bird-actor bird-actor-4-partner" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Melodious bird chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
       <svg class="bird-svg" viewBox="0 0 80 50">
         <path d="M 28 32 C 18 38 8 46 2 50 C 9 44 20 37 25 32 Z" fill="#10ac84" opacity="0.9"/>
         <path d="M 27 34 C 16 42 7 48 0 50 C 9 46 19 39 24 33 Z" fill="#2ed573"/>
@@ -829,6 +829,13 @@
     <source src="assets/audio/elephant_trumpet.mp3" type="audio/mp3">
   </audio>
 
+  <!-- Melodious Cuckoo / Bird Chirp Sound -->
+  <audio id="bird-chirp-sound" preload="auto" playsinline webkit-playsinline>
+    <source src="assets/audio/bird_cuckoo.mp3" type="audio/mpeg">
+    <source src="assets/audio/bird_cuckoo.m4a" type="audio/mp4">
+    <source src="assets/audio/bird_cuckoo.wav" type="audio/wav">
+  </audio>
+
   <!-- Floating Controls -->
   <div class="floating-controls">
     <button class="float-action-btn" id="music-toggle-btn" title="Toggle Music">
@@ -964,67 +971,79 @@
           <path d="M 497 12 L 503 12 L 500 2 Z" fill="url(#kalashGold)"/>
 
           <!-- LEFT ROYAL PEACOCK (Mayura) -->
-          <g id="left-peacock">
-            <path d="M 412 36 L 406 28 M 415 35 L 413 25 M 418 36 L 420 27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="406" cy="27" r="2" fill="#00b074"/>
-            <circle cx="413" cy="24" r="2" fill="#00b074"/>
-            <circle cx="420" cy="26" r="2" fill="#00b074"/>
-            <path d="M 425 55 C 428 42 418 35 413 38 C 408 42 414 50 416 55 C 418 60 415 70 410 75" fill="none" stroke="url(#peacockBlue)" stroke-width="5" stroke-linecap="round"/>
-            <path d="M 410 39 L 403 40 L 409 43 Z" fill="#ffb300"/>
-            <circle cx="413" cy="39" r="1.5" fill="#fff"/>
-            <circle cx="413" cy="39" r="0.7" fill="#000"/>
-            <path d="M 410 65 C 390 60 375 75 370 95 C 385 92 405 85 415 72 Z" fill="url(#peacockGreen)" stroke="#d4af37" stroke-width="1"/>
-            <path d="M 370 90 C 330 95 290 115 250 145 C 290 135 340 120 380 95 Z" fill="url(#peacockBlue)" opacity="0.9"/>
-            <circle cx="280" cy="130" r="5" fill="#d4af37"/>
-            <circle cx="280" cy="130" r="3" fill="#006699"/>
-            <circle cx="280" cy="130" r="1.5" fill="#00b074"/>
-            <circle cx="320" cy="115" r="5" fill="#d4af37"/>
-            <circle cx="320" cy="115" r="3" fill="#006699"/>
-            <circle cx="320" cy="115" r="1.5" fill="#00b074"/>
+          <g id="left-peacock" class="arch-bird-actor interactive-bird" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Royal peacock chirp" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
+            <rect x="250" y="20" width="180" height="130" fill="transparent" pointer-events="all"/>
+            <g class="arch-bird-inner">
+              <path d="M 412 36 L 406 28 M 415 35 L 413 25 M 418 36 L 420 27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="406" cy="27" r="2" fill="#00b074"/>
+              <circle cx="413" cy="24" r="2" fill="#00b074"/>
+              <circle cx="420" cy="26" r="2" fill="#00b074"/>
+              <path d="M 425 55 C 428 42 418 35 413 38 C 408 42 414 50 416 55 C 418 60 415 70 410 75" fill="none" stroke="url(#peacockBlue)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 410 39 L 403 40 L 409 43 Z" fill="#ffb300"/>
+              <circle cx="413" cy="39" r="1.5" fill="#fff"/>
+              <circle cx="413" cy="39" r="0.7" fill="#000"/>
+              <path d="M 410 65 C 390 60 375 75 370 95 C 385 92 405 85 415 72 Z" fill="url(#peacockGreen)" stroke="#d4af37" stroke-width="1"/>
+              <path d="M 370 90 C 330 95 290 115 250 145 C 290 135 340 120 380 95 Z" fill="url(#peacockBlue)" opacity="0.9"/>
+              <circle cx="280" cy="130" r="5" fill="#d4af37"/>
+              <circle cx="280" cy="130" r="3" fill="#006699"/>
+              <circle cx="280" cy="130" r="1.5" fill="#00b074"/>
+              <circle cx="320" cy="115" r="5" fill="#d4af37"/>
+              <circle cx="320" cy="115" r="3" fill="#006699"/>
+              <circle cx="320" cy="115" r="1.5" fill="#00b074"/>
+            </g>
           </g>
 
           <!-- RIGHT ROYAL PEACOCK (Mayura) -->
-          <g id="right-peacock" transform="translate(1000, 0) scale(-1, 1)">
-            <path d="M 412 36 L 406 28 M 415 35 L 413 25 M 418 36 L 420 27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="406" cy="27" r="2" fill="#00b074"/>
-            <circle cx="413" cy="24" r="2" fill="#00b074"/>
-            <circle cx="420" cy="26" r="2" fill="#00b074"/>
-            <path d="M 425 55 C 428 42 418 35 413 38 C 408 42 414 50 416 55 C 418 60 415 70 410 75" fill="none" stroke="url(#peacockBlue)" stroke-width="5" stroke-linecap="round"/>
-            <path d="M 410 39 L 403 40 L 409 43 Z" fill="#ffb300"/>
-            <circle cx="413" cy="39" r="1.5" fill="#fff"/>
-            <circle cx="413" cy="39" r="0.7" fill="#000"/>
-            <path d="M 410 65 C 390 60 375 75 370 95 C 385 92 405 85 415 72 Z" fill="url(#peacockGreen)" stroke="#d4af37" stroke-width="1"/>
-            <path d="M 370 90 C 330 95 290 115 250 145 C 290 135 340 120 380 95 Z" fill="url(#peacockBlue)" opacity="0.9"/>
-            <circle cx="280" cy="130" r="5" fill="#d4af37"/>
-            <circle cx="280" cy="130" r="3" fill="#006699"/>
-            <circle cx="280" cy="130" r="1.5" fill="#00b074"/>
-            <circle cx="320" cy="115" r="5" fill="#d4af37"/>
-            <circle cx="320" cy="115" r="3" fill="#006699"/>
-            <circle cx="320" cy="115" r="1.5" fill="#00b074"/>
+          <g id="right-peacock" class="arch-bird-actor interactive-bird" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Royal peacock chirp" transform="translate(1000, 0) scale(-1, 1)" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
+            <rect x="250" y="20" width="180" height="130" fill="transparent" pointer-events="all"/>
+            <g class="arch-bird-inner">
+              <path d="M 412 36 L 406 28 M 415 35 L 413 25 M 418 36 L 420 27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="406" cy="27" r="2" fill="#00b074"/>
+              <circle cx="413" cy="24" r="2" fill="#00b074"/>
+              <circle cx="420" cy="26" r="2" fill="#00b074"/>
+              <path d="M 425 55 C 428 42 418 35 413 38 C 408 42 414 50 416 55 C 418 60 415 70 410 75" fill="none" stroke="url(#peacockBlue)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 410 39 L 403 40 L 409 43 Z" fill="#ffb300"/>
+              <circle cx="413" cy="39" r="1.5" fill="#fff"/>
+              <circle cx="413" cy="39" r="0.7" fill="#000"/>
+              <path d="M 410 65 C 390 60 375 75 370 95 C 385 92 405 85 415 72 Z" fill="url(#peacockGreen)" stroke="#d4af37" stroke-width="1"/>
+              <path d="M 370 90 C 330 95 290 115 250 145 C 290 135 340 120 380 95 Z" fill="url(#peacockBlue)" opacity="0.9"/>
+              <circle cx="280" cy="130" r="5" fill="#d4af37"/>
+              <circle cx="280" cy="130" r="3" fill="#006699"/>
+              <circle cx="280" cy="130" r="1.5" fill="#00b074"/>
+              <circle cx="320" cy="115" r="5" fill="#d4af37"/>
+              <circle cx="320" cy="115" r="3" fill="#006699"/>
+              <circle cx="320" cy="115" r="1.5" fill="#00b074"/>
+            </g>
           </g>
 
           <!-- LEFT AUSPICIOUS GREEN PARROT (Killi / Shuka) -->
-          <g id="left-parrot" transform="translate(145, 95)">
-            <path d="M 22 45 Q 26 75 24 105 Q 20 75 16 48 Z" fill="url(#parrotGreen)"/>
-            <ellipse cx="20" cy="35" rx="10" ry="16" fill="url(#parrotGreen)"/>
-            <path d="M 20 26 Q 30 38 24 50 Q 15 44 20 26 Z" fill="#2a660e"/>
-            <circle cx="20" cy="20" r="9" fill="url(#parrotGreen)"/>
-            <path d="M 27 20 Q 37 21 33 28 Q 26 26 27 20 Z" fill="#e53935"/>
-            <circle cx="23" cy="18" r="2.2" fill="#ffffff"/>
-            <circle cx="23" cy="18" r="1" fill="#000000"/>
-            <path d="M 14 26 Q 20 29 26 26" stroke="#d32f2f" stroke-width="1.5" fill="none"/>
+          <g id="left-parrot" class="arch-bird-actor interactive-bird" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Auspicious green parrot chirp" transform="translate(145, 95)" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
+            <rect x="0" y="0" width="50" height="115" fill="transparent" pointer-events="all"/>
+            <g class="arch-bird-inner">
+              <path d="M 22 45 Q 26 75 24 105 Q 20 75 16 48 Z" fill="url(#parrotGreen)"/>
+              <ellipse cx="20" cy="35" rx="10" ry="16" fill="url(#parrotGreen)"/>
+              <path d="M 20 26 Q 30 38 24 50 Q 15 44 20 26 Z" fill="#2a660e"/>
+              <circle cx="20" cy="20" r="9" fill="url(#parrotGreen)"/>
+              <path d="M 27 20 Q 37 21 33 28 Q 26 26 27 20 Z" fill="#e53935"/>
+              <circle cx="23" cy="18" r="2.2" fill="#ffffff"/>
+              <circle cx="23" cy="18" r="1" fill="#000000"/>
+              <path d="M 14 26 Q 20 29 26 26" stroke="#d32f2f" stroke-width="1.5" fill="none"/>
+            </g>
           </g>
 
           <!-- RIGHT AUSPICIOUS GREEN PARROT (Killi / Shuka) -->
-          <g id="right-parrot" transform="translate(855, 95) scale(-1, 1)">
-            <path d="M 22 45 Q 26 75 24 105 Q 20 75 16 48 Z" fill="url(#parrotGreen)"/>
-            <ellipse cx="20" cy="35" rx="10" ry="16" fill="url(#parrotGreen)"/>
-            <path d="M 20 26 Q 30 38 24 50 Q 15 44 20 26 Z" fill="#2a660e"/>
-            <circle cx="20" cy="20" r="9" fill="url(#parrotGreen)"/>
-            <path d="M 27 20 Q 37 21 33 28 Q 26 26 27 20 Z" fill="#e53935"/>
-            <circle cx="23" cy="18" r="2.2" fill="#ffffff"/>
-            <circle cx="23" cy="18" r="1" fill="#000000"/>
-            <path d="M 14 26 Q 20 29 26 26" stroke="#d32f2f" stroke-width="1.5" fill="none"/>
+          <g id="right-parrot" class="arch-bird-actor interactive-bird" role="button" tabindex="0" title="Click to hear bird sound 🎵" aria-label="Auspicious green parrot chirp" transform="translate(855, 95) scale(-1, 1)" onclick="window.onBirdTap &amp;&amp; window.onBirdTap(event, this)">
+            <rect x="0" y="0" width="50" height="115" fill="transparent" pointer-events="all"/>
+            <g class="arch-bird-inner">
+              <path d="M 22 45 Q 26 75 24 105 Q 20 75 16 48 Z" fill="url(#parrotGreen)"/>
+              <ellipse cx="20" cy="35" rx="10" ry="16" fill="url(#parrotGreen)"/>
+              <path d="M 20 26 Q 30 38 24 50 Q 15 44 20 26 Z" fill="#2a660e"/>
+              <circle cx="20" cy="20" r="9" fill="url(#parrotGreen)"/>
+              <path d="M 27 20 Q 37 21 33 28 Q 26 26 27 20 Z" fill="#e53935"/>
+              <circle cx="23" cy="18" r="2.2" fill="#ffffff"/>
+              <circle cx="23" cy="18" r="1" fill="#000000"/>
+              <path d="M 14 26 Q 20 29 26 26" stroke="#d32f2f" stroke-width="1.5" fill="none"/>
+            </g>
           </g>
 
           <!-- AUSPICIOUS MANGO LEAVES (Mavina Ele Torana) -->
