@@ -136,19 +136,19 @@ function initEnvelope() {
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
 
-    // 3. Lighting shines, then standing couple pic visible, then land on main page at 2.5s door timeout
+    // 3. Lighting shines, couple portrait revealed, then smoothly glide through open doors at 1.75s
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
       try {
         if (typeof showerPetals === "function") {
-          showerPetals(45);
+          showerPetals(35);
         }
       } catch (err) {}
       if (typeof window.stopAutoScroll === "function") {
         window.stopAutoScroll(true);
       }
-    }, 2500);
+    }, 1750);
   }
 
   // Expose globally as safe fallback
