@@ -136,7 +136,7 @@ function initEnvelope() {
     document.body.classList.add("door-opening");
     envelopeScreen.classList.add("opening");
 
-    // 3. Lighting shines, couple portrait revealed, then smoothly glide through open doors at 1.75s
+    // 3. Lighting shines, couple portrait revealed, wait additional 1 sec (2.75s) before smoothly gliding into invitation
     setTimeout(() => {
       envelopeScreen.classList.add("unveiled");
       envelopeScreen.classList.add("opened");
@@ -148,7 +148,7 @@ function initEnvelope() {
       if (typeof window.stopAutoScroll === "function") {
         window.stopAutoScroll(true);
       }
-    }, 1750);
+    }, 2750);
   }
 
   // Expose globally as safe fallback
